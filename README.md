@@ -1,7 +1,7 @@
 # ReproductorMusical
 
 ## PARA INSTALAR LAS LIBRERÍAS
-- Primero tienen que tener node.js instalado
+Primero tienen que tener node.js instalado
 Para la librería de express:
 ```
 npm i express pg
