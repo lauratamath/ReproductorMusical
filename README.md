@@ -10,6 +10,11 @@ Para las librerías de react:
 ```
 npx create-react-app react-postgres
 ```
+En esa misma carpeta de react-progres (darse cuenta que lo guarden en node_modules)
+```
+npm install react-router-dom
+```
+
 
 ##  PARA CORRER
 Para activar la base de datos: Abren una consola en la carpeta node-postgres
