@@ -6,7 +6,9 @@ import {
   Link
 } from "react-router-dom";
 import Signin from "./components/Signin";
-import Login from "./components/Login"
+import LogIn from "./components/Login"
+import Free from "./components/memberships/Free"
+import Premium from "./components/memberships/Premium"
 
 
 export default function App() {
@@ -26,8 +28,14 @@ export default function App() {
         </div>
 
         <Switch>
+          <Route path="/login/premium">
+            <Premium />
+          </Route>
+          <Route path="/login/free">
+            <Free />
+          </Route>
           <Route path="/login">
-            <Login />
+            <LogIn />
           </Route>
           <Route path="/signin">
             <Signin />

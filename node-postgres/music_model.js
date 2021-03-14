@@ -14,24 +14,24 @@ const getUsersAccounts = () => {
           reject(error)
         }
         resolve(results.rows);
-      })
-    }) 
-  }
-
-  const createUserAccount = (body) => {
-    return new Promise(function(resolve, reject) {
-      const { username, password, type } = body
-      pool.query('INSERT INTO useraccount VALUES ($1, $2, $3)', [username, password, type], (error, results) => {
-        if (error) {
-          reject(error)
-          console.log(error)
-        }
-        resolve('A new account has been added added', results)
-      })
     })
-  }
+  }) 
+}
+
+const createUserAccount = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { username, password, type } = body
+    pool.query('INSERT INTO useraccount VALUES ($1, $2, $3)', [username, password, type], (error, results) => {
+      if (error) {
+        reject(error)
+        console.log(error)
+      }
+      resolve('A new account has been added added', results)
+    })
+  })
+}
   
-  module.exports = {
-    getUsersAccounts,
-    createUserAccount
-  }
+module.exports = {
+  getUsersAccounts,
+  createUserAccount
+}
