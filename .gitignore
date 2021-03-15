@@ -1,2 +1,7 @@
 node-postgres/node_modules
+<<<<<<< HEAD
 react-postgres/node_modules
+=======
+react-postgres/node_modules
+react-postgres/public
+>>>>>>> d9af7b978d6efd0b1b9ea358ffbe3b16b4f99ece
