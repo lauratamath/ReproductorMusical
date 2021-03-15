@@ -10,7 +10,6 @@ import LogIn from "./components/Login"
 import Free from "./components/memberships/Free"
 import Premium from "./components/memberships/Premium"
 
-
 export default function App() {
   return (
     <Router>
@@ -28,21 +27,13 @@ export default function App() {
         </div>
 
         <Switch>
-          <Route path="/login/premium">
-            <Premium />
-          </Route>
-          <Route path="/login/free">
-            <Free />
-          </Route>
-          <Route path="/login">
-            <LogIn />
-          </Route>
-          <Route path="/signin">
-            <Signin />
-          </Route>
-          <Route path="/">
-          </Route>
+          <Route path="/login/premium" component={Premium} />
+          <Route path="/login/free" component={Free} />
+          <Route path="/login" component={LogIn} />
+          <Route path="/signin" component={Signin} />
+          <Route path="/"/>
         </Switch>
+        
       </div>
     </Router>
   );

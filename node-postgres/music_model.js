@@ -18,6 +18,17 @@ const getUsersAccounts = () => {
   }) 
 }
 
+const getSongs = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT * FROM songs', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
 const createUserAccount = (body) => {
   return new Promise(function(resolve, reject) {
     const { username, password, type } = body
@@ -33,5 +44,6 @@ const createUserAccount = (body) => {
   
 module.exports = {
   getUsersAccounts,
-  createUserAccount
+  createUserAccount,
+  getSongs
 }

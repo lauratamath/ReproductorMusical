@@ -1,0 +1,26 @@
+{
+  "name": "node-postgres",
+  "version": "1.0.0",
+  "description": "Learn how NodeJS and Express can interact with PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lauratamath/ReproductorMusical.git"
+  },
+  "keywords": [
+    "NodeJS"
+  ],
+  "author": "Andrea Amaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lauratamath/ReproductorMusical/issues"
+  },
+  "homepage": "https://github.com/lauratamath/ReproductorMusical#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  }
+}
