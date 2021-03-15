@@ -8,14 +8,8 @@
     "@testing-library/user-event": "^12.8.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-<<<<<<< HEAD
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-spotify-api": "^3.0.0",
-    "react-spotify-web-playback": "^0.8.1",
-=======
-    "react-scripts": "4.0.3",
->>>>>>> d9af7b978d6efd0b1b9ea358ffbe3b16b4f99ece
     "web-vitals": "^1.1.0"
   },
   "scripts": {

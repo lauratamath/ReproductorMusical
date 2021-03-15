@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Home from "./components/Home";
 import Signin from "./components/Signin";
 import LogIn from "./components/Login"
 import Free from "./components/memberships/Free"
@@ -14,24 +15,12 @@ export default function App() {
   return (
     <Router>
       <div>
-        <div>
-          <Link to="/">
-            <button>Home</button>
-          </Link>
-          <Link to="/login">
-            <button>LogIn</button>
-          </Link>
-          <Link to="/signin">
-            <button>SingIn</button>
-          </Link>
-        </div>
-
         <Switch>
           <Route path="/login/premium" component={Premium} />
           <Route path="/login/free" component={Free} />
           <Route path="/login" component={LogIn} />
           <Route path="/signin" component={Signin} />
-          <Route path="/"/>
+          <Route path="/" component={Home}/>
         </Switch>
         
       </div>
