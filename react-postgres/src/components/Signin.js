@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 
 const Error = ({error}) => {
   const style = {
@@ -15,6 +16,7 @@ const Input = ({type, onChange, name}) => {
 }
 
 const SignIn = () => {
+  const history = useHistory()
   const [userAccount, setUserAccount] = useState([])
   const [newAccount, setNewAccount] = useState({username: '', email: '', emailCon: '', password: ''})
   const [usernameError, setUsernameError] = useState('')
@@ -114,6 +116,9 @@ const SignIn = () => {
         <Error error={passwordError}/>      
 
         <button onClick={createUserAccount}>Submit</button>
+        
+        <button onClick={() => history.push('/login')}>LogIn</button>
+        <button onClick={() => history.push('/home')}>Home</button>
     </div>
   );
 }

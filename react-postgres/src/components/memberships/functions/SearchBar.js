@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import PlaySong from '../functions/PlaySong'
 
 const Input = ({onChange}) => { 
     const style = {
@@ -9,12 +10,24 @@ const Input = ({onChange}) => {
 
 const SongSearched = ({artistName, songName, songDuration}) => { 
     const style = {
-      display: 'block'
+        display: 'flex',
+        width: '300px',
+        height: '100px',
+        lineHeight: '0px',
+        position: 'relative',
+      
+        whiteSpace: 'nowrap',
+        margin: '0px auto'
     }
-    return <div align='center'>
-        <h4>{artistName}</h4>
-        <h5>{songName}</h5>
-        <h6>{songDuration}</h6>
+
+
+    return <div style={style}>
+            <div>
+                <h4>{artistName}</h4>
+                <h5>{songName}</h5>
+                <h6>{songDuration}</h6>
+            </div>
+           <PlaySong/>
         </div>
 }
 
@@ -42,7 +55,6 @@ const SearchBar = () => {
 
     function searchSong () {
         const results = []
-
         try {
             for (var a=0; a<songs.length; a++) {
                 if (songs[a].artist === search) {

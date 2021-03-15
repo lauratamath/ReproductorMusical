@@ -52,6 +52,7 @@ const LogIn = () => {
       if (userAccount[indexUser].password === existingAccount.password) {
           console.log('Pasa a free/premium/artist')
           accountType = userAccount[indexUser].type
+          localStorage.setItem('actualUsername', userAccount[indexUser].username)
       } else {
         error  = 'Incorrect username or password'
       }
@@ -60,6 +61,7 @@ const LogIn = () => {
         if (userAccount[indexEmail].password === existingAccount.password) {
           console.log('Pasa a free/premium/artist')
           accountType = userAccount[indexUser].type
+          localStorage.setItem('actualUsername', userAccount[indexEmail].username)
         } else {
           error  = 'Incorrect username or password'
         }
@@ -71,13 +73,13 @@ const LogIn = () => {
 
     if (error === ''){
       if(accountType === 'Free'){
-        history.push('login/free')
+        history.push('/login/free')
       } else if (accountType === 'Premium'){
-        history.push('login/premium')
+        history.push('/login/premium')
       } else if(accountType === 'Creator'){
-        history.push('login/creator')
+        history.push('/login/creator')
       } else if(accountType === 'Admin'){
-        history.push('login/admin')
+        history.push('/login/admin')
       }
     }
   }
@@ -91,7 +93,10 @@ const LogIn = () => {
         <Input type="password" onChange={handleChange} name="password"/>  
 
         <button onClick={verifyUserAccount}>Log In</button>
+        <button onClick={() => history.push('/signin')}>SignIn</button>
+        <button onClick={() => history.push('/home')}>Home</button>
 
+        
         <Error error={showError}/>
     </div>
   )
