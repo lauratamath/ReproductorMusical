@@ -147,7 +147,7 @@ const SignIn = () => {
 
         <label>
           <font face ='Candara' color ='#FFFFFF'>
-            <br/><br/>¿No tienes cuenta aún? 
+            <br/><br/>¿Ya tienes cuenta? 
           </font><br/>
         </label>
         

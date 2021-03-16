@@ -3,7 +3,7 @@ const pool = new Pool ({
   user: 'postgres',
   host: 'localhost',
   database: 'proyecto',
-  password: 'lauRamaRiia1',
+  password: 'Benjamin1',
   port: 5432,
 });
 
@@ -116,6 +116,20 @@ const createFreeMembershipDay = (body) => {
       resolve('Free membership has been added', results)
     })
   })
+}
+
+const updateUserAccount = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { actualType, actualUsername } = body
+    
+    pool.query("UPDATE useraccount SET type= $1 WHERE username = $2" [actualType, actualUsername], (error, results) => {
+      
+      if (error) {
+        reject(error)
+      }
+      resolve('Account Manager has been updated')
+  })
+}) 
 }
 
 

@@ -1,0 +1,14 @@
+.polig{
+    padding-left: 15px;
+    padding-right: 15px;
+    width:275px;
+    height:300px;
+    background:#1B1B1C;
+    border:2px solid #FFFFFF;
+    font-family:arial;
+    font-weight:bold;
+    color:#EEEEEE;
+    border-radius: 10px;
+    display: inline-block;
+
+}

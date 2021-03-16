@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import SearchBar from './functions/SearchBar'
 import { useHistory } from "react-router-dom";
 
 const Button = ({onClick, text}) => {
@@ -11,11 +10,10 @@ const Free = () => {
 
     return (
     <div>
-        <Button onClick={() => history.push('free/account')} text='Account'/>
-        <Button onClick={() => history.push('../home')} text='Log Out'/>
+        <Button onClick={() => history.push('../../free')} text='Home'/>
+        <Button onClick={() => history.push('../../../home')} text='Log Out'/>
 
-        <h1>Pantalla principal free membership</h1>
-        <SearchBar/>
+        <h1>Pantalla principal change type</h1>
     </div>
   );
 }
