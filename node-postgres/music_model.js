@@ -20,7 +20,7 @@ const getUsersAccounts = () => {
 
 const getFreeMembership = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT * FROM freemembership', (error, results) => {
+    pool.query("SELECT * FROM useraccount JOIN freemembership ON useraccount.username = freemembership.username WHERE type = 'Free'", (error, results) => {
       if (error) {
         reject(error)
       }
@@ -35,7 +35,6 @@ const createUserAccount = (body) => {
     pool.query('INSERT INTO useraccount VALUES ($1, $2, $3)', [username, password, type], (error, results) => {
       if (error) {
         reject(error)
-        console.log(error)
       }
       resolve('A new account has been added', results)
     })
@@ -91,7 +90,6 @@ const getSongs = () => {
 }
 
 const updateFreeMembershipDay = (body) => {
-  console.log(body)
   return new Promise(function(resolve, reject) {
     const { actualUsername, actualDateFree, actualTrackFree } = body
   
@@ -106,7 +104,6 @@ const updateFreeMembershipDay = (body) => {
 }
 
 const createFreeMembershipDay = (body) => {
-  console.log(body)
   return new Promise(function(resolve, reject) {
     const { actualUsername, actualDateFree, actualTrackFree } = body
     pool.query('INSERT INTO freemembership VALUES ($1, $2, $3)', [actualUsername, actualDateFree, actualTrackFree], (error, results) => {
@@ -135,7 +132,6 @@ const createPremiumMembership = (body) => {
     const { actualUsername, actualDate, actualMethod } = body
 
     pool.query("INSERT INTO premiummembership VALUES ($1, $2, $3)", [actualUsername, actualDate, actualMethod], (error, results) => {
-      console.log('entra')
       if (error) {
         reject(error)
       }

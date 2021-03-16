@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 
 export const Play = ({onClick}) => {
     const styleButton = {
@@ -10,6 +11,7 @@ export const Play = ({onClick}) => {
     }
     return <button style={styleButton} onClick={onClick}>Play</button>
 }
+
 
 const actualDate = () => {
     const today = new Date()
@@ -26,34 +28,75 @@ const actualUsername = localStorage.getItem('actualUsername')
 const date = actualDate()
 
 const PlaySong = ({songName, songArtist}) => {
-    const [accountManager, setAccountManager] = useState([])
-    const [freeMembershipManager, setFreeMembershipManager] = useState([])
-  
+    const [freeInfo, setFreeInfo] = useState({actualUsernameFree:'', actualDateFree: '', actualTrackFree: undefined})
+    const [info, setInfo] = useState({actualUsername: '', actualTrack: 0, actualDateTime:''})
+    const history = useHistory()
+
     useEffect(() => {
+        getFreeMembership();  
         getAccountManager();
     }, []);
 
-    useEffect(() => {
-        getFreeMembership();
-    }, []);
-
     function getAccountManager() {
-        fetch('http://localhost:3001/accountManager')
-          .then(r => r.json())
-          .then(r => setAccountManager(r))
+        fetch('http://localhost:3001/accountManager').then((r) => {
+            return r.json()
+            }).then((j) => {
+            j.forEach((usernameDB) => {
+                const dbDate = usernameDB.datetime.substring(0,10)
+                if(actualUsername === usernameDB.username){ //Primera vez que escucha
+                    setInfo({
+                        ...info,
+                        actualUsername: usernameDB.username,
+                        actualTrack: 1,
+                        actualDateTime: date
+                    })
+                }
+                if(actualUsername === usernameDB.username && dbDate === date && usernameDB.song === songName){ //Ya ha escuchado
+                    setInfo({
+                        ...info,
+                        actualTrackFree: usernameDB.tracks+1,
+                        actualDateFree: usernameDB.datetime
+                    })
+                }
+            }
+            )
+        })
     }
 
     function getFreeMembership() {
-        fetch('http://localhost:3001/freemembership')
-          .then(r => r.json())
-          .then(r => setFreeMembershipManager(r))
+        fetch('http://localhost:3001/freemembership').then((r) => {
+			return r.json()
+			}).then((j) => {
+			j.forEach((usernameDB) => {
+                const dbDate = usernameDB.datetime.substring(0,10)
+                if(actualUsername === usernameDB.username){ //Primera vez que escucha
+                    setFreeInfo({
+                        ...freeInfo,
+                        actualUsernameFree: usernameDB.username,
+                        actualTrackFree: 1,
+                        actualDateFree: date
+                    })
+                }
+				if(actualUsername === usernameDB.username && dbDate === date){ //Ya ha escuchado
+                    setFreeInfo({
+                        ...freeInfo,
+                        actualTrackFree: usernameDB.tracks+1,
+                        actualDateFree: usernameDB.datetime
+                    })
+                }
+			}
+	       	)
+		})
     }
 
-    function updateAccountManager() {
-        const [actualDate, actualTrack] = getTracks()
-        const [actualDateFree, actualTrackFree] = getTracksFree()
 
-        if (actualTrackFree<4 || actualTrackFree === undefined){ //Si no ha escuchado +3 o es usuario premium
+    function updateAccountManager() {
+        const actualTrack = info.actualTrack
+        const actualDate = info.actualDateTime.substring(0,10)
+        const actualDateFree = freeInfo.actualDateFree
+        const actualTrackFree = freeInfo.actualTrackFree
+
+        if (freeInfo.actualTrackFree<4 || freeInfo.actualTrackFree === undefined){ //Si no ha escuchado +3 o es usuario premium
             //LO AGREGAMOS A LA TABLA DE ACCOUNTMANAGER
             if (actualTrack !== 1){
                 fetch('http://localhost:3001/accountManager/', { 
@@ -65,7 +108,6 @@ const PlaySong = ({songName, songArtist}) => {
                     }).then(response => {
                         return response.text();
                     }).then(data => {
-                        alert(data);
                         getAccountManager()
                     });
             } else {
@@ -78,12 +120,10 @@ const PlaySong = ({songName, songArtist}) => {
                     }).then(response => {
                         return response.text();
                     }).then(data => {
-                        alert(data);
                         getAccountManager()
                     });      
             }
             //SI ES FREE, LE HACEMOS UPDATE A LA TABLA DE FREEMEMBERSHIP
-            console.log(actualUsername + ' ' + actualDateFree + ' ' + actualTrackFree)
             if (actualTrackFree !== 1){
                 fetch('http://localhost:3001/freemembership', { 
                     method: 'PUT',
@@ -94,7 +134,6 @@ const PlaySong = ({songName, songArtist}) => {
                     }).then(response => {
                         return response.text();
                     }).then(data => {
-                        alert(data);
                         getFreeMembership()
                     });
             } else {
@@ -107,42 +146,20 @@ const PlaySong = ({songName, songArtist}) => {
                     }).then(response => {
                         return response.text();
                     }).then(data => {
-                        alert(data);
                         getFreeMembership()
                     });      
-            }           
+            }
+            localStorage.setItem("songName", songName);
+            localStorage.setItem("songArtist", songArtist);
+        }
+
+        if(freeInfo.actualTrackFree<4){
+            history.push('free/listeningTo')
+        } else if(freeInfo.actualTrackFree === undefined){
+            history.push('premium/listeningTo')
         }
     }
 
-    function getTracks () {
-        for (var a=0; a<accountManager.length; a++) { 
-            const dbDate = accountManager[a].datetime.substring(0,10)
-            if (accountManager[a].username === actualUsername && accountManager[a].song === songName && dbDate === date){
-                accountManager[a].tracks += 1
-                return [date, accountManager[a].tracks]
-            } else if (accountManager[a].username === actualUsername){
-                return [date, 1] //Es primera vez que escucha la cancion
-            }
-        }
-    }
-
-    function getTracksFree () {
-        for (var a=0; a<freeMembershipManager.length; a++) { 
-            const dbDate = freeMembershipManager[a].datetime.substring(0,10)
-            if (freeMembershipManager[a].username === actualUsername && dbDate === date){
-                freeMembershipManager[a].tracks += 1 
-                return [date, freeMembershipManager[a].tracks]
-            } 
-        }
-        for (var i=0; i<freeMembershipManager.length; i++) { 
-            if (freeMembershipManager[i].username === actualUsername){
-                return [date, 1] //Es primera vez que escucha en el dia
-            }
-        }
-        return [undefined, undefined]
-    }
-    
-    console.log('render', freeMembershipManager)
 
     return (
         <Play onClick={updateAccountManager}/>

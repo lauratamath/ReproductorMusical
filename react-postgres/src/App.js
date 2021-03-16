@@ -15,6 +15,7 @@ import FreeAccount from "./components/memberships/functions/FreeAccount"
 import PremiumAccount from "./components/memberships/functions/PremiumAccount"
 import GetPremium from "./components/memberships/functions/GetPremium"
 import GetFree from "./components/memberships/functions/GetFree"
+import ListeningTo from "./components/memberships/functions/ListeningTo";
 
 export default function App() {
   return (
@@ -23,6 +24,8 @@ export default function App() {
         <Switch>
         <Route path="/login/premium/account/getFree" component={GetFree} />
           <Route path="/login/free/account/getPremium" component={GetPremium} />
+          <Route path="/login/premium/listeningTo" component={ListeningTo} />
+          <Route path="/login/free/listeningTo" component={ListeningTo} />
           <Route path="/login/premium/account" component={PremiumAccount} />
           <Route path="/login/free/account" component={FreeAccount} />
           <Route path="/login/premium" component={Premium} />
