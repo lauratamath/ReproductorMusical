@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
-
+import './Home.css';
 
 const Error = ({error}) => {
   const style = {
@@ -86,18 +86,54 @@ const LogIn = () => {
   
   return (
     <div>
-        <label>Username or Email Address</label>
-        <Input type="text" onChange={handleChange} name="username"/>
+        <button onClick={() => history.push('/home')} div className='close'>
+          <font color ='#FFFFFF'>
+            ❌
+          </font>
+        </button>
 
-        <label>Password</label>
-        <Input type="password" onChange={handleChange} name="password"/>  
+      <center>
+          <label>
+            <font face ='Candara' color ='#FFFFFF'>
+              <br/><br/><br/><br/>
+              Username or Email Address<br/>
+            </font><br/>
+          </label>
+          <Input type="text" onChange={handleChange}  name="username"/>
+          <br/><br/>
 
-        <button onClick={verifyUserAccount}>Log In</button>
-        <button onClick={() => history.push('/signin')}>SignIn</button>
-        <button onClick={() => history.push('/home')}>Home</button>
+          <label>
+            <font face ='Candara' color ='#FFFFFF'>
+              Password<br/>
+            </font><br/>
+          </label>
+          <Input type="password" onChange={handleChange}  name="password"/>  
+          <br/>
 
-        
-        <Error error={showError}/>
+          <button onClick={verifyUserAccount} div className='botones'>
+            <font color ='#FFFFFF'>
+              <b>
+                LogIn
+              </b>
+            </font>
+          </button>
+
+          <label>
+            <font face ='Candara' color ='#FFFFFF'>
+              <br/><br/>¿No tienes cuenta aún? 
+            </font><br/>
+          </label>
+
+          <button onClick={() => history.push('/signin')} div className='botones' >
+            <font color ='#FFFFFF'>
+              <b>
+                SignIn
+              </b>
+            </font>
+          </button>
+          
+          <Error error={showError}/>
+        </center>
     </div>
   )
 }

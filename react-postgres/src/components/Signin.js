@@ -101,24 +101,66 @@ const SignIn = () => {
   
   return (
     <div>
-        <label>Username</label>
-        <Input type="text" onChange={handleChange} name="username"/>
+      <button onClick={() => history.push('/home')} div className='close'>
+          <font color ='#FFFFFF'>
+            ❌
+          </font>
+      </button>
+      <center>
+        <label>
+          <font face ='Candara' color ='#FFFFFF'>
+            <br/>
+            Username<br/>
+          </font><br/>
+        </label>
+        <Input type="text" onChange={handleChange} name="username"/> <br/>
         <Error error={usernameError}/>
 
-        <label>Email Address</label>
-        <Input type="email" onChange={handleChange} name="email"/>
-        <label>Confirm Email Adress</label>
-        <Input type="email" onChange={handleChange} name="emailCon"/>
+        <label>
+          <font face ='Candara' color ='#FFFFFF'>
+            Email Address<br/>
+          </font><br/>
+        </label>
+        <Input type="email" onChange={handleChange} name="email"/><br/><br/>
+        <label>
+          <font face ='Candara' color ='#FFFFFF'>
+            Confirm Email Adress<br/>
+          </font><br/>
+        </label>
+        <Input type="email" onChange={handleChange} name="emailCon"/><br/>
         <Error error={emailError}/>
 
-        <label>Password</label>
+        <label>
+          <font face ='Candara' color ='#FFFFFF'>
+            Password<br/>
+          </font><br/>
+        </label>
         <Input type="password" onChange={handleChange} name="password"/>
         <Error error={passwordError}/>      
 
-        <button onClick={createUserAccount}>Submit</button>
+        <button onClick={createUserAccount} div className='botones'>
+          <font color ='#FFFFFF'>
+            <b>
+              Submit
+            </b>
+          </font>
+        </button>
+
+        <label>
+          <font face ='Candara' color ='#FFFFFF'>
+            <br/><br/>¿No tienes cuenta aún? 
+          </font><br/>
+        </label>
         
-        <button onClick={() => history.push('/login')}>LogIn</button>
-        <button onClick={() => history.push('/home')}>Home</button>
+        <button onClick={() => history.push('/login')} div className='botones'>
+          <font color ='#FFFFFF'>
+            <b>
+              LogIn
+            </b>
+          </font>
+        </button>
+        
+      </center>
     </div>
   );
 }
