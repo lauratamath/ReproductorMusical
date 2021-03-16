@@ -21,6 +21,16 @@ app.get('/', (req, res) => {
   })
 })
 
+app.put('/useraccount', (req, res) => {
+  music_model.updateUserAccount(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+
 app.get('/songs', (req, res) => {
   music_model.getSongs().then(response => {
     res.status(200).send(response);
@@ -79,6 +89,16 @@ app.put('/freemembership', (req, res) => {
 
 app.post('/freemembership', (req, res) => {
   music_model.createFreeMembershipDay(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/premiummembership', (req, res) => {
+  music_model.createPremiumMembership(req.body)
   .then(response => {
     res.status(200).send(response);
   })

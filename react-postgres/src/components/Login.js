@@ -60,7 +60,7 @@ const LogIn = () => {
       try {
         if (userAccount[indexEmail].password === existingAccount.password) {
           console.log('Pasa a free/premium/artist')
-          accountType = userAccount[indexUser].type
+          accountType = userAccount[indexEmail].type
           localStorage.setItem('actualUsername', userAccount[indexEmail].username)
         } else {
           error  = 'Incorrect username or password'
@@ -86,7 +86,7 @@ const LogIn = () => {
   
   return (
     <div>
-        <button onClick={() => history.push('/home')} div className='close'>
+        <button onClick={() => history.push('/home')} className='close'>
           <font color ='#FFFFFF'>
             ❌
           </font>
@@ -110,7 +110,7 @@ const LogIn = () => {
           <Input type="password" onChange={handleChange}  name="password"/>  
           <br/>
 
-          <button onClick={verifyUserAccount} div className='botones'>
+          <button onClick={verifyUserAccount} className='botones'>
             <font color ='#FFFFFF'>
               <b>
                 LogIn
@@ -118,13 +118,15 @@ const LogIn = () => {
             </font>
           </button>
 
+          <Error error={showError}/>
+
           <label>
             <font face ='Candara' color ='#FFFFFF'>
               <br/><br/>¿No tienes cuenta aún? 
             </font><br/>
           </label>
 
-          <button onClick={() => history.push('/signin')} div className='botones' >
+          <button onClick={() => history.push('/signin')} className='botones' >
             <font color ='#FFFFFF'>
               <b>
                 SignIn
@@ -132,7 +134,7 @@ const LogIn = () => {
             </font>
           </button>
           
-          <Error error={showError}/>
+          
         </center>
     </div>
   )

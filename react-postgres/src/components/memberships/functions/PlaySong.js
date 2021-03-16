@@ -53,7 +53,7 @@ const PlaySong = ({songName, songArtist}) => {
         const [actualDate, actualTrack] = getTracks()
         const [actualDateFree, actualTrackFree] = getTracksFree()
 
-        if (actualTrackFree<4 || actualTrackFree == undefined){ //Si no ha escuchado +3 o es usuario premium
+        if (actualTrackFree<4 || actualTrackFree === undefined){ //Si no ha escuchado +3 o es usuario premium
             //LO AGREGAMOS A LA TABLA DE ACCOUNTMANAGER
             if (actualTrack !== 1){
                 fetch('http://localhost:3001/accountManager/', { 
@@ -134,8 +134,8 @@ const PlaySong = ({songName, songArtist}) => {
                 return [date, freeMembershipManager[a].tracks]
             } 
         }
-        for (var a=0; a<freeMembershipManager.length; a++) { 
-            if (freeMembershipManager[a].username === actualUsername){
+        for (var i=0; i<freeMembershipManager.length; i++) { 
+            if (freeMembershipManager[i].username === actualUsername){
                 return [date, 1] //Es primera vez que escucha en el dia
             }
         }

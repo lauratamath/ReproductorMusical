@@ -119,19 +119,32 @@ const createFreeMembershipDay = (body) => {
 }
 
 const updateUserAccount = (body) => {
+  console.log(body)
   return new Promise(function(resolve, reject) {
     const { actualType, actualUsername } = body
     
     pool.query("UPDATE useraccount SET type= $1 WHERE username = $2" [actualType, actualUsername], (error, results) => {
-      
       if (error) {
         reject(error)
       }
-      resolve('Account Manager has been updated')
-  })
+      resolve('User Membership has been updated')
+    })
 }) 
 }
 
+const createPremiumMembership = (body) => {
+  console.log(body)
+  return new Promise(function(resolve, reject) {
+    const { actualUsername, actualDate, actualMethod } = body
+    
+    pool.query("INSERT INTO premiummembership VALUES ($1, $2, $3)" [actualUsername, actualDate, actualMethod], (error, results) => {
+      console.log('entra')
+      if (error) {
+        reject(error)
+      }
+    })
+}) 
+}
 
 module.exports = {
   getUsersAccounts,
@@ -142,5 +155,7 @@ module.exports = {
   createAccountManager,
   updateFreeMembershipDay,
   createFreeMembershipDay,
-  getFreeMembership
+  getFreeMembership,
+  updateUserAccount,
+  createPremiumMembership
 }
