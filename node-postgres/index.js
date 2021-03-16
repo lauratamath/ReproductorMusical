@@ -30,8 +30,55 @@ app.get('/songs', (req, res) => {
   })
 })
 
-app.post('/useraccount', (req, res) => {
-  music_model.createUserAccount(req.body)
+app.get('/accountmanager', (req, res) => {
+  music_model.getAccountManager().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+
+app.put('/accountmanager', (req, res) => {
+  music_model.updateAccountManager(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/accountmanager', (req, res) => {
+  music_model.createAccountManager(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/freemembership', (req, res) => {
+  music_model.getFreeMembership().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.put('/freemembership', (req, res) => {
+  music_model.updateFreeMembershipDay(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/freemembership', (req, res) => {
+  music_model.createFreeMembershipDay(req.body)
   .then(response => {
     res.status(200).send(response);
   })

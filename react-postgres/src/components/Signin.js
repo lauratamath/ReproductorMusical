@@ -80,7 +80,6 @@ const SignIn = () => {
     if (emailError === '' && usernameError === '' && passwordError === ''){
       const password = newAccount.password
       const type = 'Free'
-
       const username = newAccount.username
 
       fetch('http://localhost:3001/useraccount', {

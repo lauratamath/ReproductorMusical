@@ -27,7 +27,7 @@ const SongSearched = ({artistName, songName, songDuration}) => {
                 <h5>{songName}</h5>
                 <h6>{songDuration}</h6>
             </div>
-           <PlaySong/>
+           <PlaySong songArtist={artistName} songName={songName}/>
         </div>
 }
 
