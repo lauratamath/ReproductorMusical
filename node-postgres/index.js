@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   })
 })
 
-app.put('/useraccount', (req, res) => {
+app.put('/', (req, res) => {
   music_model.updateUserAccount(req.body).then(response => {
     res.status(200).send(response);
   })

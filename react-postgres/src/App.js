@@ -12,14 +12,18 @@ import Planes from "./components/Planes"
 import Free from "./components/memberships/Free"
 import Premium from "./components/memberships/Premium"
 import FreeAccount from "./components/memberships/functions/FreeAccount"
-import ChangeType from "./components/memberships/functions/ChangeType"
+import PremiumAccount from "./components/memberships/functions/PremiumAccount"
+import GetPremium from "./components/memberships/functions/GetPremium"
+import GetFree from "./components/memberships/functions/GetFree"
 
 export default function App() {
   return (
     <Router>
       <div>
         <Switch>
-          <Route path="/login/free/account/getPremium" component={ChangeType} />
+        <Route path="/login/premium/account/getFree" component={GetFree} />
+          <Route path="/login/free/account/getPremium" component={GetPremium} />
+          <Route path="/login/premium/account" component={PremiumAccount} />
           <Route path="/login/free/account" component={FreeAccount} />
           <Route path="/login/premium" component={Premium} />
           <Route path="/login/free" component={Free} />

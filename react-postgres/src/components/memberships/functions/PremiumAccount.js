@@ -15,7 +15,7 @@ const Information = ({email, username, type}) => {
 
 const actualUsername = localStorage.getItem('actualUsername')
 
-const FreeAccount = () => {
+const PremiumAccount= () => {
     const history = useHistory()
     const [info, setInfo] = useState({username: '', email: '', type:''})
   
@@ -29,6 +29,7 @@ const FreeAccount = () => {
 			}).then((j) => {
 			j.forEach((usernameDB) => {
 				if(actualUsername === usernameDB.username){
+                    console.log(usernameDB)
                     setInfo({
                         ...info,
                         username: usernameDB.username,
@@ -44,14 +45,14 @@ const FreeAccount = () => {
     return (
     <div>
         <Button onClick={() => history.push('../../home')} text='Log Out'/>
-        <Button onClick={() => history.push('../free')} text='Home'/>
+        <Button onClick={() => history.push('../premium')} text='Home'/>
 
         <h1>Vista general de la cuenta</h1>
         <Information username={info.username} email={info.email} type={info.type}/>
 
-        <Button onClick={() => history.push('account/getPremium')} text='Get Premium'/>
+        <Button onClick={() => history.push('account/getFree')} text='Get Free'/>
         <Button text='Lander for Creators'/>
     </div>
   ) ;
 }
-export default FreeAccount;
+export default PremiumAccount;

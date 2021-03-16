@@ -94,7 +94,7 @@ const updateFreeMembershipDay = (body) => {
   console.log(body)
   return new Promise(function(resolve, reject) {
     const { actualUsername, actualDateFree, actualTrackFree } = body
-    
+  
     pool.query("UPDATE freemembership SET tracks = " + actualTrackFree + " WHERE username = '"+ actualUsername +"' AND dateTime = '" + actualDateFree + "'", (error, results) => {
       
       if (error) {
@@ -119,11 +119,9 @@ const createFreeMembershipDay = (body) => {
 }
 
 const updateUserAccount = (body) => {
-  console.log(body)
   return new Promise(function(resolve, reject) {
     const { actualType, actualUsername } = body
-    
-    pool.query("UPDATE useraccount SET type= $1 WHERE username = $2" [actualType, actualUsername], (error, results) => {
+    pool.query("UPDATE useraccount SET type= $1 WHERE username = $2", [actualType, actualUsername], (error, results) => {
       if (error) {
         reject(error)
       }
@@ -133,11 +131,10 @@ const updateUserAccount = (body) => {
 }
 
 const createPremiumMembership = (body) => {
-  console.log(body)
   return new Promise(function(resolve, reject) {
     const { actualUsername, actualDate, actualMethod } = body
-    
-    pool.query("INSERT INTO premiummembership VALUES ($1, $2, $3)" [actualUsername, actualDate, actualMethod], (error, results) => {
+
+    pool.query("INSERT INTO premiummembership VALUES ($1, $2, $3)", [actualUsername, actualDate, actualMethod], (error, results) => {
       console.log('entra')
       if (error) {
         reject(error)
