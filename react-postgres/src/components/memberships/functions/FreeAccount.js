@@ -50,7 +50,7 @@ const FreeAccount = () => {
         <Information username={info.username} email={info.email} type={info.type}/>
 
         <Button onClick={() => history.push('account/getPremium')} text='Get Premium'/>
-        <Button text='Lander for Creators'/>
+        <Button onClick={() => history.push('account/getCreator')} text='Lander for Creators'/>
     </div>
   ) ;
 }

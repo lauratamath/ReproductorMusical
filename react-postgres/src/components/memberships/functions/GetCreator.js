@@ -33,11 +33,12 @@ const date = () => {
 const actualUsername = localStorage.getItem('actualUsername')
 const actualDate = date()
 
-const ChangeType = () => {
+const GetCreator = () => {
   const history = useHistory()
   const [userAccount, setUserAccount] = useState([])
-  const [changePremium, setChangePremium] = useState({actualMethod: '', password: ''})
+  const [changeCreator, setChangeCreator] = useState({creatorsType: 'Artist', artist:'', actualMethod: '', password: ''})
   const [showError, setShowError] = useState('')
+  const [type, setType] = useState('')
 
   useEffect(() => {
     getUsersAccounts();
@@ -45,35 +46,27 @@ const ChangeType = () => {
 
 
   const handleChange = (event) => {
-    setChangePremium({
-      ...changePremium,
+    setChangeCreator({
+      ...changeCreator,
       [event.target.name] : event.target.value
     })
   } 
-
   function getUsersAccounts() {
     fetch('http://localhost:3001')
       .then(r => r.json())
       .then(r => setUserAccount(r))
   }
 
-
-  console.log('render', userAccount)
-
   function verifyPassword() {
     const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
-    const actualMethod = changePremium.actualMethod
-    var actualType = userAccount[indexUser].type;
-
-    if(actualType === 'Free' || actualType === 'Creator'){
-      actualType = 'Premium'
-    } else {
-      actualType = 'Free'
-    }
-
+    const actualMethod = changeCreator.actualMethod
+    const artist = changeCreator.artist
+    const income = 0
 
     var error = ''
-    if (userAccount[indexUser].password === changePremium.password) {
+    setType(userAccount[indexUser].type)
+    if (userAccount[indexUser].password === changeCreator.password) {
+        const actualType = 'Creator'
         //CAMBIAMOS EL TIPO
         fetch('http://localhost:3001', { 
         method: 'PUT',
@@ -85,55 +78,71 @@ const ChangeType = () => {
             return response.text();
         }).then(data => {
             getUsersAccounts()
-        });
+        }); 
+    } else {
+        error  = 'Incorrect password'
+    }
 
-        
-      //SI ERA UN USER FREE SIGNIFICA QUE AGREGAMOS TARJETA
-      if(actualType === 'Premium'){
-        fetch('http://localhost:3001/premiummembership', { 
+    if (actualMethod === '' || artist === '' ){
+        error = 'Fill all the form'
+    } else if (artist.name < 4) {
+        error = 'Artistic name is too short'
+    } else {
+        const actualType = changeCreator.creatorsType
+        //AGREGAMOS TARJETA
+        fetch('http://localhost:3001/creatorsmembership', { 
           method: 'POST',
           headers: {
           'Content-Type': 'application/json'
           },
-          body: JSON.stringify({actualUsername, actualDate, actualMethod}),
+          body: JSON.stringify({actualUsername, actualDate, actualMethod, artist, actualType, income}),
           }).then(response => {
               return response.text();
           }).then(data => {
               getUsersAccounts()
           });     
-        }
-        error  = 'Now you are premium!'
-      } else {
-        error  = 'Incorrect password'
-      }
-
+        error  = 'Now you are a creator!'
+    }
     setShowError(error)
   }
-
-  function homePremium() {
-    if (showError === 'Now you are premium!'){
-      history.push('../../premium')
-    } else { 
+  
+  function homeCreator() {
+      console.log(showError)
+    if (showError === 'Now you are creator!'){
+      history.push('../../creator')
+    } else if (type === 'Free') { 
       history.push('../../free')
-    }
+    } else if (type === 'Premium') { 
+        history.push('../../premium')
+      }
   }
 
     return (
     <div>
-        <Button onClick={homePremium} text='Home'/>
+        <Button onClick={homeCreator} text='Home'/>
         <Button onClick={() => history.push('../../../home')} text='Log Out'/>
 
-        <h1>Pantalla principal get premium</h1>
+        <h1>Pantalla principal get creator</h1>
 
         <label>Card Number</label>
         <Input type='text' onChange={handleChange} name='actualMethod'/>
+
+        <label>Artistic Name</label>
+        <Input type='text' onChange={handleChange} name='artist'/>
+
+        <div>
+        <label>Type of Creator</label>
+        <select onChange={handleChange} name='creatorsType'>
+            <option value="Artist" >Artist</option>
+            <option value="Manager">Manager</option>
+        </select></div>
 
         <label>Password Confirmation</label>
         <Input type='password' onChange={handleChange} name='password'/>
 
         <Error error={showError}/>
-        <Button onClick={verifyPassword} text='Get Premium'/>
+        <Button onClick={verifyPassword} text='Get Creator'/>
     </div>
   );
 }
-export default ChangeType;
+export default GetCreator;

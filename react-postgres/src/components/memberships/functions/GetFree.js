@@ -52,7 +52,7 @@ const ChangeType = () => {
     const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
     var actualType = userAccount[indexUser].type;
 
-    if(actualType === 'Premium'){
+    if(actualType === 'Premium' || actualType === 'Creator'){
       actualType = 'Free'
     }
 

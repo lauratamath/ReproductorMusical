@@ -107,6 +107,34 @@ app.post('/premiummembership', (req, res) => {
   })
 })
 
+app.get('/creatorsmembership', (req, res) => {
+  music_model.getCreatorsMembership().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+}) 
+
+app.get('/premiummembership', (req, res) => {
+  music_model.getPremiumMembership().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+}) 
+
+app.post('/creatorsmembership', (req, res) => {
+  music_model.createCreatorsMembership(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })

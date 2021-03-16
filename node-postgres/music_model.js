@@ -139,6 +139,40 @@ const createPremiumMembership = (body) => {
 }) 
 }
 
+const getPremiumMembership = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM useraccount JOIN premiummembership ON useraccount.username = premiummembership.username JOIN emailmanagment  ON useraccount.username = emailmanagment.username", (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const createCreatorsMembership = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { actualUsername, actualDate, actualMethod, artist, actualType, income} = body
+
+    pool.query("INSERT INTO creatorsmembership VALUES ($1, $2, $3, $4, $5, $6)", [actualUsername, actualDate, actualMethod, artist, actualType, income], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+}) 
+}
+
+const getCreatorsMembership = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM useraccount JOIN creatorsmembership ON useraccount.username = creatorsmembership.username JOIN emailmanagment  ON useraccount.username = emailmanagment.username", (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
 module.exports = {
   getUsersAccounts,
   createUserAccount,
@@ -150,5 +184,8 @@ module.exports = {
   createFreeMembershipDay,
   getFreeMembership,
   updateUserAccount,
-  createPremiumMembership
+  createPremiumMembership,
+  createCreatorsMembership,
+  getCreatorsMembership,
+  getPremiumMembership
 }
