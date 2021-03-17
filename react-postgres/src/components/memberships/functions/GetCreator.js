@@ -108,7 +108,7 @@ const GetCreator = () => {
   
   function homeCreator() {
       console.log(showError)
-    if (showError === 'Now you are creator!'){
+    if (showError === 'Now you are a creator!'){
       history.push('../../creator')
     } else if (type === 'Free') { 
       history.push('../../free')

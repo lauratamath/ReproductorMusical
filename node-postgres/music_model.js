@@ -89,6 +89,19 @@ const getSongs = () => {
 }) 
 }
 
+const createSong = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { artist, gender, album, song, duration, release } = body
+    pool.query("INSERT INTO songs VALUES ($1, $2, $3, $4, $5, $6)", [artist, gender, album, song, duration, release], (error, results) => {
+      
+      if (error) {
+        reject(error)
+      }
+      resolve('Free Membership has been updated')
+  })
+}) 
+}
+
 const updateFreeMembershipDay = (body) => {
   return new Promise(function(resolve, reject) {
     const { actualUsername, actualDateFree, actualTrackFree } = body
@@ -173,6 +186,19 @@ const getCreatorsMembership = () => {
 }) 
 }
 
+const deleteCreatorsMembership = (body) => {
+  const { actualUsername } = body
+
+  return new Promise(function(resolve, reject) {
+    pool.query("DELETE FROM creatorsmembership WHERE username= $1", [actualUsername], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve('CREATORS MEMBERSHIP ELIMINADO');
+  })
+}) 
+}
+
 module.exports = {
   getUsersAccounts,
   createUserAccount,
@@ -187,5 +213,7 @@ module.exports = {
   createPremiumMembership,
   createCreatorsMembership,
   getCreatorsMembership,
-  getPremiumMembership
+  getPremiumMembership,
+  deleteCreatorsMembership,
+  createSong
 }

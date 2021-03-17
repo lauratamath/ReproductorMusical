@@ -124,30 +124,32 @@ const PlaySong = ({songName, songArtist}) => {
                     });      
             }
             //SI ES FREE, LE HACEMOS UPDATE A LA TABLA DE FREEMEMBERSHIP
-            if (actualTrackFree !== 1){
-                fetch('http://localhost:3001/freemembership', { 
-                    method: 'PUT',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({actualUsername, actualDateFree, actualTrackFree}),
-                    }).then(response => {
-                        return response.text();
-                    }).then(data => {
-                        getFreeMembership()
-                    });
-            } else {
-                fetch('http://localhost:3001/freemembership', { 
-                    method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({actualUsername, actualDateFree, actualTrackFree}),
-                    }).then(response => {
-                        return response.text();
-                    }).then(data => {
-                        getFreeMembership()
-                    });      
+            if (actualTrackFree !== undefined){
+                if (actualTrackFree !== 1){
+                    fetch('http://localhost:3001/freemembership', { 
+                        method: 'PUT',
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({actualUsername, actualDateFree, actualTrackFree}),
+                        }).then(response => {
+                            return response.text();
+                        }).then(data => {
+                            getFreeMembership()
+                        });
+                } else {
+                    fetch('http://localhost:3001/freemembership', { 
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({actualUsername, actualDateFree, actualTrackFree}),
+                        }).then(response => {
+                            return response.text();
+                        }).then(data => {
+                            getFreeMembership()
+                        });      
+                }
             }
             localStorage.setItem("songName", songName);
             localStorage.setItem("songArtist", songArtist);

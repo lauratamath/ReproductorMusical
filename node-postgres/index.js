@@ -30,9 +30,17 @@ app.put('/', (req, res) => {
   })
 })
 
-
 app.get('/songs', (req, res) => {
   music_model.getSongs().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/songs', (req, res) => {
+  music_model.createSong(req.body).then(response => {
     res.status(200).send(response);
   })
   .catch(error => {
@@ -134,6 +142,17 @@ app.post('/creatorsmembership', (req, res) => {
     res.status(500).send(error);
   })
 })
+
+app.delete('/creatorsmembership', (req, res) => {
+  music_model.deleteCreatorsMembership(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
