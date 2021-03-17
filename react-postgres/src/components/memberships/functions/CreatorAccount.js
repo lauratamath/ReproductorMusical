@@ -15,12 +15,12 @@ const Information = ({email, username, type, paymenthmethod, income}) => {
     </div>
 }
 
-const actualUsername = localStorage.getItem('actualUsername')
 
 const CreatorAccount = () => {
     const history = useHistory()
     const [info, setInfo] = useState({username: '', email: '', paymenthmethod:'', income:0, type:''})
-  
+    const actualUsername = localStorage.getItem('actualUsername')
+
     useEffect(() => {
         getCreatorsMembership();
     }, []);

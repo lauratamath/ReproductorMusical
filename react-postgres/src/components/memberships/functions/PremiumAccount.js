@@ -14,12 +14,11 @@ const Information = ({email, username, type, paymenth}) => {
     </div>
 }
 
-const actualUsername = localStorage.getItem('actualUsername')
-
 const PremiumAccount= () => {
     const history = useHistory()
     const [info, setInfo] = useState({username: '', email: '', type:'', paymenth:''})
-  
+    const actualUsername = localStorage.getItem('actualUsername')
+
     useEffect(() => {
         getPremiumMembership();
     }, []);
