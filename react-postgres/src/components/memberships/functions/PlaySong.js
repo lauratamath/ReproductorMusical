@@ -45,14 +45,14 @@ const PlaySong = ({songName, songArtist}) => {
             }).then((j) => {
             j.forEach((usernameDB) => {
                 const dbDate = usernameDB.datetime.substring(0,10)
-                if(actualUsername === usernameDB.username){ //Primera vez que escucha
+                //Primera vez que escucha
                     setInfo({
                         ...info,
                         actualUsername: usernameDB.username,
                         actualTrack: 1,
                         actualDateTime: date
                     })
-                }
+                
                 if(actualUsername === usernameDB.username && dbDate === date && usernameDB.song === songName){ //Ya ha escuchado
                     console.log(dbDate)
                     console.log(date)
@@ -99,7 +99,7 @@ const PlaySong = ({songName, songArtist}) => {
         const actualDate = info.actualDateTime.substring(0,10)
         const actualDateFree = freeInfo.actualDateFree
         const actualTrackFree = freeInfo.actualTrackFree
-        console.log(actualDate)
+        console.log(actualTrack)
         
         if (freeInfo.actualTrackFree<4 || freeInfo.actualTrackFree === undefined){ //Si no ha escuchado +3 o es usuario premium
             //LO AGREGAMOS A LA TABLA DE ACCOUNTMANAGER
