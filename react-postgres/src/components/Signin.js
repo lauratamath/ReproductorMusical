@@ -10,7 +10,11 @@ const Error = ({error}) => {
 
 const Input = ({type, onChange, name}) => { 
   const style = {
-    display: 'block'
+    display: 'block',
+    width: '160px',
+    height: '15px',
+    fontFamily: 'Candara',
+    fontSize: '15px'
   }
   return <input type={type} onChange={onChange} style={style} name={name}/>
 }

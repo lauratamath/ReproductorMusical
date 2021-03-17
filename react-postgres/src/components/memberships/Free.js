@@ -32,6 +32,12 @@ const Free = () => {
         </h1>
         <SearchBar/>
       </center>
+      <h5 align ='center'>
+        <font color = '#8C8C8C' face='Candara'>
+          <br/><br/>
+          Free membership
+        </font>
+       </h5>
     </div>
   );
 }

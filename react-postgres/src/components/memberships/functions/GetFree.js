@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './FreeAccount.css';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} style={style} className = 'botonesFree'>{text}</button>
 }
 
 const Error = ({error}) => {
@@ -110,13 +114,30 @@ const ChangeType = () => {
         <Button onClick={homeFree} text='Home'/>
         <Button onClick={() => history.push('../../../home')} text='Log Out'/>
 
-        <h1>Pantalla principal get free</h1>
-
-        <label>Password Confirmation</label>
+        <h1>
+          <font color = '#FFFFFF' face='Candara'  size = '7'>
+           &nbsp; &nbsp;
+           Get Free
+          </font>
+        </h1>
+        <center>
+        <br/><br/>
+        <label>
+          <font color = '#FFFFFF' face='Candara'>
+            Password Confirmation <br/><br/>
+          </font>
+        </label>
         <Input type='password' onChange={handleChange} name='password'/>
 
         <Error error={showError}/>
-        <Button onClick={verifyPassword} text='Cancel Premium'/>
+        <button onClick={verifyPassword} div className ='otro'>
+          <font color = '#FFFFFF' face='Candara'>
+            <b>
+              Cancel Premium
+            </b>
+          </font>
+        </button>
+        </center>
     </div>
   );
 }

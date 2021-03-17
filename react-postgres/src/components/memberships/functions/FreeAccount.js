@@ -21,8 +21,8 @@ const Information = ({email, username, type}) => {
         </h4>
         <h4>
             <font color = '#FFFFFF' face='Candara' size = '4'>
-                Type: &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;
-                &nbsp;  &nbsp; &nbsp; 
+                Type: &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; 
                 {type}
                 <br/><br/><br/>
             </font>

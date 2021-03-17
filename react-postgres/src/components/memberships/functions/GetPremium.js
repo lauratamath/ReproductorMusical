@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './FreeAccount.css';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} style={style} className = 'botonesFree'>{text}</button>
 }
+
 
 const Error = ({error}) => {
   const style = {
@@ -14,7 +19,11 @@ const Error = ({error}) => {
 
 const Input = ({type, onChange, name}) => { 
   const style = {
-    display: 'block'
+    display: 'block',
+    width: '170px',
+    height: '15px',
+    fontFamily: 'Candara',
+    fontSize: '15px'
   }
   return <input type={type} onChange={onChange} style={style} name={name}/>
 }
@@ -133,19 +142,42 @@ const ChangeType = () => {
 
     return (
     <div>
-        <Button onClick={homePremium} text='Home'/>
-        <Button onClick={() => history.push('../../../home')} text='Log Out'/>
+      <Button onClick={() => history.push('../../../home')} text='Log Out'/>
+      <Button onClick={homePremium} text='Home'/><br/>
+      <h1>
+        <font color = '#FFFFFF' face='Candara'  size = '7'>
+          &nbsp; &nbsp;
+          Get premium
+        </font>
+      </h1>
 
-        <h1>Pantalla principal get premium</h1>
-
-        <label>Card Number</label>
+      <center>
+        <label>
+          <font color = '#FFFFFF' face='Candara'>
+            <br/><br/>
+            Card Number <br/><br/>
+          </font>
+        </label>
         <Input type='text' onChange={handleChange} name='actualMethod'/>
+        <br/> <br/> <br/>
 
-        <label>Password Confirmation</label>
+        <label>
+          <font color = '#FFFFFF' face='Candara'>
+            Password Confirmation <br/><br/>
+          </font>
+        </label>
         <Input type='password' onChange={handleChange} name='password'/>
-
+        <br/><br/>
         <Error error={showError}/>
-        <Button onClick={verifyPassword} text='Get Premium'/>
+
+        <button onClick={verifyPassword} div className ='otro'>
+          <font color = '#FFFFFF' face='Candara'>
+            <b>
+              Get Premium
+            </b>
+          </font>
+        </button>
+      </center>
     </div>
   );
 }

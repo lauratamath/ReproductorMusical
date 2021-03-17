@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './FreeAccount.css';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} style={style} className = 'botonesFree'>{text}</button>
 }
 
 const Error = ({error}) => {
@@ -14,10 +18,15 @@ const Error = ({error}) => {
 
 const Input = ({type, onChange, name}) => { 
   const style = {
-    display: 'block'
+    display: 'block',
+    width: '200px',
+    height: '15px',
+    fontFamily: 'Candara',
+    fontSize: '15px'
   }
   return <input type={type} onChange={onChange} style={style} name={name}/>
 }
+
 
 const date = () => {
   const today = new Date()
@@ -119,29 +128,66 @@ const GetCreator = () => {
 
     return (
     <div>
-        <Button onClick={homeCreator} text='Home'/>
         <Button onClick={() => history.push('../../../home')} text='Log Out'/>
+        <Button onClick={homeCreator} text='Home'/>
+        
 
-        <h1>Pantalla principal get creator</h1>
+        <h1>
+          <font color = '#FFFFFF' face='Candara'  size = '7'>
+            &nbsp; &nbsp;
+            Get creator
+          </font>
+        </h1>
 
-        <label>Card Number</label>
+        <center>
+        <label>
+          <font color = '#FFFFFF' face='Candara'>
+            <br/><br/>
+            Card Number
+            <br/><br/>
+          </font>
+        </label>
         <Input type='text' onChange={handleChange} name='actualMethod'/>
+        <br/><br/>
 
-        <label>Artistic Name</label>
+        <label>
+          <font color = '#FFFFFF' face='Candara'>
+            Artistic name
+            <br/><br/>
+          </font>
+        </label>
         <Input type='text' onChange={handleChange} name='artist'/>
+        <br/><br/>
 
         <div>
-        <label>Type of Creator</label>
+        <label>
+          <font color = '#FFFFFF' face='Candara'>
+            Type of Creator &nbsp; &nbsp;
+          </font>
+        </label>
         <select onChange={handleChange} name='creatorsType'>
             <option value="Artist" >Artist</option>
             <option value="Manager">Manager</option>
-        </select></div>
+        </select></div> <br/><br/>
 
-        <label>Password Confirmation</label>
+        <label>
+          <font color = '#FFFFFF' face='Candara'>
+            Password Confirmation
+            <br/><br/>
+          </font>
+        </label>
         <Input type='password' onChange={handleChange} name='password'/>
+        <br/><br/>
 
         <Error error={showError}/>
-        <Button onClick={verifyPassword} text='Get Creator'/>
+        <button onClick={verifyPassword} div className ='otro'>
+          <font color = '#FFFFFF' face='Candara'>
+            <b>
+              Get Creator
+            </b>
+          </font>
+        </button>
+      </center>
     </div>
   );
 }
