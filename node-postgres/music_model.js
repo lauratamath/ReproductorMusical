@@ -173,6 +173,19 @@ const getCreatorsMembership = () => {
 }) 
 }
 
+const deleteCreatorsMembership = (body) => {
+  const { actualUsername } = body
+
+  return new Promise(function(resolve, reject) {
+    pool.query("DELETE FROM creatorsmembership WHERE username= $1", [actualUsername], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve('CREATORS MEMBERSHIP ELIMINADO');
+  })
+}) 
+}
+
 module.exports = {
   getUsersAccounts,
   createUserAccount,
@@ -187,5 +200,6 @@ module.exports = {
   createPremiumMembership,
   createCreatorsMembership,
   getCreatorsMembership,
-  getPremiumMembership
+  getPremiumMembership,
+  deleteCreatorsMembership
 }

@@ -86,7 +86,20 @@ const ChangeType = () => {
         }).then(data => {
             getUsersAccounts()
         });
-
+      //SI ERA UN CREATOR LO QUITAMOS DE LA TABLA
+      if(actualType === 'Creator') {
+        fetch('http://localhost:3001/creatorsmembership', { 
+          method: 'DELETE',
+          headers: {
+          'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({actualUsername}),
+          }).then(response => {
+              return response.text();
+          }).then(data => {
+              getUsersAccounts()
+          }); 
+      }
         
       //SI ERA UN USER FREE SIGNIFICA QUE AGREGAMOS TARJETA
       if(actualType === 'Premium'){

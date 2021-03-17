@@ -21,11 +21,11 @@ const PremiumAccount= () => {
     const [info, setInfo] = useState({username: '', email: '', type:'', paymenth:''})
   
     useEffect(() => {
-        getUsersAccounts();
+        getPremiumMembership();
     }, []);
 
-    function getUsersAccounts() {
-        fetch('http://localhost:3001').then((r) => {
+    function getPremiumMembership() {
+        fetch('http://localhost:3001/premiummembership').then((r) => {
 			return r.json()
 			}).then((j) => {
 			j.forEach((usernameDB) => {
@@ -36,7 +36,7 @@ const PremiumAccount= () => {
                         username: usernameDB.username,
                         email: usernameDB.email,
                         type: usernameDB.type,
-                        paymenth: usernameDB.paymentMethod
+                        paymenth: usernameDB.paymenthmethod
                       })
                 }
 			}
