@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import SearchBar from './functions/SearchBar'
 import { useHistory } from "react-router-dom";
 import './Free.css';
