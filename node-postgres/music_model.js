@@ -54,9 +54,9 @@ const getAccountManager = () => {
 
 const updateAccountManager = (body) => {
   return new Promise(function(resolve, reject) {
-    const { actualTrack, actualUsername, songName } = body
+    const { actualTrack, actualUsername, songName, actualDate } = body
     
-    pool.query("UPDATE accountmanager SET tracks = " + actualTrack + " WHERE username = '"+ actualUsername +"' AND song = '" + songName + "'", (error, results) => {
+    pool.query("UPDATE accountmanager SET tracks = " + actualTrack + " WHERE username = '"+ actualUsername +"' AND song = '" + songName + "' AND datetime ='" + actualDate + "'", (error, results) => {
       
       if (error) {
         reject(error)

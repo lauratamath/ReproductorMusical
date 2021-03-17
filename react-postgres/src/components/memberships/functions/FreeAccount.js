@@ -31,12 +31,13 @@ const Information = ({email, username, type}) => {
     </div>
 }
 
-const actualUsername = localStorage.getItem('actualUsername')
-
 const FreeAccount = () => {
     const history = useHistory()
     const [info, setInfo] = useState({username: '', email: '', type:''})
-  
+
+    const actualUsername = localStorage.getItem('actualUsername')
+    console.log(actualUsername)
+    
     useEffect(() => {
         getUsersAccounts();
     }, []);

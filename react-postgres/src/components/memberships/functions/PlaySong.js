@@ -24,13 +24,15 @@ const actualDate = () => {
     }
 }
 
-const actualUsername = localStorage.getItem('actualUsername')
-const date = actualDate()
+
+
 
 const PlaySong = ({songName, songArtist}) => {
     const [freeInfo, setFreeInfo] = useState({actualUsernameFree:'', actualDateFree: '', actualTrackFree: undefined})
     const [info, setInfo] = useState({actualUsername: '', actualTrack: 0, actualDateTime:''})
     const history = useHistory()
+    const actualUsername = localStorage.getItem('actualUsername')
+    const date = actualDate()
 
     useEffect(() => {
         getFreeMembership();  
@@ -52,10 +54,12 @@ const PlaySong = ({songName, songArtist}) => {
                     })
                 }
                 if(actualUsername === usernameDB.username && dbDate === date && usernameDB.song === songName){ //Ya ha escuchado
+                    console.log(dbDate)
+                    console.log(date)
                     setInfo({
                         ...info,
-                        actualTrackFree: usernameDB.tracks+1,
-                        actualDateFree: usernameDB.datetime
+                        actualTrack: usernameDB.tracks+1,
+                        actualDateTime: usernameDB.datetime
                     })
                 }
             }
@@ -95,7 +99,8 @@ const PlaySong = ({songName, songArtist}) => {
         const actualDate = info.actualDateTime.substring(0,10)
         const actualDateFree = freeInfo.actualDateFree
         const actualTrackFree = freeInfo.actualTrackFree
-
+        console.log(actualDate)
+        
         if (freeInfo.actualTrackFree<4 || freeInfo.actualTrackFree === undefined){ //Si no ha escuchado +3 o es usuario premium
             //LO AGREGAMOS A LA TABLA DE ACCOUNTMANAGER
             if (actualTrack !== 1){
@@ -104,7 +109,7 @@ const PlaySong = ({songName, songArtist}) => {
                     headers: {
                     'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({actualTrack, actualUsername, songName}),
+                    body: JSON.stringify({actualTrack, actualUsername, songName, actualDate}),
                     }).then(response => {
                         return response.text();
                     }).then(data => {
