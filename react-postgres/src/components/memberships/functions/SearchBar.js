@@ -1,9 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import PlaySong from '../functions/PlaySong'
+import PlaySong from '../functions/PlaySong';
+import './Search.css';
 
 const Input = ({onChange}) => { 
     const style = {
-      display: 'block'
+      display: 'block',
+      width: '400px',
+      height: '25px',
+      border: '0px',
+      borderRadius: '10px',
+      paddingLeft: '10px'
     }
     return <input type='text' onChange={onChange} style={style} placeholder='artist, song, gender, or album'/>
   }
@@ -11,11 +17,11 @@ const Input = ({onChange}) => {
 const SongSearched = ({artistName, songName, songDuration}) => { 
     const style = {
         display: 'flex',
-        width: '300px',
+        width: '400px',
         height: '100px',
         lineHeight: '0px',
         position: 'relative',
-      
+        float: 'center',
         whiteSpace: 'nowrap',
         margin: '0px auto'
     }
@@ -78,7 +84,7 @@ const SearchBar = () => {
     return (
         <div>
             <Input onChange={handleChange}/>
-            <button onClick={searchSong}>Search</button>
+            <button onClick={searchSong} div className='botonSearch'>🔍</button>
 
             {completeResults.map((result) => {
                 return <SongSearched artistName={songs[result].artist} 

@@ -1,0 +1,16 @@
+.botonSearch{
+    text-decoration: none;
+    padding: 10px;
+    float: center; 
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: Candara;
+    font-weight: 300px;
+    font-size: 25px;
+    color: '#FFFFFF';
+    background-color: #1B1B1C;
+    border: 2px solid #1B1B1C;
+    font-weight: bold;
+    display: block;
+}
+

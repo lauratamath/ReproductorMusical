@@ -154,7 +154,7 @@ const SignIn = () => {
         <button onClick={() => history.push('/login')} div className='botones'>
           <font color ='#FFFFFF'>
             <b>
-              LogIn
+              Log In
             </b>
           </font>
         </button>

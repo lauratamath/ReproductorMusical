@@ -14,8 +14,8 @@ const Home = () => {
     const history = useHistory()
     return (
     <div>
-        <Button onClick={() => history.push('login')} text='Login'/>
-        <Button onClick={() => history.push('signin')} text='SignIn'/>
+        <Button onClick={() => history.push('login')} text='Log In'/>
+        <Button onClick={() => history.push('signin')} text='Sign Up'/>
 		<Button onClick={() => history.push('planes')} text='Planes'/>
 
         <hr /><br/><br/>

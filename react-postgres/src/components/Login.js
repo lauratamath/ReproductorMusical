@@ -113,7 +113,7 @@ const LogIn = () => {
           <button onClick={verifyUserAccount} className='botones'>
             <font color ='#FFFFFF'>
               <b>
-                LogIn
+                Log In
               </b>
             </font>
           </button>
@@ -129,7 +129,7 @@ const LogIn = () => {
           <button onClick={() => history.push('/signin')} className='botones' >
             <font color ='#FFFFFF'>
               <b>
-                SignIn
+                Sign Up
               </b>
             </font>
           </button>
