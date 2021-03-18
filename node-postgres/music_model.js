@@ -97,7 +97,21 @@ const createSong = (body) => {
       if (error) {
         reject(error)
       }
-      resolve('Free Membership has been updated')
+      resolve('Song has been created')
+  })
+}) 
+}
+
+const updateSong = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { artist, gender, album, song, duration, release, actualArtist, actualSong} = body
+    console.log(body)
+    pool.query("UPDATE songs SET artist=$1, gender=$2, album=$3, song=$4, duration=$5, release=$6 WHERE artist=$7 AND song=$8", [artist, gender, album, song, duration, release, actualArtist, actualSong], (error, results) => {
+      
+      if (error) {
+        reject(error)
+      }
+      resolve('Song has been updated')
   })
 }) 
 }
@@ -215,5 +229,6 @@ module.exports = {
   getCreatorsMembership,
   getPremiumMembership,
   deleteCreatorsMembership,
-  createSong
+  createSong,
+  updateSong
 }

@@ -48,6 +48,15 @@ app.post('/songs', (req, res) => {
   })
 })
 
+app.put('/songs', (req, res) => {
+  music_model.updateSong(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.get('/accountmanager', (req, res) => {
   music_model.getAccountManager().then(response => {
     res.status(200).send(response);

@@ -1,12 +1,12 @@
 import React from 'react';
-import SearchBar from './functions/SearchBar'
 import { useHistory } from "react-router-dom";
+import SearchBarAdmin from './SearchBarAdmin';
 
 const Button = ({onClick, text}) => {
   return <button onClick={onClick}>{text}</button>
 }
 
-const Admin = () => {
+const Modify = () => {
   const history = useHistory()
 
     return (
@@ -17,9 +17,9 @@ const Admin = () => {
         <Button onClick={() => history.push('admin/delete')} text='Delete'/>
         <Button onClick={() => history.push('../home')} text='Log Out'/>
 
-        <h1>Pantalla principal admin membership</h1>
-        <SearchBar/>
+        <h1>Pantalla principal modify</h1>
+        <SearchBarAdmin/>
     </div>
   );
 }
-export default Admin;
+export default Modify;
