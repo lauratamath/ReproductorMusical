@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './Playsong.css';
 
 export const Play = ({onClick}) => {
     const styleButton = {
@@ -7,9 +8,10 @@ export const Play = ({onClick}) => {
         height: '50px',
         position: 'absolute',
         right: '0px',
-        top: '10px'
+        top: '10px',
+        color: '#FFFFFF'
     }
-    return <button style={styleButton} onClick={onClick}>Play</button>
+    return <button style={styleButton} onClick={onClick} className='play'>▶</button>
 }
 
 

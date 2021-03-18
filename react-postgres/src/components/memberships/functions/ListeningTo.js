@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './Playsong.css';
+import reproductor from './images/decibeles.gif';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} className = 'searchb' style={style} >{text}</button>
 }
 
 
@@ -13,8 +18,17 @@ const ListeningTo = () => {
 
     return (
     <div>
+      <center>
+        <br/><br/><br/><br/>
+        <h1>
+          <font color = '#FFFFFF' face='Candara'  size = '6'>
+            Listening to... {songName} - {songArtist}
+          </font>
+        </h1>
         <Button onClick = {history.goBack} text='Search Another Song'/>
-        <h1>Listening to... {songName} - {songArtist}</h1>
+        <br/><br/><br/>
+        <img class="reproductor" src={reproductor} ondblclick="javascript:this.width=50;this.height=115" width="500"/><br/>
+      </center>
     </div>
   );
 }

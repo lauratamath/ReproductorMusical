@@ -9,7 +9,8 @@ const Input = ({onChange}) => {
       height: '25px',
       border: '0px',
       borderRadius: '10px',
-      paddingLeft: '10px'
+      paddingLeft: '10px',
+      float: 'center' 
     }
     return <input type='text' onChange={onChange} style={style} placeholder='artist, song, gender, or album'/>
   }
@@ -29,9 +30,23 @@ const SongSearched = ({artistName, songName, songDuration}) => {
 
     return <div style={style}>
             <div>
-                <h4>{artistName}</h4>
-                <h5>{songName}</h5>
-                <h6>{songDuration}</h6>
+                <h4 align ='left'>
+                    <font color = '#FFFFFF' face='Candara'>
+                        <b>
+                        {artistName}
+                        </b>
+                    </font>
+                </h4>
+                <h5>
+                    <font color = '#8C8C8C' face='Candara'>
+                        {songName}
+                    </font>
+                </h5>
+                <h6 align ='left'>
+                    <font color = '#8C8C8C' face='Candara'>
+                        {songDuration}
+                    </font>
+                </h6>
             </div>
            <PlaySong songArtist={artistName} songName={songName}/>
         </div>
@@ -88,7 +103,7 @@ const SearchBar = () => {
         const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY']
         
         for(var i=0; i<albumsFromApi.length; i++){
-            const token = 'BQC3qGxPzmSeoVwZYE4jmMZtDKV1nAcSPq9-iiNmubyIQPblgtJC1-pXHN6kqfg98VUtRBhdlh-ic4rZCEyQ_fyGNbmpRGwtqW2lgyykr1Mg9qo6LVWlKmUWP3osSEN9PSesWqem'
+            const token = 'BQAS-ljLhruVsjW_HW8MH-avUFb_pWCDOZSqS8YKYtuOzYlLkorzepuAb3BEyvO7lBWJdrQuGrKfZd7vHvZCztRPDuZ47GCwdVTNbyFMSot2XzkCxhmWnaZ0tc5XDboMfsokOtxXhpaH'
             
             const id = albumsFromApi[i]
             const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 
@@ -112,6 +127,7 @@ const SearchBar = () => {
         <div>
             <Input onChange={handleChange}/>
             <button onClick={searchSong} div className='botonSearch'>🔍</button>
+            <br/><br/>
 
             {completeResults.map((result) => {
                 return <SongSearched artistName={songs[result].artist} 
