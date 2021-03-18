@@ -24,7 +24,7 @@ import GetCreator from "./components/memberships/functions/GetCreator"
 import AdminAccount from "./components/memberships/functions/AdminAccount";
 import DeleteSong from "./components/memberships/functions/DeleteSong";
 import GetReports from "./components/memberships/functions/GetReports";
-import InactivateSong from "./components/memberships/functions/InactivateSong";
+import AvailabilitySong from "./components/memberships/functions/AvailabilitySong";
 
 
 
@@ -44,9 +44,9 @@ export default function App() {
           <Route path="/login/premium/listeningTo" component={ListeningTo} />
           <Route path="/login/creator/listeningTo" component={ListeningTo} />
           <Route path="/login/free/listeningTo" component={ListeningTo} />
-          <Route path="/login/admin/inactivate" component={InactivateSong} />
+          <Route path="/login/admin/availability" component={AvailabilitySong} />
           <Route path="/login/admin/reports" component={GetReports} />
-          <Route path="/login/admin/delete" component={DeleteSong} />
+          <Route path="/login/admin/delete" component={AvailabilitySong} />
           <Route path="/login/admin/modify" component={Modify} />
           <Route path="/login/admin/account" component={AdminAccount} />
           <Route path="/login/creator/account" component={CreatorAccount} />

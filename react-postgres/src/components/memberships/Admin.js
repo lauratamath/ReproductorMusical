@@ -42,21 +42,21 @@ const Admin = () => {
         <button onClick={() => history.push('admin/modify')} div className ='otro'>
           <font color = '#FFFFFF' face='Candara'>
             <b>
-              Modify
+              Modify Song
             </b>
           </font>
         </button>
-        <button onClick={() => history.push('admin/inactivate')} div className ='otro'>
+        <button onClick={() => history.push('admin/availability')} div className ='otro'>
           <font color = '#FFFFFF' face='Candara'>
             <b>
-              Inactivate song
+              Availability Song
             </b>
           </font>
         </button>
         <button onClick={() => history.push('admin/delete')} div className ='otro'>
           <font color = '#FFFFFF' face='Candara'>
             <b>
-              Delete
+              Delete Song
             </b>
           </font>
         </button>

@@ -57,6 +57,34 @@ app.put('/songs', (req, res) => {
   })
 })
 
+app.get('/songsAvailability', (req, res) => {
+  music_model.getAllSongs().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+
+app.put('/songsAvailability', (req, res) => {
+  music_model.songAvailability(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.delete('/songs', (req, res) => {
+  music_model.deleteSong(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.get('/accountmanager', (req, res) => {
   music_model.getAccountManager().then(response => {
     res.status(200).send(response);

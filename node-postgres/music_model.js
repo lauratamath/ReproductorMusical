@@ -78,9 +78,20 @@ const createAccountManager = (body) => {
   })
 }
 
-const getSongs = () => {
+const getAllSongs = () => {
   return new Promise(function(resolve, reject) {
     pool.query('SELECT * FROM songs', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getSongs = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT * FROM songs WHERE availability=True', (error, results) => {
       if (error) {
         reject(error)
       }
@@ -105,8 +116,21 @@ const createSong = (body) => {
 const updateSong = (body) => {
   return new Promise(function(resolve, reject) {
     const { artist, gender, album, song, duration, release, actualArtist, actualSong} = body
-    console.log(body)
-    pool.query("UPDATE songs SET artist=$1, gender=$2, album=$3, song=$4, duration=$5, release=$6 WHERE artist=$7 AND song=$8", [artist, gender, album, song, duration, release, actualArtist, actualSong], (error, results) => {
+    pool.query("UPDATE songs SET artist=$1, gender=$2, album=$3, song=$4, duration=$5, release=$6, availability=$7 WHERE artist=$7 AND song=$8", [artist, gender, album, song, duration, release, actualArtist, actualSong], (error, results) => {
+      
+      if (error) {
+        reject(error)
+      }
+      resolve('Song has been updated')
+  })
+}) 
+}
+
+
+const songAvailability = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { availability, actualArtist, actualSong} = body
+    pool.query("UPDATE songs SET availability=$1 WHERE artist=$2 AND song=$3", [availability, actualArtist, actualSong], (error, results) => {
       
       if (error) {
         reject(error)
@@ -213,6 +237,28 @@ const deleteCreatorsMembership = (body) => {
 }) 
 }
 
+const deleteSong = (body) => {
+  const { actualArtist, actualSong } = body
+  return new Promise(function(resolve, reject) {
+    pool.query("DELETE FROM accountmanager WHERE artist= $1 AND song= $2", [actualArtist, actualSong], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })    
+    pool.query("DELETE FROM playlist WHERE artist= $1 AND song=  $2", [actualArtist, actualSong], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })    
+    pool.query("DELETE FROM songs WHERE artist= $1 AND song= $2", [actualArtist, actualSong], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve('song deleted');
+    })
+}) 
+}
+
 module.exports = {
   getUsersAccounts,
   createUserAccount,
@@ -230,5 +276,8 @@ module.exports = {
   getPremiumMembership,
   deleteCreatorsMembership,
   createSong,
-  updateSong
+  updateSong,
+  deleteSong,
+  songAvailability,
+  getAllSongs
 }
