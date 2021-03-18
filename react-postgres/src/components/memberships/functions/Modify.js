@@ -11,11 +11,8 @@ const Modify = () => {
 
     return (
     <div>
-        <Button onClick={() => history.push('admin/account')} text='Account'/>
-        <Button onClick={() => history.push('admin/inactivate')} text='Inactivate song'/>
-        <Button onClick={() => history.push('admin/modify')} text='Modify'/>
-        <Button onClick={() => history.push('admin/delete')} text='Delete'/>
-        <Button onClick={() => history.push('../home')} text='Log Out'/>
+        <Button onClick={() => history.push('../admin')} text='Home'/>
+        <Button onClick={() => history.push('../')} text='Log Out'/>
 
         <h1>Pantalla principal modify</h1>
         <SearchBarAdmin/>

@@ -39,7 +39,6 @@ const date = () => {
   }
 }
 
-const actualUsername = localStorage.getItem('actualUsername')
 const actualDate = date()
 
 const GetCreator = () => {
@@ -47,7 +46,7 @@ const GetCreator = () => {
   const [userAccount, setUserAccount] = useState([])
   const [changeCreator, setChangeCreator] = useState({creatorsType: 'Artist', artist:'', actualMethod: '', password: ''})
   const [showError, setShowError] = useState('')
-  const [type, setType] = useState('')
+  const actualUsername = localStorage.getItem('actualUsername')
 
   useEffect(() => {
     getUsersAccounts();
@@ -73,7 +72,6 @@ const GetCreator = () => {
     const income = 0
 
     var error = ''
-    setType(userAccount[indexUser].type)
     if (userAccount[indexUser].password === changeCreator.password) {
         const actualType = 'Creator'
         //CAMBIAMOS EL TIPO
@@ -116,12 +114,13 @@ const GetCreator = () => {
   }
   
   function homeCreator() {
-      console.log(showError)
+    const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
+
     if (showError === 'Now you are a creator!'){
       history.push('../../creator')
-    } else if (type === 'Free') { 
+    } else if (userAccount[indexUser].type === 'Free') { 
       history.push('../../free')
-    } else if (type === 'Premium') { 
+    } else if (userAccount[indexUser].type === 'Premium') { 
         history.push('../../premium')
       }
   }

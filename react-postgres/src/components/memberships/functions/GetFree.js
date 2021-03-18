@@ -23,13 +23,12 @@ const Input = ({type, onChange, name}) => {
   return <input type={type} onChange={onChange} style={style} name={name}/>
 }
 
-const actualUsername = localStorage.getItem('actualUsername')
-
 const ChangeType = () => {
   const history = useHistory()
   const [userAccount, setUserAccount] = useState([])
   const [changePremium, setChangePremium] = useState({password: ''})
   const [showError, setShowError] = useState('')
+  const actualUsername = localStorage.getItem('actualUsername')
 
   useEffect(() => {
     getUsersAccounts();
@@ -62,9 +61,8 @@ const ChangeType = () => {
 
 
     var error = ''
-    if (actualType === 'Creator'){
+    if (userAccount[indexUser].type === 'Creator'){
       //SI ERA UN CREATOR LO QUITAMOS DE LA TABLA
-      if(actualType === 'Creator') {
         fetch('http://localhost:3001/creatorsmembership', { 
         method: 'DELETE',
         headers: {
@@ -76,7 +74,6 @@ const ChangeType = () => {
         }).then(data => {
         getUsersAccounts()
         }); 
-      }
     }
 
     if (userAccount[indexUser].password === changePremium.password) {
@@ -102,8 +99,12 @@ const ChangeType = () => {
   }
 
   function homeFree() {
+    const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
+
     if (showError === 'Now you are free!'){
       history.push('../../free')
+    } else if (userAccount[indexUser].type === 'Creator'){
+      history.push('../../creator')
     } else { 
       history.push('../../premium')
     }

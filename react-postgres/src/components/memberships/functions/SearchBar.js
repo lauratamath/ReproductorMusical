@@ -88,13 +88,14 @@ const SearchBar = () => {
         const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY']
         
         for(var i=0; i<albumsFromApi.length; i++){
+            const token = 'BQC3qGxPzmSeoVwZYE4jmMZtDKV1nAcSPq9-iiNmubyIQPblgtJC1-pXHN6kqfg98VUtRBhdlh-ic4rZCEyQ_fyGNbmpRGwtqW2lgyykr1Mg9qo6LVWlKmUWP3osSEN9PSesWqem'
             
             const id = albumsFromApi[i]
             const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
-                'Authorization': "Bearer BQBJl-rC9xabvNIdBoJLhJSa4-OTDIFBNtr-2UnrB2lgLMToKm57EK53llvnloECsvFcSLqVh9ZkipPMFsThMSLWGj_mIJXp6DwTpQ9SxOBYbNz9RKD5T6w7Kz3Y39G0cbHVLgFC"
+                'Authorization': "Bearer " + token
                 }
             }).then(response => response.json())
 

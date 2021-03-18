@@ -32,10 +32,10 @@ const Admin = () => {
         <SearchBar/>
         <br/><br/>
 
-        <button onClick={() => history.push('admin/inactivate')} div className ='otro'>
+        <button onClick={() => history.push('admin/reports')} div className ='otro'>
           <font color = '#FFFFFF' face='Candara'>
             <b>
-              Inactivate song
+              Get reports
             </b>
           </font>
         </button>

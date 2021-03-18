@@ -39,14 +39,14 @@ const date = () => {
   }
 }
 
-const actualUsername = localStorage.getItem('actualUsername')
-const actualDate = date()
 
+const actualDate = date()
 const ChangeType = () => {
   const history = useHistory()
   const [userAccount, setUserAccount] = useState([])
   const [changePremium, setChangePremium] = useState({actualMethod: '', password: ''})
   const [showError, setShowError] = useState('')
+  const actualUsername = localStorage.getItem('actualUsername')
 
   useEffect(() => {
     getUsersAccounts();
@@ -72,17 +72,10 @@ const ChangeType = () => {
   function verifyPassword() {
     const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
     const actualMethod = changePremium.actualMethod
-    var actualType = userAccount[indexUser].type;
-
-    if(actualType === 'Free' || actualType === 'Creator'){
-      actualType = 'Premium'
-    } else {
-      actualType = 'Free'
-    }
-
 
     var error = ''
     if (userAccount[indexUser].password === changePremium.password) {
+        const actualType = 'Premium'
         //CAMBIAMOS EL TIPO
         fetch('http://localhost:3001', { 
         method: 'PUT',
@@ -96,7 +89,7 @@ const ChangeType = () => {
             getUsersAccounts()
         });
       //SI ERA UN CREATOR LO QUITAMOS DE LA TABLA
-      if(actualType === 'Creator') {
+      if(userAccount[indexUser].type === 'Creator') {
         fetch('http://localhost:3001/creatorsmembership', { 
           method: 'DELETE',
           headers: {
@@ -111,7 +104,6 @@ const ChangeType = () => {
       }
         
       //SI ERA UN USER FREE SIGNIFICA QUE AGREGAMOS TARJETA
-      if(actualType === 'Premium'){
         fetch('http://localhost:3001/premiummembership', { 
           method: 'POST',
           headers: {
@@ -123,7 +115,7 @@ const ChangeType = () => {
           }).then(data => {
               getUsersAccounts()
           });     
-        }
+  
         error  = 'Now you are premium!'
       } else {
         error  = 'Incorrect password'
@@ -133,8 +125,12 @@ const ChangeType = () => {
   }
 
   function homePremium() {
+    const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
+
     if (showError === 'Now you are premium!'){
       history.push('../../premium')
+    } else if (userAccount[indexUser].type === 'Creator'){
+      history.push('../../creator')
     } else { 
       history.push('../../free')
     }

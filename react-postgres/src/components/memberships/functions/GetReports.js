@@ -5,7 +5,7 @@ const Button = ({onClick, text}) => {
   return <button onClick={onClick}>{text}</button>
 }
 
-const DeleteSong = () => {
+const GetReports = () => {
   const history = useHistory()
 
     return (
@@ -13,8 +13,8 @@ const DeleteSong = () => {
         <Button onClick={() => history.push('../admin')} text='Home'/>
         <Button onClick={() => history.push('../')} text='Log Out'/>
 
-        <h1>Pantalla principal delete song</h1>
+        <h1>Pantalla principal get reports</h1>
     </div>
   );
 }
-export default DeleteSong;
+export default GetReports;

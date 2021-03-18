@@ -28,12 +28,12 @@ const Error = ({error}) => {
   }
 
 
-const actualUsername = localStorage.getItem('actualUsername')
 const UploadSongs = () => {
   const history = useHistory()
   const [showError, setShowError] = useState('')
   const [creators, setCreators] = useState([])
   const [songInfo, setSongInfo] = useState({gender: '', album: '', song: '', duration: 0.00, release: ''})
+  const actualUsername = localStorage.getItem('actualUsername')
 
   useEffect(() => {
     getCreatorsMembership();
