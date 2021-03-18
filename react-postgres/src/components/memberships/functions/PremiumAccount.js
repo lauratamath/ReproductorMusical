@@ -37,7 +37,6 @@ const PremiumAccount= () => {
 			}).then((j) => {
 			j.forEach((usernameDB) => {
 				if(actualUsername === usernameDB.username){
-                    console.log(usernameDB)
                     setInfo({
                         ...info,
                         username: usernameDB.username,

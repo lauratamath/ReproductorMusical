@@ -29,7 +29,7 @@ const actualDate = () => {
 
 
 
-const PlaySong = ({songName, songArtist}) => {
+const PlaySong = ({songName, songArtist, songUrl}) => {
     const [freeInfo, setFreeInfo] = useState({actualUsernameFree:'', actualDateFree: '', actualTrackFree: undefined})
     const [info, setInfo] = useState({actualUsername: '', actualTrack: 0, actualDateTime:''})
     const history = useHistory()
@@ -56,8 +56,6 @@ const PlaySong = ({songName, songArtist}) => {
                     })
                 
                 if(actualUsername === usernameDB.username && dbDate === date && usernameDB.song === songName){ //Ya ha escuchado
-                    console.log(dbDate)
-                    console.log(date)
                     setInfo({
                         ...info,
                         actualTrack: usernameDB.tracks+1,
@@ -101,7 +99,6 @@ const PlaySong = ({songName, songArtist}) => {
         const actualDate = info.actualDateTime.substring(0,10)
         const actualDateFree = freeInfo.actualDateFree
         const actualTrackFree = freeInfo.actualTrackFree
-        console.log(actualTrack)
         
         if (freeInfo.actualTrackFree<4 || freeInfo.actualTrackFree === undefined){ //Si no ha escuchado +3 o es usuario premium
             //LO AGREGAMOS A LA TABLA DE ACCOUNTMANAGER
@@ -160,6 +157,7 @@ const PlaySong = ({songName, songArtist}) => {
             }
             localStorage.setItem("songName", songName);
             localStorage.setItem("songArtist", songArtist);
+            localStorage.setItem("songUrl", songUrl)
         }
 
         if(freeInfo.actualTrackFree<4){

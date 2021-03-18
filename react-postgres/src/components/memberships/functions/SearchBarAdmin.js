@@ -119,8 +119,6 @@ const SearchBarAdmin = () => {
         var duration = parseFloat(editInfo.duration)
         var release = editInfo.release
 
-        console.log(release===actualRelease)
-
         if(artist!==''||gender!==''||album!==''||song!==''||editInfo.duration!==''||release!==''){
             if(editInfo.duration===''){
                 duration = parseFloat(actualDuration)

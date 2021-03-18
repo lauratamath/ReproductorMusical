@@ -50,7 +50,6 @@ const LogIn = () => {
 
     try {
       if (userAccount[indexUser].password === existingAccount.password) {
-          console.log('Pasa a free/premium/artist')
           accountType = userAccount[indexUser].type
           localStorage.setItem('actualUsername', userAccount[indexUser].username)
       } else {
@@ -59,7 +58,6 @@ const LogIn = () => {
     } catch (e) {
       try {
         if (userAccount[indexEmail].password === existingAccount.password) {
-          console.log('Pasa a free/premium/artist')
           accountType = userAccount[indexEmail].type
           localStorage.setItem('actualUsername', userAccount[indexEmail].username)
         } else {

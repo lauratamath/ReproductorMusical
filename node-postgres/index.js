@@ -57,6 +57,15 @@ app.put('/songs', (req, res) => {
   })
 })
 
+app.post('/spotifySongs', (req, res) => {
+  music_model.createSpotifySong(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.get('/songsAvailability', (req, res) => {
   music_model.getAllSongs().then(response => {
     res.status(200).send(response);

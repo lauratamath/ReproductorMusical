@@ -103,7 +103,20 @@ const getSongs = () => {
 const createSong = (body) => {
   return new Promise(function(resolve, reject) {
     const { artist, gender, album, song, duration, release } = body
-    pool.query("INSERT INTO songs VALUES ($1, $2, $3, $4, $5, $6)", [artist, gender, album, song, duration, release], (error, results) => {
+    pool.query("INSERT INTO songs VALUES ($1, $2, $3, $4, $5, $6, True)", [artist, gender, album, song, duration, release], (error, results) => {
+      
+      if (error) {
+        reject(error)
+      }
+      resolve('Song has been created')
+  })
+}) 
+}
+
+const createSpotifySong = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { artist, gender, album, song, duration, release, url } = body
+    pool.query("INSERT INTO songs VALUES ($1, $2, $3, $4, $5, $6, True, $7)", [artist, gender, album, song, duration, release, url], (error, results) => {
       
       if (error) {
         reject(error)
@@ -279,5 +292,6 @@ module.exports = {
   updateSong,
   deleteSong,
   songAvailability,
-  getAllSongs
+  getAllSongs,
+  createSpotifySong
 }

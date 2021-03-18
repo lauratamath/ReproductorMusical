@@ -49,8 +49,6 @@ const ChangeType = () => {
   }
 
 
-  console.log('render', userAccount)
-
   function verifyPassword() {
     const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
     var actualType = userAccount[indexUser].type;

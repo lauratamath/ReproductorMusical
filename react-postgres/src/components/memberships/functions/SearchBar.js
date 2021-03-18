@@ -15,7 +15,7 @@ const Input = ({onChange}) => {
     return <input type='text' onChange={onChange} style={style} placeholder='artist, song, gender, or album'/>
   }
 
-const SongSearched = ({artistName, songName, songDuration}) => { 
+const SongSearched = ({artistName, songName, songDuration, songUrl}) => { 
     const style = {
         display: 'flex',
         width: '400px',
@@ -48,7 +48,7 @@ const SongSearched = ({artistName, songName, songDuration}) => {
                     </font>
                 </h6>
             </div>
-           <PlaySong songArtist={artistName} songName={songName}/>
+           <PlaySong songArtist={artistName} songName={songName} songUrl={songUrl}/>
         </div>
 }
 
@@ -56,7 +56,6 @@ const SearchBar = () => {
     const [search, setSearch] = useState('')
     const [songs, setSongs] = useState([])
     const [completeResults, setResults] = useState([])
-    const [songInfo, setSongInfo] = useState({artist: '', album: '', song: '', duration: 0.00, release: ''})
     
     useEffect(() => {
         getSongs();
@@ -100,10 +99,10 @@ const SearchBar = () => {
     }
     
     async function getFromApi() {
-        const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY']
+        const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY', '5lKlFlReHOLShQKyRv6AL9', '1TTxcgs3zEngN0EB56yXzY', '71O60S5gIJSIAhdnrDIh3N', '6DEjYFkNZh67HP7R9PSZvv']
         
         for(var i=0; i<albumsFromApi.length; i++){
-            const token = 'BQAS-ljLhruVsjW_HW8MH-avUFb_pWCDOZSqS8YKYtuOzYlLkorzepuAb3BEyvO7lBWJdrQuGrKfZd7vHvZCztRPDuZ47GCwdVTNbyFMSot2XzkCxhmWnaZ0tc5XDboMfsokOtxXhpaH'
+            const token = 'BQBE8jKXhcgxBdjp8eO3TKTwotdzmxyUl7LZV7TVznTp35YS6Q_rUzWSd2qqghlHi7zYBiClDq_moTivd5PcPFLl1CIoiPxMyg3WIsLqJ07uVWbGhRg7VxVTh5nlSSFnWeiQN9-i'
             
             const id = albumsFromApi[i]
             const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 
@@ -114,11 +113,31 @@ const SearchBar = () => {
                 }
             }).then(response => response.json())
 
-            const artist = json.artists[0].name
-            const album = json.name
-            const song = json.tracks.items[0].name
-            const duration = json.tracks.items[0].duration_ms/60000
-            const release = json.release_date
+            const album = json.name //Si no esta
+            var revisar = songs.map(({ album }) => album).indexOf(album)
+
+            if(revisar == -1 && songs.length!=0) {
+                for(var j=0; j<4; j++){
+                    const artist = json.artists[0].name
+                    const song = json.tracks.items[j].name
+                    const gender = 'not available'
+                    const duration = (json.tracks.items[j].duration_ms/60000).toFixed(2)
+                    const release = json.release_date
+                    const url = json.tracks.items[j].id
+
+                    
+
+                    fetch('http://localhost:3001/spotifySongs', {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({artist, gender, album, song, duration, release, url}),
+                        }).then(response => {
+                        return response.text();
+                        })
+                }
+            }
         }
         
     }
@@ -132,7 +151,8 @@ const SearchBar = () => {
             {completeResults.map((result) => {
                 return <SongSearched artistName={songs[result].artist} 
                         songName={songs[result].song} 
-                        songDuration={songs[result].duration}/>  
+                        songDuration={songs[result].duration}
+                        songUrl={songs[result].url}/>  
             })}
         </div>
     )

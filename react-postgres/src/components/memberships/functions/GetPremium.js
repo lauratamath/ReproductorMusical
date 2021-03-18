@@ -66,9 +66,6 @@ const ChangeType = () => {
       .then(r => setUserAccount(r))
   }
 
-
-  console.log('render', userAccount)
-
   function verifyPassword() {
     const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
     const actualMethod = changePremium.actualMethod

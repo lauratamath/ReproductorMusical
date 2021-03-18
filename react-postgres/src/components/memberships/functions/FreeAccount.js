@@ -36,7 +36,6 @@ const FreeAccount = () => {
     const [info, setInfo] = useState({username: '', email: '', type:''})
 
     const actualUsername = localStorage.getItem('actualUsername')
-    console.log(actualUsername)
     
     useEffect(() => {
         getUsersAccounts();
