@@ -1,16 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
-
-const Button = ({onClick, text}) => {
-    return <button onClick={onClick}>{text}</button>
-}
+import './FreeAccount.css';
 
 const Information = ({email, username, type, paymenth}) => {
     return <div>
-        <h4>Username: {username}</h4>
-        <h4>Email: {email}</h4>
-        <h4>Type: {type} </h4>
-        <h4>Paymenth Method: {paymenth} </h4>
+        <h4 align='center'>
+            <font color = '#FFFFFF' face='Candara'  size = '4'>
+                <br/><br/>
+                Username: &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; 
+                &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  {username}
+                <br/><br/>
+                Email: &nbsp; &nbsp; &nbsp;  &nbsp; {email}
+                <br/><br/>
+                Type: &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
+                 &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {type} 
+                <br/><br/>
+                Paymenth Method: &nbsp;  &nbsp; {paymenth} 
+                <br/><br/>
+            </font>
+        </h4>
     </div>
 }
 
@@ -45,14 +53,53 @@ const PremiumAccount= () => {
 
     return (
     <div>
-        <Button onClick={() => history.push('../../home')} text='Log Out'/>
-        <Button onClick={() => history.push('../premium')} text='Home'/>
+        <button onClick={() => history.push('../premium')} div className='closeF'>
+          <font color ='#FFFFFF'>
+            ❌
+          </font>
+        </button>
 
-        <h1>Vista general de la cuenta</h1>
+        <h1>
+            <font color = '#FFFFFF' face='Candara' size = '7'>
+                &nbsp; &nbsp;
+                Vista general de la cuenta 
+            </font>
+        </h1>
+
+        <button onClick={() => history.push('../../home')} div className ='botonesFree'>
+            <font color = '#FFFFFF' face='Candara'>
+                Log Out
+            </font>
+        </button>
+
+        <h1>
+            <font color = '#FFFFFF' face='Candara'>
+                <b>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    Perfil
+                </b>
+            </font>
+        </h1> 
+
         <Information username={info.username} email={info.email} type={info.type} paymenth={info.paymenth}/>
 
-        <Button onClick={() => history.push('account/getFree')} text='Get Free'/>
-        <Button onClick={() => history.push('account/getCreator')} text='Lander for Creators'/>
+        <center>
+            <button onClick={() => history.push('account/getFree')} div className ='otro'>
+                <font color = '#FFFFFF' face='Candara'>
+                    <b>
+                        Get Free
+                    </b>
+                </font>
+            </button>
+
+            <button onClick={() => history.push('account/getCreator')} div className ='otro'>
+                <font color = '#FFFFFF' face='Candara'>
+                    <b>
+                        Lander for Creators
+                    </b>
+                </font>
+            </button>
+        </center>
     </div>
   ) ;
 }

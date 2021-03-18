@@ -1,13 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './FreeAccount.css';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} style={style} className = 'botonesFree'>{text}</button>
 }
 
 const Input = ({type, onChange, name}) => { 
     const style = {
-      display: 'block'
+      display: 'block',
+      width: '160px',
+      height: 's15px',
+      fontFamily: 'Candara',
+      fontSize: '15px'
     }
     return <input type={type} onChange={onChange} style={style} name={name}/>
 }
@@ -75,28 +83,66 @@ const UploadSongs = () => {
 
     return (
     <div>
-        <Button onClick={() => history.push('../creator')} text='Home'/>
         <Button onClick={() => history.push('../../home')} text='Log Out'/>
+        <Button onClick={() => history.push('../creator')} text='Home'/>
+        
 
-        <h1>Pantalla principal subir musica</h1>
+        <h1>
+          <font color = '#FFFFFF' face='Candara'>
+            <b>
+              &nbsp;  &nbsp; 
+              Upload your songs
+              <br/><br/>
+            </b>
+          </font>
+        </h1>
 
-        <label>Gender</label>
-        <Input type='text' onChange={handleChange} name='gender'/>
+        <center>
+          <label>
+            <font color = '#FFFFFF' face='Candara'>
+             Gender<br/><br/>
+            </font>
+          </label>
+          <Input type='text' onChange={handleChange} name='gender'/><br/><br/>
 
-        <label>Song name</label>
-        <Input type='text' onChange={handleChange} name='song'/>
+          <label>
+            <font color = '#FFFFFF' face='Candara'>
+              Song name<br/><br/>
+            </font>
+          </label>
+          <Input type='text' onChange={handleChange} name='song'/><br/><br/>
 
-        <label>Album name</label>
-        <Input type='text' onChange={handleChange} name='album'/>
+          <label>
+            <font color = '#FFFFFF' face='Candara'>
+              Album name<br/><br/>
+            </font>
+          </label>
+          <Input type='text' onChange={handleChange} name='album'/><br/><br/>
 
-        <label>Duration</label>
-        <Input type='number' onChange={handleChange} name='duration'/>
+          <label>
+            <font color = '#FFFFFF' face='Candara'>
+              Duration<br/><br/>
+            </font>
+          </label>
+          <Input type='number' onChange={handleChange} name='duration'/><br/><br/>
 
-        <label>Release date</label>
-        <input type="date" onChange={handleChange} name="release"/>
+          <label>
+            <font color = '#FFFFFF' face='Candara'>
+              Release date<br/>
+            </font>
+          </label><br/>
+          <input type="date" onChange={handleChange} name="release"/><br/><br/>
 
-        <Error error={showError}/>
-        <Button onClick={createSong} text='Submit Song'/>
+          <Error error={showError}/>
+          <button onClick={createSong} div className ='otro'>
+            <font color = '#FFFFFF' face='Candara'>
+              <b>
+                Submit Song
+              </b>
+            </font>
+          </button>
+        </center>
+
     </div>
   );
 }

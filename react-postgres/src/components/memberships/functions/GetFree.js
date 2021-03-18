@@ -111,8 +111,8 @@ const ChangeType = () => {
 
     return (
     <div>
-        <Button onClick={homeFree} text='Home'/>
         <Button onClick={() => history.push('../../../home')} text='Log Out'/>
+        <Button onClick={homeFree} text='Home'/>
 
         <h1>
           <font color = '#FFFFFF' face='Candara'  size = '7'>
