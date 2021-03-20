@@ -160,7 +160,10 @@ const PlaySong = ({songName, songArtist, songUrl}) => {
             localStorage.setItem("songUrl", songUrl)
         }
 
-        if(freeInfo.actualTrackFree<4){
+        console.log(window.location.pathname)
+        if(window.location.pathname === '/login/premium/playlists/playlistInfo'){
+            history.push('../../premium/listeningTo')
+        } else if(freeInfo.actualTrackFree<4){
             history.push('free/listeningTo')
         } else if(freeInfo.actualTrackFree === undefined){
             history.push('premium/listeningTo')

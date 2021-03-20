@@ -30,6 +30,24 @@ app.put('/', (req, res) => {
   })
 })
 
+app.get('/playlists', (req, res) => {
+  music_model.getPlaylists().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/playlists', (req, res) => {
+  music_model.createPlaylist(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.get('/songs', (req, res) => {
   music_model.getSongs().then(response => {
     res.status(200).send(response);

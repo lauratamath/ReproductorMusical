@@ -11,7 +11,7 @@ const Button = ({onClick, text}) => {
 }
 
 const Player = ({link}) => {
-  if(link === 'null'){
+  if(link === 'null' || link === 'undefined'){
       return <img class="reproductor" src={reproductor} ondblclick="javascript:this.width=50;this.height=115" width="500"/>
   } else {
       link = link.slice()

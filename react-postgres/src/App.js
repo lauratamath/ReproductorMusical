@@ -22,9 +22,11 @@ import GetFree from "./components/memberships/functions/GetFree"
 import ListeningTo from "./components/memberships/functions/ListeningTo"
 import GetCreator from "./components/memberships/functions/GetCreator"
 import AdminAccount from "./components/memberships/functions/AdminAccount";
-import DeleteSong from "./components/memberships/functions/DeleteSong";
 import GetReports from "./components/memberships/functions/GetReports";
 import AvailabilitySong from "./components/memberships/functions/AvailabilitySong";
+import SongToPlaylist from "./components/memberships/functions/SongToPlaylist";
+import Playlist from "./components/memberships/functions/Playlist";
+import PlaylistInfo from "./components/memberships/functions/PlaylistsInfo";
 
 
 
@@ -41,6 +43,9 @@ export default function App() {
           <Route path="/login/premium/account/getFree" component={GetFree} />
           <Route path="/login/free/account/getPremium" component={GetPremium} />
           <Route path="/login/creator/upload" component={UploadSongs} />
+          <Route path="/login/premium/playlists/playlistInfo" component={PlaylistInfo} />
+          <Route path="/login/premium/playlists" component={Playlist} />
+          <Route path="/login/premium/SongToPlaylist" component={SongToPlaylist} />
           <Route path="/login/premium/listeningTo" component={ListeningTo} />
           <Route path="/login/creator/listeningTo" component={ListeningTo} />
           <Route path="/login/free/listeningTo" component={ListeningTo} />

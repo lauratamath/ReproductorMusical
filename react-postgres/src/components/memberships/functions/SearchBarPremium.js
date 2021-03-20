@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import PlaySong from '../functions/PlaySong';
+import AddToPlaylist from '../functions/AddToPlaylist';
 import './Search.css';
 
 const Input = ({onChange}) => { 
@@ -48,11 +49,13 @@ const SongSearched = ({artistName, songName, songDuration, songUrl}) => {
                     </font>
                 </h6>
             </div>
-           <PlaySong songArtist={artistName} songName={songName} songUrl={songUrl}/>
+            <PlaySong songArtist={artistName} songName={songName} songUrl={songUrl}/>
+            <AddToPlaylist songArtist={artistName} songName={songName}/>
+
         </div>
 }
 
-const SearchBar = () => {
+const SearchBarPremium = () => {
     const [search, setSearch] = useState('')
     const [songs, setSongs] = useState([])
     const [completeResults, setResults] = useState([])
@@ -152,9 +155,10 @@ const SearchBar = () => {
                 return <SongSearched artistName={songs[result].artist} 
                         songName={songs[result].song} 
                         songDuration={songs[result].duration}
-                        songUrl={songs[result].url}/>  
+                        songUrl={songs[result].url}
+                        />  
             })}
         </div>
     )
 }
-export default SearchBar;
+export default SearchBarPremium;

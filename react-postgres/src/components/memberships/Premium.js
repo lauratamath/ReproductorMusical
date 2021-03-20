@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from './functions/SearchBar'
+import SearchBarPremium from './functions/SearchBarPremium'
 import { useHistory } from "react-router-dom";
 import './Free.css';
 import logo from './images/logo.png';
@@ -19,8 +19,10 @@ const Premium = () => {
     <div>
       <img src={logo} ondblclick="javascript:this.width=50;this.height=115" width="175"/>
       <img class="icono" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="50"/><br/>
+      <Button onClick={() => history.push('premium/playlists')} text='Playlists'/><br/><br/>
       <Button onClick={() => history.push('premium/account')} text='Account'/><br/><br/>
       <Button onClick={() => history.push('../home')} text='Log Out'/>
+      
       <center>
         <h1>
           <font face ='Candara' color ='#FFFFFF' size = '7'>
@@ -28,7 +30,7 @@ const Premium = () => {
             ¿Ya sabes qué escuchar?
           </font>
         </h1>
-        <SearchBar/>
+        <SearchBarPremium/>
       </center>
       <h5 align ='center'>
         <font color = '#8C8C8C' face='Candara'>

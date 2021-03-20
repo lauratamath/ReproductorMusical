@@ -29,6 +29,30 @@ const getFreeMembership = () => {
 }) 
 }
 
+const getPlaylists = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM playlist JOIN songs ON playlist.song = songs.song AND playlist.artist = songs.artist", (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+  })  
+}
+
+const createPlaylist = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { actualUsername, playlistname, song, artist } = body
+    console.log(body)
+    pool.query('INSERT INTO playlist VALUES ($1, $2, $3, $4)', [actualUsername, playlistname, song, artist], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve('A new playlist has been added', results)
+    })
+  })
+}
+
 const createUserAccount = (body) => {
   return new Promise(function(resolve, reject) {
     const { username, password, type } = body
@@ -293,5 +317,7 @@ module.exports = {
   deleteSong,
   songAvailability,
   getAllSongs,
-  createSpotifySong
+  createSpotifySong,
+  getPlaylists,
+  createPlaylist
 }
