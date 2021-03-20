@@ -23,9 +23,9 @@ const Player = ({link}) => {
 
 const ListeningTo = () => {
   const history = useHistory()
-  const songName = localStorage.getItem("songName")
-  const songArtist = localStorage.getItem("songArtist")
-  const songUrl = localStorage.getItem("songUrl")
+  const songName = localStorage.getItem('songName')
+  const songArtist = localStorage.getItem('songArtist')
+  const songUrl = localStorage.getItem('songUrl')
   
     return (
     <div>

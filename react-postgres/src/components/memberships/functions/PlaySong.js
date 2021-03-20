@@ -108,7 +108,7 @@ const PlaySong = ({songName, songArtist, songUrl}) => {
                     headers: {
                     'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({actualTrack, actualUsername, songName, actualDate}),
+                    body: JSON.stringify({actualTrack, actualUsername, songName, songArtist, actualDate }),
                     }).then(response => {
                         return response.text();
                     }).then(data => {
@@ -128,6 +128,7 @@ const PlaySong = ({songName, songArtist, songUrl}) => {
                     });      
             }
             //SI ES FREE, LE HACEMOS UPDATE A LA TABLA DE FREEMEMBERSHIP
+            console.log(actualTrackFree)
             if (actualTrackFree !== undefined){
                 if (actualTrackFree !== 1){
                     fetch('http://localhost:3001/freemembership', { 
@@ -155,12 +156,11 @@ const PlaySong = ({songName, songArtist, songUrl}) => {
                         });      
                 }
             }
-            localStorage.setItem("songName", songName);
-            localStorage.setItem("songArtist", songArtist);
-            localStorage.setItem("songUrl", songUrl)
+            localStorage.setItem('songName', songName);
+            localStorage.setItem('songArtist', songArtist);
+            localStorage.setItem('songUrl', songUrl)
         }
 
-        console.log(window.location.pathname)
         if(window.location.pathname === '/login/premium/playlists/playlistInfo'){
             history.push('../../premium/listeningTo')
         } else if(freeInfo.actualTrackFree<4){

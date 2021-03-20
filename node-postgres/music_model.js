@@ -55,8 +55,8 @@ const createPlaylist = (body) => {
 
 const createUserAccount = (body) => {
   return new Promise(function(resolve, reject) {
-    const { username, password, type } = body
-    pool.query('INSERT INTO useraccount VALUES ($1, $2, $3)', [username, password, type], (error, results) => {
+    const { username, password, type, dateSubscribed } = body
+    pool.query('INSERT INTO useraccount VALUES ($1, $2, $3, $4)', [username, password, type, dateSubscribed], (error, results) => {
       if (error) {
         reject(error)
       }
@@ -76,11 +76,79 @@ const getAccountManager = () => {
 }) 
 }
 
+const getMostActiveUsers = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT username, SUM(tracks) FROM accountmanager GROUP BY username  ORDER BY SUM(tracks) desc', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getAlbumsReleases = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT EXTRACT(YEAR FROM release) as anio, EXTRACT(MONTH FROM release) as mes, album FROM songs GROUP BY anio, mes, album ORDER BY anio desc', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getMostPopularArtists = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT artist, EXTRACT(MONTH FROM datetime) as mes, EXTRACT(YEAR FROM datetime) as anio, SUM(tracks) FROM accountmanager GROUP BY artist, mes, anio ORDER BY SUM(tracks) desc', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getMostPopularGenders = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT gender, SUM(tracks) FROM accountmanager JOIN songs ON songs.artist = accountmanager.artist AND songs.song = accountmanager.song GROUP BY gender  ORDER BY SUM(tracks) desc', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getArtistsSongsCount = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT artist, COUNT(song) from songs GROUP BY artist ORDER BY COUNT(song) desc', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getMensualSubscription = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT EXTRACT(MONTH FROM dateSubscribed) as mes, EXTRACT(YEAR FROM dateSubscribed) as anio, COUNT(username) FROM useraccount GROUP BY (mes, anio) ORDER BY mes, anio desc', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+
 const updateAccountManager = (body) => {
   return new Promise(function(resolve, reject) {
-    const { actualTrack, actualUsername, songName, actualDate } = body
+    const { actualTrack, actualUsername, songName, songArtist, actualDate } = body
+    console.log(body)
     
-    pool.query("UPDATE accountmanager SET tracks = " + actualTrack + " WHERE username = '"+ actualUsername +"' AND song = '" + songName + "' AND datetime ='" + actualDate + "'", (error, results) => {
+    pool.query("UPDATE accountmanager SET tracks = $1 WHERE username = $2 AND song = $3 AND artist = $4 AND datetime = $5", [actualTrack, actualUsername, songName, songArtist, actualDate], (error, results) => {
       
       if (error) {
         reject(error)
@@ -319,5 +387,11 @@ module.exports = {
   getAllSongs,
   createSpotifySong,
   getPlaylists,
-  createPlaylist
+  createPlaylist,
+  getMostActiveUsers,
+  getAlbumsReleases,
+  getMostPopularArtists,
+  getMostPopularGenders,
+  getArtistsSongsCount,
+  getMensualSubscription
 }

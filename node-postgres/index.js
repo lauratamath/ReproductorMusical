@@ -217,6 +217,59 @@ app.delete('/creatorsmembership', (req, res) => {
   })
 })
 
+app.get('/activeUsers', (req, res) => {
+  music_model.getMostActiveUsers().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/albumReleases', (req, res) => {
+  music_model.getAlbumsReleases().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/popularArtists', (req, res) => {
+  music_model.getMostPopularArtists().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/popularGenders', (req, res) => {
+  music_model.getMostPopularGenders().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/songsCount', (req, res) => {
+  music_model.getArtistsSongsCount().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/subscriptionCount', (req, res) => {
+  music_model.getMensualSubscription().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

@@ -19,6 +19,19 @@ const Input = ({type, onChange, name}) => {
   return <input type={type} onChange={onChange} style={style} name={name}/>
 }
 
+const date = () => {
+  const today = new Date()
+  const month = today.getMonth()+1
+
+  if (month.toString().length === 1){
+      return today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
+  } else {
+      return today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  }
+}
+
+const actualDate = date()
+
 const SignIn = () => {
   const history = useHistory()
   const [userAccount, setUserAccount] = useState([])
@@ -85,13 +98,14 @@ const SignIn = () => {
       const password = newAccount.password
       const type = 'Free'
       const username = newAccount.username
+      const dateSubscribed = actualDate
 
       fetch('http://localhost:3001/useraccount', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({username, password, type}),
+        body: JSON.stringify({username, password, type, dateSubscribed }),
         }).then(response => {
           return response.text();
         }).then(data => {
