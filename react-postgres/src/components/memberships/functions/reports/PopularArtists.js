@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './reports.css';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} style={style} className = 'botonesHL'>{text}</button>
 }
 
 const Artist = ({artistName, month, sum, year}) => {
@@ -58,12 +62,28 @@ const PopularArtists = () => {
 
     return (
     <div>
-        <Button onClick={() => history.push('../reports')} text='Go Back'/>
-        <Button onClick={() => history.push('../../admin')} text='Home'/>
+        <button onClick={() => history.push('../reports')} div className ='back'>
+          <font color = '#FFFFFF' face='Candara' size = '6'>
+            ←
+          </font>
+        </button>
         <Button onClick={() => history.push('../../')} text='Log Out'/>
+        <Button onClick={() => history.push('../../admin')} text='Home'/>
+        
+        <br/><br/><br/>
+        <h1>
+          <font color = '#FFFFFF' face='Candara'>
+            &nbsp; &nbsp; &nbsp;
+            Pantalla principal popular artists
+          </font>
+        </h1>
 
-        <h1>Pantalla principal popular artists</h1>
-        <h2>Popular artists last three months</h2>
+        <h2>
+          <font color = '#FFFFFF' face='Candara'>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            Popular artists last three months
+          </font>
+        </h2>
         
         {mostPopularArtists.map((result) => {
                 return <Artist artistName={result.artist} 

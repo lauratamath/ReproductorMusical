@@ -1,9 +1,13 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import SearchBarAdmin from './SearchBarAdmin';
+import './FreeAccount.css';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} style={style} className = 'botonesFree'>{text}</button>
 }
 
 const Modify = () => {
@@ -14,8 +18,17 @@ const Modify = () => {
         <Button onClick={() => history.push('../admin')} text='Home'/>
         <Button onClick={() => history.push('../')} text='Log Out'/>
 
-        <h1>Pantalla principal modify</h1>
-        <SearchBarAdmin/>
+        <br/><br/><br/>
+        <h1>
+          <font color = '#FFFFFF' face='Candara'  size = '7'>
+            &nbsp; &nbsp;
+            Modify
+          </font>
+        </h1>
+        <br/><br/><br/>
+        <center>
+          <SearchBarAdmin/>
+        </center>
     </div>
   );
 }

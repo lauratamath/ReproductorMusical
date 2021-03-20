@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './reports.css';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} style={style} className = 'botonesHL'>{text}</button>
 }
 
 const ActiveUser = ({username, tracks}) => {
@@ -33,11 +37,20 @@ const ActiveUsers = () => {
 
     return (
     <div>
-        <Button onClick={() => history.push('../reports')} text='Go Back'/>
+        <button onClick={() => history.push('../reports')} div className ='back'>
+          <font color = '#FFFFFF' face='Candara' size = '6'>
+            ←
+          </font>
+        </button>
         <Button onClick={() => history.push('../../admin')} text='Home'/>
         <Button onClick={() => history.push('../../')} text='Log Out'/>
-
-        <h1>Pantalla principal all time active users</h1>
+        <br/><br/><br/><br/>
+        <h1>
+          <font color = '#FFFFFF' face='Candara'>
+            &nbsp; &nbsp;
+            All time active users
+          </font>
+        </h1>
 
         {activeUsers.map((result) => {
                 return <ActiveUser username={result.username} 

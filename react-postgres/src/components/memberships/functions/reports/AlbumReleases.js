@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './reports.css';
 
 const Button = ({onClick, text}) => {
-  return <button onClick={onClick}>{text}</button>
+  const style = {
+    color: '#FFFFFF'
+  }
+  return <button onClick={onClick} style={style} className = 'botonesHL'>{text}</button>
 }
 
 const AlbumReleased = ({artistName, albumName, yearReleased, weekReleased}) => {
@@ -67,13 +71,33 @@ const AlbumReleases = () => {
 
     return (
     <div>
-        <Button onClick={() => history.push('../reports')} text='Go Back'/>
+        <button onClick={() => history.push('../reports')} div className ='back'>
+          <font color = '#FFFFFF' face='Candara' size = '6'>
+            ←
+          </font>
+        </button>
         <Button onClick={() => history.push('../../admin')} text='Home'/>
         <Button onClick={() => history.push('../../')} text='Log Out'/>
 
-        <h1>Pantalla principal report album releases</h1>
-        <h2>Actual date: {actualDate} Actual years week: {actualWeek}</h2>
-        <h2>This year last released albums</h2>
+        <br/><br/><br/><br/>
+        <h1>
+            <font color = '#FFFFFF' face='Candara'>
+                &nbsp; &nbsp;
+                Report album releases
+            </font>
+        </h1>
+        <h2>
+            <font color = '#FFFFFF' face='Candara'>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                Actual date: {actualDate} Actual years week: {actualWeek}
+            </font>
+        </h2>
+        <h2>
+            <font color = '#FFFFFF' face='Candara'>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                This year last released albums
+            </font>
+        </h2>
 
         {albumReleases.map((result) => {
                 return <AlbumReleased artistName={result.artist} 

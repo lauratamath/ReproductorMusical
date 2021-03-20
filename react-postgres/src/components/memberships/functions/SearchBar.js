@@ -102,7 +102,7 @@ const SearchBar = () => {
         const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY', '5lKlFlReHOLShQKyRv6AL9', '1TTxcgs3zEngN0EB56yXzY', '71O60S5gIJSIAhdnrDIh3N', '6DEjYFkNZh67HP7R9PSZvv']
         
         for(var i=0; i<albumsFromApi.length; i++){
-            const token = 'BQC3FRR-MY1dSqniX2PLP2TPNL5Ug-SfK2Uf7qASIi5Syj9wihUVGgHw7PC42lIWPkHqFuz0UAN6RB-lF7Dw8ujRmxEKq0ubI_cpQjhRWU5N40gs0t3BOFJLcXfX9qhHrGLKLRe0'
+            const token = 'BQDmFeK_1BWxfqblGSO79YKA4wZ7nqUX0B6_q667bl-oexffWpGRx1fnTHSAcuXw_JW0WXK91TmGqoTkx353PWiLnlf9uFMVwj8AJLe5_kRRXiTI-O1TdIOdso53nie04MU-EdAKaVO2'
             
             const id = albumsFromApi[i]
             const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 
