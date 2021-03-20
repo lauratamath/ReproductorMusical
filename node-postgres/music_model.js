@@ -89,7 +89,7 @@ const getMostActiveUsers = () => {
 
 const getAlbumsReleases = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT EXTRACT(YEAR FROM release) as anio, EXTRACT(MONTH FROM release) as mes, album FROM songs GROUP BY anio, mes, album ORDER BY anio desc', (error, results) => {
+    pool.query('SELECT EXTRACT(YEAR FROM release) as anio, EXTRACT(WEEK FROM release) as semana, album, artist FROM songs GROUP BY anio, semana, album, artist ORDER BY anio desc, semana desc', (error, results) => {
       if (error) {
         reject(error)
       }

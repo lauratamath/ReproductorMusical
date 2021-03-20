@@ -27,6 +27,7 @@ import AvailabilitySong from "./components/memberships/functions/AvailabilitySon
 import SongToPlaylist from "./components/memberships/functions/SongToPlaylist";
 import Playlist from "./components/memberships/functions/Playlist";
 import PlaylistInfo from "./components/memberships/functions/PlaylistsInfo";
+import AlbumReleases from "./components/memberships/functions/reports/AlbumReleases";
 
 
 
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="/login/creator/listeningTo" component={ListeningTo} />
           <Route path="/login/free/listeningTo" component={ListeningTo} />
           <Route path="/login/admin/availability" component={AvailabilitySong} />
+          <Route path="/login/admin/reports/albumReleases" component={AlbumReleases} />
           <Route path="/login/admin/reports" component={GetReports} />
           <Route path="/login/admin/delete" component={AvailabilitySong} />
           <Route path="/login/admin/modify" component={Modify} />
