@@ -28,6 +28,11 @@ import SongToPlaylist from "./components/memberships/functions/SongToPlaylist";
 import Playlist from "./components/memberships/functions/Playlist";
 import PlaylistInfo from "./components/memberships/functions/PlaylistsInfo";
 import AlbumReleases from "./components/memberships/functions/reports/AlbumReleases";
+import PopularArtists from "./components/memberships/functions/reports/PopularArtists";
+import SubscriptionCount from "./components/memberships/functions/reports/SubscriptionCount";
+import SongsCount from "./components/memberships/functions/reports/SongsCount";
+import PopularGenders from "./components/memberships/functions/reports/PopularGenders";
+import ActiveUsers from "./components/memberships/functions/reports/ActiveUsers";
 
 
 
@@ -51,6 +56,11 @@ export default function App() {
           <Route path="/login/creator/listeningTo" component={ListeningTo} />
           <Route path="/login/free/listeningTo" component={ListeningTo} />
           <Route path="/login/admin/availability" component={AvailabilitySong} />
+          <Route path="/login/admin/reports/activeUsers" component={ActiveUsers} />
+          <Route path="/login/admin/reports/popularGenders" component={PopularGenders} />
+          <Route path="/login/admin/reports/songsCount" component={SongsCount} />
+          <Route path="/login/admin/reports/subscriptionCount" component={SubscriptionCount} />
+          <Route path="/login/admin/reports/popularArtists" component={PopularArtists} />
           <Route path="/login/admin/reports/albumReleases" component={AlbumReleases} />
           <Route path="/login/admin/reports" component={GetReports} />
           <Route path="/login/admin/delete" component={AvailabilitySong} />
