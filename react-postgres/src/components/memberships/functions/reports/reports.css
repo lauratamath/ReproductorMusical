@@ -32,3 +32,19 @@
   margin-right: 30px;
   float: right; 
 }
+
+.iconos{
+  padding: 10px; 
+  margin-left: 625px; 
+  padding-right: 3px;
+  display: block;
+  float: left; 
+}
+
+.report{
+  padding: 10px; 
+  margin-left: 525px; 
+  padding-right: 15px;
+  display: block;
+  float: left;   
+}

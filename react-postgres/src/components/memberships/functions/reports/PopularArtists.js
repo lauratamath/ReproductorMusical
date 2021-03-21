@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import './reports.css';
+import icono from './images/popularidad.png';
 
 const Button = ({onClick, text}) => {
   const style = {
@@ -72,9 +73,9 @@ const PopularArtists = () => {
         
         <br/><br/><br/>
         <h1>
-          <font color = '#FFFFFF' face='Candara'>
+          <font color = '#FFFFFF' face='Candara' size='7'>
             &nbsp; &nbsp; &nbsp;
-            Pantalla principal popular artists
+            Popular artists
           </font>
         </h1>
 
@@ -84,6 +85,9 @@ const PopularArtists = () => {
             Popular artists last three months
           </font>
         </h2>
+        <br/><br/><br/><br/>
+        <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="200"/>
+        <br/><br/>
         
         {mostPopularArtists.map((result) => {
                 return <Artist artistName={result.artist} 

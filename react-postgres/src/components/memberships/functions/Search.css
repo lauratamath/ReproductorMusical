@@ -12,5 +12,59 @@
     border: 2px solid #1B1B1C;
     font-weight: bold;
     display: block;
+    margin-bottom: 18px;
+}
+
+.editar{
+  text-decoration: none;
+  display: block;
+  padding: 5px; 
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Candara;
+  font-weight: 300px;
+  font-size: 25px;
+  color: '#FFFFFF';
+  background-color: #1B1B1C;
+  border: 2px solid #1B1B1C;
+  font-weight: bold;
+  margin-top:0px;
+  margin-right: 30px;
+  float: right; 
+}
+
+.inpb{
+    text-decoration: none;
+    padding: 6px;
+    float: center; 
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: Candara;
+    font-weight: 10px;
+    font-size: 14px;
+    color: '#FFFFFF';
+    background-color: #1B1B1C;
+    border: 2px solid #878383;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px; 
+    height: 8px;
+    width: 170px;
+}
+
+.set{
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 5px;
+  margin-right: 30px;
+  margin-left: 30px;
+  font-family: Candara;
+  font-weight: 300px;
+  font-size: 15px;
+  color: '#FFFFFF';
+  background-color: #149C5E;
+  border-radius: 5px;
+  border: 2px solid #1B1B1C;
+  display: inline-block; 
 }
 

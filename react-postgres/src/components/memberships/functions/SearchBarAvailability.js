@@ -15,7 +15,7 @@ const Input = ({onChange}) => {
       height: '25px',
       border: '0px',
       borderRadius: '10px',
-      paddingLeft: '10px'
+      paddingLeft: '10px',
     }
     return <input type='text' onChange={onChange} style={style} placeholder='artist, song, gender, or album'/>
   }
@@ -23,18 +23,23 @@ const Input = ({onChange}) => {
 const Buttons = ({ActivateSong, DeleteSong, InactivateSong}) => {
     const style = {
         position: 'absolute',
-        right: '0px',
-        top: '10px'
+        right: '-170px',
+        top: '10px',
+        paddingLeft:'300px',
+
     }
 
     const styleButton = {
-        width: '70px',
-        height: '50px'
+        width: '90px',
+        height: '40px',
+        color: '#FFFFFF',
+        padding: '5px',
+
     }
     return <div style={style}>
-        <button style={styleButton} onClick={ActivateSong}>Activate</button>
-        <button style={styleButton} onClick={InactivateSong}>Inactivate</button>
-        <button style={styleButton} onClick={DeleteSong}>Delete</button>
+        <button style={styleButton} onClick={ActivateSong} className = 'set'>Activate</button>
+        <button style={styleButton} onClick={InactivateSong} className = 'set'>Inactivate</button>
+        <button style={styleButton} onClick={DeleteSong} className = 'set'>Delete</button>
         </div>
 }
 
@@ -55,13 +60,22 @@ const SongSearched = ({artistName, songName, songDuration}) => {
     const style2 = {
         display: 'block',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        color: '#827C7C',
     }
 
     return <div style={style2}>
-            <h4>{artistName}</h4>
-            <h5>{songName}</h5>
-            <h6>{songDuration}</h6>
+            <h4 align ='left' >
+                <font color = '#FFFFFF' face='Candara'>
+                    {artistName}
+                </font>
+            </h4>
+            <h5 align ='left'>
+                <font color = '#9F9A9A' face='Candara'>
+                    {songName}
+                </font>
+            </h5>
+            <h6 align ='left'>{songDuration}</h6>
         </div>
 }
 

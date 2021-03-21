@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
+import './Playsong.css';
 
 export const AddSong = ({onClick}) => {
     const styleButton = {
         width: '50px',
         height: '50px',
         position: 'absolute',
-        right: '0px',
+        left: '90px',
         top: '10px',
         color: '#FFFFFF'
     }
-    return <button style={styleButton} onClick={onClick}>add to playlist</button>
+    return <button style={styleButton} onClick={onClick} className = 'add'>➕</button>
 }
 
 const AddToPlaylist = ({songArtist, songName}) => {

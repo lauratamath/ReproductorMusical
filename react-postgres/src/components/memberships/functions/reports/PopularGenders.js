@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import './reports.css';
+import icono from './images/generos.png';
 
 const Button = ({onClick, text}) => {
   const style = {
@@ -55,6 +56,9 @@ const PopularGenders = () => {
             All time popular genders
           </font>
         </h1>
+        <br/><br/><br/><br/>
+        <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="125"/>
+        <br/><br/>
 
         {popularGenders.map((result) => {
                 return <PopularGender genderName={result.gender} 

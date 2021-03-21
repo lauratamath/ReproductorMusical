@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import './reports.css';
+import icono from './images/reciente.png';
 
 const Button = ({onClick, text}) => {
   const style = {
@@ -98,6 +99,9 @@ const AlbumReleases = () => {
                 This year last released albums
             </font>
         </h2>
+        <br/><br/><br/><br/>
+        <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="120"/>
+        <br/><br/>
 
         {albumReleases.map((result) => {
                 return <AlbumReleased artistName={result.artist} 

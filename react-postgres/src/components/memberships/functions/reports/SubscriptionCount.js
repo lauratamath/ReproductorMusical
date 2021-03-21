@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import './reports.css';
+import icono from './images/suscripciones.png';
 
 const Button = ({onClick, text}) => {
     const style = {
@@ -102,7 +103,9 @@ const SubscriptionCount = () => {
                 New subscriptions last six months
             </font>
         </h2>
-
+        <br/><br/><br/><br/>
+        <img class="iconos" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="150"/>
+        <br/><br/>
         {subscriptionCount.map((result) => {
                 return <Subscription
                         month={result.mes}

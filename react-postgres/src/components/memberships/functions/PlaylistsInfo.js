@@ -84,8 +84,9 @@ const PlaylistInfo = () => {
         <h1>
           <font color = '#FFFFFF' face='Candara'>
             <b>
+              <br/>
               &nbsp;  &nbsp; 
-              Actual playlist {actualPlaylist}
+              Actual playlist: {actualPlaylist}
               <br/><br/>
             </b>
           </font>

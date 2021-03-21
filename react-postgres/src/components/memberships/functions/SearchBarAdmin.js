@@ -15,7 +15,9 @@ const Input = ({onChange}) => {
       height: '25px',
       border: '0px',
       borderRadius: '10px',
-      paddingLeft: '10px'
+      paddingLeft: '10px',
+      fontFamily: 'Candara'
+
     }
     return <input type='text' onChange={onChange} style={style} placeholder='artist, song, gender, or album'/>
   }
@@ -26,9 +28,10 @@ const Edit = ({onClick}) => {
         height: '50px',
         position: 'absolute',
         right: '0px',
-        top: '10px'
+        top: '25px',
+        color: '#FFFFFF',
     }
-    return <button style={styleButton} onClick={onClick}>Edit</button>
+    return <button style={styleButton} onClick={onClick} className='editar'>🖍</button>
 }
 
 const style = {
@@ -39,7 +42,7 @@ const style = {
     position: 'relative',
     float: 'center',
     whiteSpace: 'nowrap',
-    margin: '0px auto'
+    margin: '0px auto',
 }
 
 
@@ -47,16 +50,19 @@ const SongSearched = ({artistName, songName, songAlbum, songDuration, songReleas
     const style2 = {
         display: 'block',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        color: '#FFFFFF',
+
     }
 
+
     return <div>
-            <input style={style2} type='text' placeholder={artistName} onChange={onChange} name='artist'/>
-            <input style={style2} type='text' placeholder={songName} onChange={onChange} name='song'/>
-            <input style={style2} type='text' placeholder={songGender} onChange={onChange} name='gender'/>
-            <input style={style2} type='text' placeholder={songAlbum} onChange={onChange} name='album'/>
-            <input style={style2} type='date' placeholder={songRelease} onChange={onChange} name='release'/>
-            <input style={style2} type='number' placeholder={songDuration} onChange={onChange} name='duration'/>   
+            <input style={style2} className ='inpb' type='text' placeholder={artistName} onChange={onChange} name='artist'/>
+            <input style={style2} className ='inpb' type='text' placeholder={songName} onChange={onChange} name='song'/>
+            <input style={style2} className ='inpb' type='text' placeholder={songGender} onChange={onChange} name='gender'/>
+            <input style={style2} className ='inpb' type='text' placeholder={songAlbum} onChange={onChange} name='album'/>
+            <input style={style2} className ='inpb' type='date' placeholder={songRelease} onChange={onChange} name='release'/>
+            <input style={style2} className ='inpb' type='number' placeholder={songDuration} onChange={onChange} name='duration'/>   
         </div>
 }
 

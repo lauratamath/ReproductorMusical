@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import './reports.css';
+import icono from './images/activos.png';
 
 const Button = ({onClick, text}) => {
   const style = {
@@ -51,6 +52,9 @@ const ActiveUsers = () => {
             All time active users
           </font>
         </h1>
+        <br/><br/><br/><br/>
+        <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="160"/>
+        <br/><br/>
 
         {activeUsers.map((result) => {
                 return <ActiveUser username={result.username} 

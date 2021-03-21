@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import PlaySong from './PlaySong'
 import { useHistory } from "react-router-dom";
 import './FreeAccount.css';
-
+import iconoo from './images/disco.gif';
 
 const Button = ({onClick, text}) => {
   const style = {
@@ -12,7 +12,10 @@ const Button = ({onClick, text}) => {
 }
 
 const Album = ({onClick, text}) => {
-    return <button onClick={onClick}>{text}</button>
+  const style ={
+    color: '#FFFFFF',
+  }
+    return <button onClick={onClick} style={style} className ='play' >{text}</button>
 }
 
 const Playlist = () => {
@@ -50,21 +53,22 @@ const Playlist = () => {
         <Button onClick={() => history.push('../../home')} text='Log Out'/>
         <Button onClick={() => history.push('../premium')} text='Home'/>
         
-
+        <img class="iconoo" src={iconoo} ondblclick="javascript:this.width=50;this.height=115" width="100"/><br/>
         <h1>
           <font color = '#FFFFFF' face='Candara'>
             <b>
               &nbsp;  &nbsp; 
               Playlists
-              <br/><br/>
+              <br/><br/><br/>
             </b>
           </font>
         </h1>
-
-        {playlists.map((result) => {
+        <center>
+        {playlists.map((result) => { 
                 return <Album text={result.playlistname} 
                 onClick={() => getInfo({result})}/>
         })}
+        </center>
 
     </div>
   );

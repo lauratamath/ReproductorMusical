@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import './reports.css';
+import icono from './images/playlist.png';
 
 const Button = ({onClick, text}) => {
   const style = {
@@ -51,11 +52,13 @@ const SongsCount = () => {
             Artists musical production
           </font>
         </h1>
-
+        <br/><br/><br/><br/>
+        <img class="iconos" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="100"/>
+        <br/><br/><br/>
         {totalSongs.map((result) => {
                 return <SongReleased artistName={result.artist} 
                         count={result.count}/>  
-        })}
+          })}
     </div>
   );
 }
