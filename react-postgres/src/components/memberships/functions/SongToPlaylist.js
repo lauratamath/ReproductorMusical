@@ -34,9 +34,9 @@ const SongToPlaylist = () => {
   const [playlists, setPlaylists] = useState([])
   const [actualPlaylist, setActualPlaylist] = useState({playlistName: ''})
   const actualUsername = localStorage.getItem('actualUsername')
-  const song = localStorage.getItem('playlistSong')
-  const artist = localStorage.getItem('playlistArtist')
-
+  const playlistSong = localStorage.getItem('playlistSong')
+  const playlistArtist = localStorage.getItem('playlistArtist')
+  
   useEffect(() => {
     getPlaylist();
   }, []);
@@ -58,8 +58,9 @@ const SongToPlaylist = () => {
     const pastPlaylists = playlists.map(({ playlistname }) => playlistname)
     const playlistSongs = playlists.map(({ song }) => song)
     const usernames = playlists.map(({ username }) => username)
+    const song = playlistSong
+    const artist = playlistArtist
     var continueFor = true
-    console.log(pastPlaylists.length)
     var error = ''
 
     if (actualPlaylist.playlistName === ''){
@@ -103,7 +104,7 @@ const SongToPlaylist = () => {
           <font color = '#FFFFFF' face='Candara'>
             <b>
               &nbsp;  &nbsp; 
-              Add {song} - {artist} to playlist
+              Add {playlistSong} - {playlistArtist} to playlist
               <br/><br/>
             </b>
           </font>

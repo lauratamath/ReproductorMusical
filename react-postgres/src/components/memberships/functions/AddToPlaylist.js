@@ -17,10 +17,10 @@ export const AddSong = ({onClick}) => {
 const AddToPlaylist = ({songArtist, songName}) => {
     const history = useHistory()
 
-    localStorage.setItem('playlistSong', songName)
-    localStorage.setItem('playlistArtist', songArtist)
-
     const changeView = () => {
+        localStorage.setItem('playlistSong', songName)
+        localStorage.setItem('playlistArtist', songArtist)
+
         history.push('premium/SongToPlaylist')
     }
 

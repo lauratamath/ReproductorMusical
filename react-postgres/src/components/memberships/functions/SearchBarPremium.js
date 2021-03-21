@@ -17,6 +17,7 @@ const Input = ({onChange}) => {
   }
 
 const SongSearched = ({artistName, songName, songDuration, songUrl}) => { 
+    console.log(songName)
     const style = {
         display: 'flex',
         width: '400px',

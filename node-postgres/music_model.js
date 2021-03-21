@@ -31,7 +31,7 @@ const getFreeMembership = () => {
 
 const getPlaylists = () => {
   return new Promise(function(resolve, reject) {
-    pool.query("SELECT * FROM playlist JOIN songs ON playlist.song = songs.song AND playlist.artist = songs.artist", (error, results) => {
+    pool.query("SELECT * FROM playlist JOIN songs ON playlist.song = songs.song AND playlist.artist = songs.artist WHERE availability = True", (error, results) => {
       if (error) {
         reject(error)
       }
@@ -221,11 +221,11 @@ const createSpotifySong = (body) => {
 const updateSong = (body) => {
   return new Promise(function(resolve, reject) {
     const { artist, gender, album, song, duration, release, availability, actualArtist, actualSong} = body
-    pool.query("ALTER TABLE playlist DROP CONSTRAINT playlist_song_artist_fkey", (error, results) => {
+    pool.query("ALTER TABLE playlist DROP CONSTRAINT FK_Playlist", (error, results) => {
       if (error) {
         reject(error)}
     })  
-    pool.query("ALTER TABLE accountmanager DROP CONSTRAINT accountmanager_song_artist_fkey", (error, results) => {
+    pool.query("ALTER TABLE accountmanager DROP CONSTRAINT FK_AccountManager", (error, results) => {
       if (error) {
         reject(error)}
     })
@@ -243,11 +243,11 @@ const updateSong = (body) => {
         reject(error)
       }
     })  
-    pool.query("ALTER TABLE playlist ADD FOREIGN KEY (song, artist) REFERENCES Songs(song, artist)", (error, results) => {
+    pool.query("ALTER TABLE playlist ADD CONSTRAINT FK_Playlist FOREIGN KEY (song, artist) REFERENCES Songs(song, artist)", (error, results) => {
       if (error) {
         reject(error)}
     })  
-    pool.query("ALTER TABLE accountmanager ADD FOREIGN KEY (song, artist) REFERENCES Songs(song, artist)", (error, results) => {
+    pool.query("ALTER TABLE accountmanager ADD CONSTRAINT FK_AccountManager FOREIGN KEY (song, artist) REFERENCES Songs(song, artist)", (error, results) => {
       if (error) {
         reject(error)}
         resolve('Song has been updated')

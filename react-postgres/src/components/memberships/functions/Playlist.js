@@ -32,18 +32,23 @@ const Playlist = () => {
     await fetch('http://localhost:3001/playlists')
       .then(r => r.json())
       .then(r => { 
+          console.log(r)
             for(var a=0; a<r.length; a++){
-                if(r[a].username === actualUsername) {
-                    temporary.push(r[a])
-                    setPlaylists(temporary)
+                if(r[a].username === actualUsername && !temporary.includes(r[a].playlistname)) {
+                  console.log(r[a].playlistname)
+                  temporary.push(r[a].playlistname)
+                  
                 }
             }
         })
+      setPlaylists(temporary)
+        
     }
+    
+    console.log(playlists)
 
     const getInfo = ({result}) => {
-
-       localStorage.setItem('actualPlaylist', result.playlistname)
+       localStorage.setItem('actualPlaylist', result)
         console.log('pasa')
         history.push('playlists/playlistInfo')
     }
@@ -65,7 +70,7 @@ const Playlist = () => {
         </h1>
         <center>
         {playlists.map((result) => { 
-                return <Album text={result.playlistname} 
+                return <Album text={result} 
                 onClick={() => getInfo({result})}/>
         })}
         </center>

@@ -124,6 +124,7 @@ const SearchBarAdmin = () => {
         var song = editInfo.song
         var duration = parseFloat(editInfo.duration)
         var release = editInfo.release
+        const availability = 'True'
 
         if(artist!==''||gender!==''||album!==''||song!==''||editInfo.duration!==''||release!==''){
             if(editInfo.duration===''){
@@ -150,7 +151,7 @@ const SearchBarAdmin = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({artist, gender, album, song, duration, release, actualArtist, actualSong}),
+            body: JSON.stringify({artist, gender, album, song, duration, release, availability, actualArtist, actualSong}),
                 }).then(response => {
                 return response.text();
             });
