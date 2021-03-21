@@ -3,7 +3,7 @@ const pool = new Pool ({
   user: 'postgres',
   host: 'localhost',
   database: 'proyecto',
-  password: 'contraseña',
+  password: 'Benjamin1',
   port: 5432,
 });
 
@@ -220,14 +220,38 @@ const createSpotifySong = (body) => {
 
 const updateSong = (body) => {
   return new Promise(function(resolve, reject) {
-    const { artist, gender, album, song, duration, release, actualArtist, actualSong} = body
-    pool.query("UPDATE songs SET artist=$1, gender=$2, album=$3, song=$4, duration=$5, release=$6, availability=$7 WHERE artist=$7 AND song=$8", [artist, gender, album, song, duration, release, actualArtist, actualSong], (error, results) => {
-      
+    const { artist, gender, album, song, duration, release, availability, actualArtist, actualSong} = body
+    pool.query("ALTER TABLE playlist DROP CONSTRAINT playlist_song_artist_fkey", (error, results) => {
+      if (error) {
+        reject(error)}
+    })  
+    pool.query("ALTER TABLE accountmanager DROP CONSTRAINT accountmanager_song_artist_fkey", (error, results) => {
+      if (error) {
+        reject(error)}
+    })
+    pool.query("UPDATE songs SET artist=$1, gender=$2, album=$3, song=$4, duration=$5, release=$6, availability=$7 WHERE artist=$8 AND song=$9", [artist, gender, album, song, duration, release, availability, actualArtist, actualSong], (error, results) => {
+      if (error) {
+        reject(error)}
+    })
+    pool.query("UPDATE playlist SET artist=$1, song=$2 WHERE artist=$3 AND song=$4", [artist, song, actualArtist, actualSong], (error, results) => {
       if (error) {
         reject(error)
       }
-      resolve('Song has been updated')
-  })
+    })
+    pool.query("UPDATE accountmanager SET artist=$1, song=$2 WHERE artist=$3 AND song=$4", [artist, song, actualArtist, actualSong], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })  
+    pool.query("ALTER TABLE playlist ADD FOREIGN KEY (song, artist) REFERENCES Songs(song, artist)", (error, results) => {
+      if (error) {
+        reject(error)}
+    })  
+    pool.query("ALTER TABLE accountmanager ADD FOREIGN KEY (song, artist) REFERENCES Songs(song, artist)", (error, results) => {
+      if (error) {
+        reject(error)}
+        resolve('Song has been updated')
+    })    
 }) 
 }
 
