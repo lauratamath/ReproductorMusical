@@ -5,14 +5,17 @@ import icono from './images/suscripciones.png';
 
 const Button = ({onClick, text}) => {
     const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   }
   return <button onClick={onClick} style={style} className = 'botonesHL'>{text}</button>
 }
 
 const Subscription = ({month, sum, year}) => {
   const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontFamily: 'Candara',
+    alignContent: 'left',
+    margin: '4px',
   }
 
     return <div style={style}>
@@ -104,16 +107,16 @@ const SubscriptionCount = () => {
             </font>
         </h2>
         <br/><br/><br/><br/>
-        <img class="iconos" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="150"/>
-        <br/><br/>
-        {subscriptionCount.map((result) => {
-                return <Subscription
-                        month={result.mes}
-                        sum={result.count}
-                        year={result.anio}/>  
-        })}
-        
-
+        <center>
+            <br/><br/>
+            {subscriptionCount.map((result) => {
+                    return <Subscription
+                            month={result.mes}
+                            sum={result.count}
+                            year={result.anio}/>  
+            })}
+            <img class="subs" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="100"/>
+        </center>
     </div>
   );
 }

@@ -12,7 +12,10 @@ const Button = ({onClick, text}) => {
 
 const PopularGender = ({genderName, sum}) => {
   const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontFamily: 'Candara',
+    alignContent: 'left',
+    margin: '4px',
   }
 
   if(genderName === 'not available'){
@@ -22,6 +25,7 @@ const PopularGender = ({genderName, sum}) => {
     return <div style={style}>
       <div>Gender: {genderName}</div>
       <div>Total reproductions: {sum}</div>
+      <div> <br/> </div>
       </div>
 }
 
@@ -57,13 +61,14 @@ const PopularGenders = () => {
           </font>
         </h1>
         <br/><br/><br/><br/>
-        <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="125"/>
-        <br/><br/>
-
-        {popularGenders.map((result) => {
-                return <PopularGender genderName={result.gender} 
-                        sum={result.sum}/>  
-        })}
+        <center>
+          <br/><br/>
+          {popularGenders.map((result) => {
+                  return <PopularGender genderName={result.gender} 
+                          sum={result.sum}/>  
+          })}
+          <img class="popular" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="125"/>
+        </center>
     </div>
   );
 }

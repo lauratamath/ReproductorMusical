@@ -12,12 +12,16 @@ const Button = ({onClick, text}) => {
 
 const Artist = ({artistName, month, sum, year}) => {
   const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontFamily: 'Candara',
+    alignContent: 'left',
+    margin: '4px',
   }
 
     return <div style={style}>
       <div>Artist: {artistName}</div>
       <div>Listened {sum} times on {month}/{year}</div>
+      <div> <br/> </div>
       </div>
 }
 
@@ -86,15 +90,18 @@ const PopularArtists = () => {
           </font>
         </h2>
         <br/><br/><br/><br/>
-        <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="200"/>
-        <br/><br/>
-        
-        {mostPopularArtists.map((result) => {
-                return <Artist artistName={result.artist} 
-                        month={result.mes}
-                        sum={result.sum}
-                        year={result.anio}/>  
-        })}
+        <center>
+          
+          <br/><br/>
+          
+          {mostPopularArtists.map((result) => {
+                  return <Artist artistName={result.artist} 
+                          month={result.mes}
+                          sum={result.sum}
+                          year={result.anio}/>  
+          })}
+          <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="200"/>
+        </center>
     </div>
   );
 }

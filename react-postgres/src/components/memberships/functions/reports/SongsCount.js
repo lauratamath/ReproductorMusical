@@ -12,12 +12,16 @@ const Button = ({onClick, text}) => {
 
 const SongReleased = ({artistName, count}) => {
   const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontFamily: 'Candara',
+    alignContent: 'left',
+    margin: '4px',
   }
 
     return <div style={style}>
       <div>Artist: {artistName}</div>
       <div>Total songs: {count}</div>
+      <div> <br/> </div>
       </div>
 }
 
@@ -53,12 +57,14 @@ const SongsCount = () => {
           </font>
         </h1>
         <br/><br/><br/><br/>
-        <img class="iconos" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="100"/>
-        <br/><br/><br/>
-        {totalSongs.map((result) => {
-                return <SongReleased artistName={result.artist} 
-                        count={result.count}/>  
-          })}
+        <center>
+          <br/><br/><br/>
+          {totalSongs.map((result) => {
+                  return <SongReleased artistName={result.artist} 
+                          count={result.count}/>
+            })}
+          <img class="iconos" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="100"/>
+          </center>
     </div>
   );
 }

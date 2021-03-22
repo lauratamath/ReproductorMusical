@@ -12,7 +12,10 @@ const Button = ({onClick, text}) => {
 
 const AlbumReleased = ({artistName, albumName, yearReleased, weekReleased}) => {
   const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontFamily: 'Candara',
+    alignContent: 'left',
+    margin: '4px',
   }
 
     return <div style={style}>
@@ -20,6 +23,7 @@ const AlbumReleased = ({artistName, albumName, yearReleased, weekReleased}) => {
       <div>Artist: {artistName}</div>
       <div>Year: {yearReleased}</div>
       <div>Week of Year: {weekReleased}</div>
+      <div> <br/> </div>
       </div>
 }
 
@@ -100,15 +104,16 @@ const AlbumReleases = () => {
             </font>
         </h2>
         <br/><br/><br/><br/>
-        <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="120"/>
-        <br/><br/>
-
-        {albumReleases.map((result) => {
-                return <AlbumReleased artistName={result.artist} 
-                        albumName={result.album}
-                        yearReleased={result.anio}
-                        weekReleased={result.semana}/>  
-         })}
+       <center>
+          <br/><br/>
+          {albumReleases.map((result) => {
+                  return <AlbumReleased artistName={result.artist} 
+                          albumName={result.album}
+                          yearReleased={result.anio}
+                          weekReleased={result.semana}/>  
+           })}
+          <img class="reciente" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="120"/>
+        </center>
     </div>
   );
 }

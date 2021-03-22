@@ -5,7 +5,10 @@ import icono from './images/activos.png';
 
 const Button = ({onClick, text}) => {
   const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    fontFamily: 'Candara',
+    alignContent: 'left',
+    margin: '4px',
   }
   return <button onClick={onClick} style={style} className = 'botonesHL'>{text}</button>
 }
@@ -18,6 +21,7 @@ const ActiveUser = ({username, tracks}) => {
     return <div style={style}>
       <div>Username: {username}</div>
       <div>Total reproductions: {tracks}</div>
+      <div> <br/> </div>
       </div>
 }
 
@@ -53,13 +57,14 @@ const ActiveUsers = () => {
           </font>
         </h1>
         <br/><br/><br/><br/>
-        <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="160"/>
-        <br/><br/>
-
-        {activeUsers.map((result) => {
-                return <ActiveUser username={result.username} 
-                        tracks={result.sum}/>  
-        })}
+        <center>
+          <br/><br/>
+          {activeUsers.map((result) => {
+                  return <ActiveUser username={result.username} 
+                          tracks={result.sum}/>  
+          })}
+          <img class="active" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="160"/>
+        </center>
     </div>
   );
 }
