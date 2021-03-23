@@ -32,7 +32,7 @@ const UploadSongs = () => {
   const history = useHistory()
   const [showError, setShowError] = useState('')
   const [creators, setCreators] = useState([])
-  const [songInfo, setSongInfo] = useState({gender: '', album: '', song: '', duration: 0.00, release: ''})
+  const [songInfo, setSongInfo] = useState({gender: 'Pop', album: '', song: '', duration: 0.00, release: ''})
   const actualUsername = localStorage.getItem('actualUsername')
 
   useEffect(() => {
@@ -100,17 +100,32 @@ const UploadSongs = () => {
         <center>
           <label>
             <font color = '#FFFFFF' face='Candara'>
-             Gender<br/><br/>
-            </font>
-          </label>
-          <Input type='text' onChange={handleChange} name='gender'/><br/><br/>
-
-          <label>
-            <font color = '#FFFFFF' face='Candara'>
-              Song name<br/><br/>
+             Song Name<br/><br/>
             </font>
           </label>
           <Input type='text' onChange={handleChange} name='song'/><br/><br/>
+
+          <label>
+            <font color = '#FFFFFF' face='Candara'>
+              Gender<br/><br/>
+            </font>
+          </label>
+          <select onChange={handleChange} name='gender'>
+            <option value="Pop" >Pop</option>
+            <option value="Indie">Indie</option>
+            <option value="Rap" >Rap</option>
+            <option value="CumbiaPop">CumbiaPop</option>
+            <option value="Salsa" >Salsa</option>
+            <option value="Merengue">Merengue</option>
+            <option value="Tango" >Tango</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Reggae" >Reggae</option>
+            <option value="HipHop">HipHop</option>
+            <option value="Techno" >Techno</option>
+            <option value="House">House</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <br/><br/>
 
           <label>
             <font color = '#FFFFFF' face='Candara'>

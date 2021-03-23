@@ -154,7 +154,10 @@ const SearchBarAdmin = () => {
             body: JSON.stringify({artist, gender, album, song, duration, release, availability, actualArtist, actualSong}),
                 }).then(response => {
                 return response.text();
-            });
+            }).then(response => {
+                getSongs()
+                
+            })  
             setShowError('Correctly edited! Refresh page to see changes')
         } else {
             setShowError('Nothing to edit')

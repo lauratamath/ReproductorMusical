@@ -91,16 +91,17 @@ const PopularArtists = () => {
         </h2>
         <br/><br/><br/><br/>
         <center>
-          
-          <br/><br/>
-          
-          {mostPopularArtists.map((result) => {
-                  return <Artist artistName={result.artist} 
-                          month={result.mes}
-                          sum={result.sum}
-                          year={result.anio}/>  
-          })}
-          <img class="report" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="200"/>
+          <div class='column'>
+            <div class='verticalCenter'><img class="report" src={icono} width="200"/></div>
+            <div>
+                {mostPopularArtists.map((result) => {
+                        return <Artist artistName={result.artist} 
+                                month={result.mes}
+                                sum={result.sum}
+                                year={result.anio}/>  
+                })}
+            </div>
+          </div>
         </center>
     </div>
   );

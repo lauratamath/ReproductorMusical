@@ -16,6 +16,7 @@ const Subscription = ({month, sum, year}) => {
     fontFamily: 'Candara',
     alignContent: 'left',
     margin: '4px',
+    marginBottom: '20px'
   }
 
     return <div style={style}>
@@ -46,37 +47,61 @@ const SubscriptionCount = () => {
     }, []);
 
     async function getSubscriptionCount() {
-        var temporary = []
+        var temporary = [0, 0, 0, 0, 0, 0]
         const json = await fetch('http://localhost:3001/subscriptionCount')
             .then(response => response.json())
 
         if(json.length>0){
             for(var a=0; a<json.length; a++){
                 if(json[a].mes == parseInt(actualDate.substring(5,7)) && json[a].anio.toString() == actualDate.substring(0, 4)) {
-                    temporary.push(json[a])
+                    temporary[0] = json[a]
                 } else if(json[a].mes == parseInt(actualDate.substring(5,7)-1)  && json[a].anio.toString() == actualDate.substring(0, 4)) {
-                    temporary.push(json[a])
+                    temporary[1] = json[a]
                 } else if(json[a].mes == parseInt(actualDate.substring(5,7)-2)  && json[a].anio.toString() == actualDate.substring(0, 4)) {
-                    temporary.push(json[a])
+                    temporary[2] = json[a]
                 } else if(json[a].mes == parseInt(actualDate.substring(5,7)-3)  && json[a].anio.toString() == actualDate.substring(0, 4)) {
-                    temporary.push(json[a])
+                    temporary[3] = json[a]
                 } else if(json[a].mes == parseInt(actualDate.substring(5,7)-4)  && json[a].anio.toString() == actualDate.substring(0, 4)) {
-                    temporary.push(json[a])
+                    temporary[4] = json[a]
                 } else if(json[a].mes == parseInt(actualDate.substring(5,7)-5)  && json[a].anio.toString() == actualDate.substring(0, 4)) {
-                  temporary.push(json[a])
+                    temporary[5] = json[a]
                 } else if(actualMonth-1 <= 0 || actualMonth-2 <= 0 || actualMonth-3 <= 0 || actualMonth-4 <= 0 || actualMonth-5 <= 0){
-                    if (json[a].mes == 12 && json[a].anio.toString() == actualDate.substring(0, 4)-1) {
-                        temporary.push(json[a])
-                    } else if (json[a].mes == 11 && json[a].anio.toString() == actualDate.substring(0, 4)-1) {
-                        temporary.push(json[a])
-                    } else if (json[a].mes == 10 && json[a].anio.toString() == actualDate.substring(0, 4)-1) {
-                        temporary.push(json[a])
-                    } else if (json[a].mes == 9 && json[a].anio.toString() == actualDate.substring(0, 4)-1) {
-                        temporary.push(json[a])
-                    } else if (json[a].mes == 8 && json[a].anio.toString() == actualDate.substring(0, 4)-1) {
-                        temporary.push(json[a])
-                    } else if (json[a].mes == 7 && json[a].anio.toString() == actualDate.substring(0, 4)-1) {
-                        temporary.push(json[a])
+                    if (json[a].mes == 12 && json[a].anio.toString() == actualDate.substring(0, 4)-1 && parseInt(actualDate.substring(5,7)) <= 5) {
+                        
+                        for(var d=0; d<6; d++){
+                            if (temporary[d] == 0){
+                                temporary[d] = json[a]
+                                d=6
+                            }
+                        }
+                    } else if (json[a].mes == 11 && json[a].anio.toString() == actualDate.substring(0, 4)-1 && parseInt(actualDate.substring(5,7)) <= 4) {
+                        for(var d=0; d<6; d++){
+                            if (temporary[d] == 0){
+                                temporary[d] = json[a]
+                                d=6
+                            }
+                        }
+                    } else if (json[a].mes == 10 && json[a].anio.toString() == actualDate.substring(0, 4)-1 && parseInt(actualDate.substring(5,7)) <= 3) {
+                        for(var d=0; d<6; d++){
+                            if (temporary[d] == 0){
+                                temporary[d] = json[a]
+                                d=6
+                            }
+                        }
+                    } else if (json[a].mes == 9 && json[a].anio.toString() == actualDate.substring(0, 4)-1 && parseInt(actualDate.substring(5,7)) <= 2) {
+                        for(var d=0; d<6; d++){
+                            if (temporary[d] == 0){
+                                temporary[d] = json[a]
+                                d=6
+                            }
+                        }
+                    } else if (json[a].mes == 8 && json[a].anio.toString() == actualDate.substring(0, 4)-1 && parseInt(actualDate.substring(5,7)) <= 1) {
+                        for(var d=0; d<6; d++){
+                            if (temporary[d] == 0){
+                                temporary[d] = json[a]
+                                d=6
+                            }
+                        }
                     }
                 } 
             }
@@ -108,14 +133,15 @@ const SubscriptionCount = () => {
         </h2>
         <br/><br/><br/><br/>
         <center>
-            <br/><br/>
-            {subscriptionCount.map((result) => {
+            <div class='column'>
+            <div class='verticalCenter'><img class="subs" src={icono} width="100"/></div>
+            <div>{subscriptionCount.map((result) => {
                     return <Subscription
                             month={result.mes}
                             sum={result.count}
                             year={result.anio}/>  
-            })}
-            <img class="subs" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="100"/>
+            })}</div>
+            </div>
         </center>
     </div>
   );

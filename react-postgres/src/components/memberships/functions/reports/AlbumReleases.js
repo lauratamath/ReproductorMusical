@@ -105,14 +105,16 @@ const AlbumReleases = () => {
         </h2>
         <br/><br/><br/><br/>
        <center>
-          <br/><br/>
-          {albumReleases.map((result) => {
-                  return <AlbumReleased artistName={result.artist} 
-                          albumName={result.album}
-                          yearReleased={result.anio}
-                          weekReleased={result.semana}/>  
-           })}
-          <img class="reciente" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="120"/>
+            <div class='column'>
+            <div class='verticalCenter'><img class="reciente" src={icono} width="120"/></div>
+            <div>{albumReleases.map((result) => {
+                    return <AlbumReleased artistName={result.artist} 
+                            albumName={result.album}
+                            yearReleased={result.anio}
+                            weekReleased={result.semana}/>  
+            })}</div>
+            </div>
+          
         </center>
     </div>
   );

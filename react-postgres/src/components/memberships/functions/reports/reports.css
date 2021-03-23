@@ -35,44 +35,44 @@
 
 .iconos{
   padding: 10px; 
-  margin-top: -250px;
-  margin-left: -325px; 
   padding-right: 10px;
   display: block;
 }
 
+.column{
+  width:500px;
+  display: grid;
+  grid-template-columns: 250px 250px
+}
+
+.verticalCenter{
+  justify-content: center;
+  align-items: center;
+  display: flex
+}
+
 .report{
   padding: 0px; 
-  margin-left: -455px; 
   display: block;
-  margin-top: -250px;
 }
 
 .subs{
   padding: 10px; 
-  margin-top: -250px;
-  margin-right: 325px; 
   padding-right: 10px;
   display: block;
 }
 
 .reciente{
   padding: 0px; 
-  margin-right: 375px; 
   display: block;
-  margin-top: -75px;
 }
 
 .popular{
   padding: 0px; 
-  margin-right: 375px; 
   display: block;
-  margin-top: -75px;
 }
 
 .active{
   padding: 0px; 
-  margin-right: 375px; 
   display: block;
-  margin-top: -75px;
 }

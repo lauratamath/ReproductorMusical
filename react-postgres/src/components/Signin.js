@@ -53,7 +53,6 @@ const SignIn = () => {
         .then(r => r.json())
         .then(r => setUserAccount(r))
   }
-  console.log('render', userAccount)
 
  
   const handleChange = (event) => {

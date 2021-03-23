@@ -17,7 +17,6 @@ const Input = ({onChange}) => {
   }
 
 const SongSearched = ({artistName, songName, songDuration, songUrl}) => { 
-    console.log(songName)
     const style = {
         display: 'flex',
         width: '400px',
@@ -68,18 +67,21 @@ const SearchBarPremium = () => {
     }, []);
 
       
-    function getSongs() {
-        fetch('http://localhost:3001/songs')
+    async function getSongs() {
+        const json = await fetch('http://localhost:3001/songs')
           .then(r => r.json())
-          .then(r => setSongs(r))
+        
+        setSongs(json)
+        
     }
 
-
+    
     const handleChange = (event) => {
         setSearch(event.target.value)
     } 
 
     function searchSong () {
+        getSongs()
         const results = []
         try {
             for (var a=0; a<songs.length; a++) {
@@ -106,7 +108,7 @@ const SearchBarPremium = () => {
         const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY', '5lKlFlReHOLShQKyRv6AL9', '1TTxcgs3zEngN0EB56yXzY', '71O60S5gIJSIAhdnrDIh3N', '6DEjYFkNZh67HP7R9PSZvv']
         
         for(var i=0; i<albumsFromApi.length; i++){
-            const token = 'BQC3FRR-MY1dSqniX2PLP2TPNL5Ug-SfK2Uf7qASIi5Syj9wihUVGgHw7PC42lIWPkHqFuz0UAN6RB-lF7Dw8ujRmxEKq0ubI_cpQjhRWU5N40gs0t3BOFJLcXfX9qhHrGLKLRe0'
+            const token = 'BQAMJd7cZaLsjzvpR5hu855NGFLx2YgzOPajwEqd7xodKvOkCMWp3nsuEJ-n4yRREXSjgk8b81CZSN8KEcCdygccNdFizMC7N98bgJv2IaTSn2pN0JVv1iW9T1_uJpKZTNU6cENs'
             
             const id = albumsFromApi[i]
             const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 

@@ -64,10 +64,11 @@ const SearchBar = () => {
     }, []);
 
       
-    function getSongs() {
-        fetch('http://localhost:3001/songs')
+    async function getSongs() {
+        const json = await fetch('http://localhost:3001/songs')
           .then(r => r.json())
-          .then(r => setSongs(r))
+        
+        setSongs(json)
     }
 
 
@@ -102,8 +103,8 @@ const SearchBar = () => {
         const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY', '5lKlFlReHOLShQKyRv6AL9', '1TTxcgs3zEngN0EB56yXzY', '71O60S5gIJSIAhdnrDIh3N', '6DEjYFkNZh67HP7R9PSZvv']
         
         for(var i=0; i<albumsFromApi.length; i++){
-            const token = 'BQDmFeK_1BWxfqblGSO79YKA4wZ7nqUX0B6_q667bl-oexffWpGRx1fnTHSAcuXw_JW0WXK91TmGqoTkx353PWiLnlf9uFMVwj8AJLe5_kRRXiTI-O1TdIOdso53nie04MU-EdAKaVO2'
-            
+          const token = 'BQAMJd7cZaLsjzvpR5hu855NGFLx2YgzOPajwEqd7xodKvOkCMWp3nsuEJ-n4yRREXSjgk8b81CZSN8KEcCdygccNdFizMC7N98bgJv2IaTSn2pN0JVv1iW9T1_uJpKZTNU6cENs'
+
             const id = albumsFromApi[i]
             const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 
                 method: 'GET',

@@ -128,7 +128,6 @@ const PlaySong = ({songName, songArtist, songUrl}) => {
                     });      
             }
             //SI ES FREE, LE HACEMOS UPDATE A LA TABLA DE FREEMEMBERSHIP
-            console.log(actualTrackFree)
             if (actualTrackFree !== undefined){
                 if (actualTrackFree !== 1){
                     fetch('http://localhost:3001/freemembership', { 

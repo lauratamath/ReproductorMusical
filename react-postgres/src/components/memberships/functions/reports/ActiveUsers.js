@@ -58,12 +58,14 @@ const ActiveUsers = () => {
         </h1>
         <br/><br/><br/><br/>
         <center>
-          <br/><br/>
-          {activeUsers.map((result) => {
-                  return <ActiveUser username={result.username} 
-                          tracks={result.sum}/>  
-          })}
-          <img class="active" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="160"/>
+          <div class='column'>
+            <div class='verticalCenter'><img class="active" src={icono} width="160"/></div>
+            <div>{activeUsers.map((result) => {
+                    return <ActiveUser username={result.username} 
+                            tracks={result.sum}/>  
+            })}
+            </div>
+          </div>
         </center>
     </div>
   );

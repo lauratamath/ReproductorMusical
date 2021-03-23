@@ -70,13 +70,11 @@ const SongToPlaylist = () => {
     if (error === ''){
         for(var i=0; i<pastPlaylists.length; i++){
             if(usernames[i] === actualUsername && actualPlaylist.playlistName === pastPlaylists[i] && playlistSongs[i]===song){
-                console.log('ya existe la cancion en la playlist')
                 setShowError('Song already at playlist ' + actualPlaylist.playlistName)
                 continueFor = false;   
                 return;
             }
         }
-        console.log('no existe la cancion en la playlist')
 
         const playlistname =  actualPlaylist.playlistName
       fetch('http://localhost:3001/playlists', {

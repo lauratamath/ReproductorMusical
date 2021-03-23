@@ -22,6 +22,19 @@ const Input = ({type, onChange, name}) => {
   }
   return <input type={type} onChange={onChange} style={style} name={name}/>
 }
+const date = () => {
+  const today = new Date()
+  const month = today.getMonth()+1
+
+  if (month.toString().length === 1){
+      return today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
+  } else {
+      return today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  }
+}
+
+const actualDateFree = date()
+
 
 const ChangeType = () => {
   const history = useHistory()
@@ -51,6 +64,7 @@ const ChangeType = () => {
 
   function verifyPassword() {
     const indexUser = userAccount.map(({ username }) => username).indexOf(actualUsername)
+    const actualTrackFree=0
     var actualType = userAccount[indexUser].type;
 
     if(actualType === 'Premium' || actualType === 'Creator'){
@@ -87,7 +101,18 @@ const ChangeType = () => {
         }).then(data => {
             getUsersAccounts()
         });
-
+        //LO AGREGAMOS A FREE
+        fetch('http://localhost:3001/freemembership', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({actualUsername, actualDateFree, actualTrackFree}),
+        }).then(response => {
+            return response.text();
+        }).then(data => {
+            getUsersAccounts()
+        });
         error  = 'Now you are free!'
       } else {
         error  = 'Incorrect password'

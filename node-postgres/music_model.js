@@ -43,7 +43,6 @@ const getPlaylists = () => {
 const createPlaylist = (body) => {
   return new Promise(function(resolve, reject) {
     const { actualUsername, playlistname, song, artist } = body
-    console.log(body)
     pool.query('INSERT INTO playlist VALUES ($1, $2, $3, $4)', [actualUsername, playlistname, song, artist], (error, results) => {
       if (error) {
         reject(error)
@@ -133,7 +132,7 @@ const getArtistsSongsCount = () => {
 
 const getMensualSubscription = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT EXTRACT(MONTH FROM dateSubscribed) as mes, EXTRACT(YEAR FROM dateSubscribed) as anio, COUNT(username) FROM useraccount GROUP BY (mes, anio) ORDER BY mes, anio desc', (error, results) => {
+    pool.query('SELECT EXTRACT(MONTH FROM dateSubscribed) as mes, EXTRACT(YEAR FROM dateSubscribed) as anio, COUNT(username) FROM useraccount GROUP BY (mes, anio) ORDER BY anio desc, mes desc', (error, results) => {
       if (error) {
         reject(error)
       }
@@ -146,7 +145,6 @@ const getMensualSubscription = () => {
 const updateAccountManager = (body) => {
   return new Promise(function(resolve, reject) {
     const { actualTrack, actualUsername, songName, songArtist, actualDate } = body
-    console.log(body)
     
     pool.query("UPDATE accountmanager SET tracks = $1 WHERE username = $2 AND song = $3 AND artist = $4 AND datetime = $5", [actualTrack, actualUsername, songName, songArtist, actualDate], (error, results) => {
       
@@ -220,39 +218,28 @@ const createSpotifySong = (body) => {
 
 const updateSong = (body) => {
   return new Promise(function(resolve, reject) {
+    
     const { artist, gender, album, song, duration, release, availability, actualArtist, actualSong} = body
-    pool.query("ALTER TABLE playlist DROP CONSTRAINT FK_Playlist", (error, results) => {
-      if (error) {
-        reject(error)}
-    })  
-    pool.query("ALTER TABLE accountmanager DROP CONSTRAINT FK_AccountManager", (error, results) => {
-      if (error) {
-        reject(error)}
-    })
+
     pool.query("UPDATE songs SET artist=$1, gender=$2, album=$3, song=$4, duration=$5, release=$6, availability=$7 WHERE artist=$8 AND song=$9", [artist, gender, album, song, duration, release, availability, actualArtist, actualSong], (error, results) => {
       if (error) {
+        console.log('error 3')
         reject(error)}
     })
     pool.query("UPDATE playlist SET artist=$1, song=$2 WHERE artist=$3 AND song=$4", [artist, song, actualArtist, actualSong], (error, results) => {
       if (error) {
+        console.log('error 4')
         reject(error)
+        
       }
     })
     pool.query("UPDATE accountmanager SET artist=$1, song=$2 WHERE artist=$3 AND song=$4", [artist, song, actualArtist, actualSong], (error, results) => {
       if (error) {
+        console.log('error 5')
         reject(error)
       }
-    })  
-    pool.query("ALTER TABLE playlist ADD CONSTRAINT FK_Playlist FOREIGN KEY (song, artist) REFERENCES Songs(song, artist)", (error, results) => {
-      if (error) {
-        reject(error)}
-    })  
-    pool.query("ALTER TABLE accountmanager ADD CONSTRAINT FK_AccountManager FOREIGN KEY (song, artist) REFERENCES Songs(song, artist)", (error, results) => {
-      if (error) {
-        reject(error)}
-        resolve('Song has been updated')
-    })    
-}) 
+    })   
+  }) 
 }
 
 
@@ -286,7 +273,8 @@ const updateFreeMembershipDay = (body) => {
 const createFreeMembershipDay = (body) => {
   return new Promise(function(resolve, reject) {
     const { actualUsername, actualDateFree, actualTrackFree } = body
-    pool.query('INSERT INTO freemembership VALUES ($1, $2, $3)', [actualUsername, actualDateFree, actualTrackFree], (error, results) => {
+    pool.query('INSERT INTO freemembership VALUES ($1, $2, $3)', [actualUsername, 
+      , actualTrackFree], (error, results) => {
       if (error) {
         reject(error)
       }

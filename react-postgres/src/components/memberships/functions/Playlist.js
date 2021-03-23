@@ -32,10 +32,8 @@ const Playlist = () => {
     await fetch('http://localhost:3001/playlists')
       .then(r => r.json())
       .then(r => { 
-          console.log(r)
             for(var a=0; a<r.length; a++){
                 if(r[a].username === actualUsername && !temporary.includes(r[a].playlistname)) {
-                  console.log(r[a].playlistname)
                   temporary.push(r[a].playlistname)
                   
                 }
@@ -44,12 +42,9 @@ const Playlist = () => {
       setPlaylists(temporary)
         
     }
-    
-    console.log(playlists)
 
     const getInfo = ({result}) => {
        localStorage.setItem('actualPlaylist', result)
-        console.log('pasa')
         history.push('playlists/playlistInfo')
     }
 

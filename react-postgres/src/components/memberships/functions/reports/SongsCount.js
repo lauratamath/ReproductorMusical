@@ -58,12 +58,16 @@ const SongsCount = () => {
         </h1>
         <br/><br/><br/><br/>
         <center>
-          <br/><br/><br/>
-          {totalSongs.map((result) => {
-                  return <SongReleased artistName={result.artist} 
-                          count={result.count}/>
-            })}
-          <img class="iconos" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="100"/>
+          <div class='column'>
+          <div class='verticalCenter'><img class="iconos" src={icono} width="100"/></div>
+            <div>
+            {totalSongs.map((result) => {
+                    return <SongReleased artistName={result.artist} 
+                            count={result.count}/>
+              })}
+            </div>
+          </div>
+          
           </center>
     </div>
   );

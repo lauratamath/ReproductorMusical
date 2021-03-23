@@ -62,12 +62,14 @@ const PopularGenders = () => {
         </h1>
         <br/><br/><br/><br/>
         <center>
-          <br/><br/>
-          {popularGenders.map((result) => {
-                  return <PopularGender genderName={result.gender} 
-                          sum={result.sum}/>  
-          })}
-          <img class="popular" src={icono} ondblclick="javascript:this.width=50;this.height=115" width="125"/>
+          <div class='column'>
+            <div class='verticalCenter'><img class="popular" src={icono} width="125"/></div>
+            <div>{popularGenders.map((result) => {
+                    return <PopularGender genderName={result.gender} 
+                            sum={result.sum}/>  
+            })}</div>
+          </div>
+          
         </center>
     </div>
   );
