@@ -1,11 +1,15 @@
 # ReproductorMusical
 
 ## PARA INSTALAR LAS LIBRERÍAS
-Primero tienen que tener node.js instalado  
+Primero tienen que tener node.js instalado
+______________________________________________________________________________
 Para la librería de express:  **Esto les generará la carpeta node-postgres**
 ```
 npm i express pg
 ```
+A la carpeta *node-postgres* copiar el contenido de la carpeta **Copiar a node**  
+Dar aceptar si pregunta "reemplazar archivos"
+______________________________________________________________________________
 Para las librerías de react: **Esto les generará la carpeta react-postgres**
 ```
 npx create-react-app react-postgres
@@ -14,7 +18,9 @@ En react-postgres/node_modules **Esto les generará las carpetas react-router-do
 ```
 npm install react-router-dom
 ```
-  
+A la carpeta *react-postgres* copiar el contenido de la carpeta **Copiar a react**  
+Dar aceptar si pregunta "reemplazar archivos"
+______________________________________________________________________________  
 ##  PARA COPIAR LA BASE DE DATOS
 Copiar el archivo proyecto.sql a pgAdmin para tener acceso a las cuentas predeterminadas
 - Sergio.M sergio.55@hotmail.com Kript0Curr3ncy **ADMIN**
