@@ -101,7 +101,7 @@ INSERT INTO emailmanagment
 	VALUES('Olivverde','oliver.milian00@gmail.com'),
 	('aamaya','aamalin.amaya@gmail.com'),
 	('LauraTam','lauratamath@gmail.com'),
-	('Sergio.M','sergei.55@hotmail.com'),
+	('Sergio.M','sergio.55@hotmail.com'),
 	('Ale_King','alejadra.reynoso@yahoo.com'),
 	('Brandy34','brandon_hernan@outlook.com'),
 	('Lil.Benj','davidramirez12@yopmail.com'),
