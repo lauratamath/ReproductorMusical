@@ -2,18 +2,19 @@
 
 ## PARA INSTALAR LAS LIBRERÍAS
 Primero tienen que tener node.js instalado  
-Para la librería de express:  
+Para la librería de express:  **Esto les generará la carpeta node-postgres**
 ```
 npm i express pg
 ```
-Para las librerías de react: 
+Para las librerías de react: **Esto les generará la carpeta react-postgres**
 ```
 npx create-react-app react-postgres
 ```
-En esa misma carpeta de react-progres (darse cuenta que lo guarden en node_modules)
+En react-postgres/node_modules **Esto les generará las carpetas react-router-dom y react-router dentro de node_modules**
 ```
 npm install react-router-dom
 ```
+  
 ##  PARA COPIAR LA BASE DE DATOS
 Copiar el archivo proyecto.sql a pgAdmin para tener acceso a las cuentas predeterminadas
 - Sergio.M sergio.55@hotmail.com Kript0Curr3ncy **ADMIN**
@@ -22,7 +23,7 @@ Copiar el archivo proyecto.sql a pgAdmin para tener acceso a las cuentas predete
 - LauraTam lauratamath@gmail.com XoxoTKM@35 **CREATOR**
 
 ##  PARA CORRER
-Crear una database "proyecto" en postgres y copiar los queries del archivo proyecto.sql  
+Crear una database "proyecto" en postgres y copiar los queries del archivo **proyecto.sql **
 En node-postgres/music_model cambiar la contraseña en la línea 6 por la que tengan en pgadmin4  
 Para activar la base de datos: Abren una consola en la carpeta node-postgres  
 ```
