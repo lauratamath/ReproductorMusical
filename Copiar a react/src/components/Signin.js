@@ -39,6 +39,7 @@ const SignIn = () => {
   const [usernameError, setUsernameError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [emailError, setEmailError] = useState('')
+  const [emailDo, setEmailDo] = useState(false)
 
   useEffect(() => {
     getUsersAccounts();
@@ -93,12 +94,13 @@ const SignIn = () => {
   }
 
   function createUserAccount() {
+    const doIt = false
     if (emailError === '' && usernameError === '' && passwordError === ''){
       const password = newAccount.password
-      const email = newAccount.email
       const type = 'Free'
       const username = newAccount.username
       const dateSubscribed = actualDate
+      const email = newAccount.email
 
       fetch('http://localhost:3001/useraccount', {
         method: 'POST',
@@ -106,20 +108,21 @@ const SignIn = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({username, password, type, dateSubscribed}),
-        })
-
+      })
+      setTimeout(() => {  
       fetch('http://localhost:3001/email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({username, email}),
-          }).then(response => {
-            return response.text();
-          }).then(data => {
-            alert(data);
-            getUsersAccounts();
-        });
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({username, email}),
+        }).then(response => {
+          return response.text();
+        }).then(data => {
+          alert(data);
+          getUsersAccounts();
+      });
+      }, 700);
     }
   }
 
