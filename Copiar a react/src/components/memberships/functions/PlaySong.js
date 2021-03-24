@@ -34,6 +34,7 @@ const PlaySong = ({songName, songArtist, songUrl}) => {
     const [info, setInfo] = useState({actualUsername: '', actualTrack: 0, actualDateTime:''})
     const history = useHistory()
     const actualUsername = localStorage.getItem('actualUsername')
+    
     const date = actualDate()
 
     useEffect(() => {
@@ -42,19 +43,19 @@ const PlaySong = ({songName, songArtist, songUrl}) => {
     }, []);
 
     function getAccountManager() {
+        //Primera vez que escucha
+        setInfo({
+            ...info,
+            actualUsername: actualUsername,
+            actualTrack: 1,
+            actualDateTime: date
+        })
+    
         fetch('http://localhost:3001/accountManager').then((r) => {
             return r.json()
             }).then((j) => {
             j.forEach((usernameDB) => {
                 const dbDate = usernameDB.datetime.substring(0,10)
-                //Primera vez que escucha
-                    setInfo({
-                        ...info,
-                        actualUsername: usernameDB.username,
-                        actualTrack: 1,
-                        actualDateTime: date
-                    })
-                
                 if(actualUsername === usernameDB.username && dbDate === date && usernameDB.song === songName){ //Ya ha escuchado
                     setInfo({
                         ...info,
@@ -68,20 +69,21 @@ const PlaySong = ({songName, songArtist, songUrl}) => {
     }
 
     function getFreeMembership() {
+        //Primera vez que escucha
+        setFreeInfo({
+            ...freeInfo,
+            actualUsername: actualUsername,
+            actualTrackFree: 1,
+            actualDateFree: date
+        })
+
         fetch('http://localhost:3001/freemembership').then((r) => {
 			return r.json()
 			}).then((j) => {
 			j.forEach((usernameDB) => {
                 const dbDate = usernameDB.datetime.substring(0,10)
-                if(actualUsername === usernameDB.username){ //Primera vez que escucha
-                    setFreeInfo({
-                        ...freeInfo,
-                        actualUsernameFree: usernameDB.username,
-                        actualTrackFree: 1,
-                        actualDateFree: date
-                    })
-                }
 				if(actualUsername === usernameDB.username && dbDate === date){ //Ya ha escuchado
+                    
                     setFreeInfo({
                         ...freeInfo,
                         actualTrackFree: usernameDB.tracks+1,
