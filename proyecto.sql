@@ -45,7 +45,7 @@ CREATE TABLE Playlist (
 	song text not null,
 	artist text not null,
 	
-	CONSTRAINT PK_Playlist PRIMARY KEY (username, playlistName, song, artist),
+	CONSTRAINT PK_Playlist PRIMARY KEY (username, playlistName, song, artist)
 );
 
 CREATE TABLE CreatorsMembership (
@@ -65,8 +65,7 @@ CREATE TABLE AccountManager (
 	song text not null, 
 	artist text not null,
 	dateTime date not null,
-	tracks int,
-
+	tracks int
 );
 
 

@@ -21,6 +21,24 @@ app.get('/', (req, res) => {
   })
 })
 
+app.post('/useraccount', (req, res) => {
+  music_model.createUserAccount(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/email', (req, res) => {
+  music_model.createEmailManagment(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.put('/', (req, res) => {
   music_model.updateUserAccount(req.body).then(response => {
     res.status(200).send(response);

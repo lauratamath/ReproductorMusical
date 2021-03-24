@@ -95,6 +95,7 @@ const SignIn = () => {
   function createUserAccount() {
     if (emailError === '' && usernameError === '' && passwordError === ''){
       const password = newAccount.password
+      const email = newAccount.email
       const type = 'Free'
       const username = newAccount.username
       const dateSubscribed = actualDate
@@ -104,13 +105,21 @@ const SignIn = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({username, password, type, dateSubscribed }),
-        }).then(response => {
-          return response.text();
-        }).then(data => {
-          alert(data);
-          getUsersAccounts();
-      });
+        body: JSON.stringify({username, password, type, dateSubscribed}),
+        })
+
+      fetch('http://localhost:3001/email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({username, email}),
+          }).then(response => {
+            return response.text();
+          }).then(data => {
+            alert(data);
+            getUsersAccounts();
+        });
     }
   }
 

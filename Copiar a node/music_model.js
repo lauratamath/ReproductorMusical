@@ -54,8 +54,20 @@ const createPlaylist = (body) => {
 
 const createUserAccount = (body) => {
   return new Promise(function(resolve, reject) {
-    const { username, password, type, dateSubscribed } = body
+    const { username, password, type, dateSubscribed, email } = body
     pool.query('INSERT INTO useraccount VALUES ($1, $2, $3, $4)', [username, password, type, dateSubscribed], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+  })
+}
+
+const createEmailManagment = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { username, email } = body
+    console.log(body)
+    pool.query('INSERT INTO emailmanagment VALUES ($1, $2)', [username, email], (error, results) => {
       if (error) {
         reject(error)
       }
@@ -223,19 +235,16 @@ const updateSong = (body) => {
 
     pool.query("UPDATE songs SET artist=$1, gender=$2, album=$3, song=$4, duration=$5, release=$6, availability=$7 WHERE artist=$8 AND song=$9", [artist, gender, album, song, duration, release, availability, actualArtist, actualSong], (error, results) => {
       if (error) {
-        console.log('error 3')
         reject(error)}
     })
     pool.query("UPDATE playlist SET artist=$1, song=$2 WHERE artist=$3 AND song=$4", [artist, song, actualArtist, actualSong], (error, results) => {
       if (error) {
-        console.log('error 4')
         reject(error)
         
       }
     })
     pool.query("UPDATE accountmanager SET artist=$1, song=$2 WHERE artist=$3 AND song=$4", [artist, song, actualArtist, actualSong], (error, results) => {
       if (error) {
-        console.log('error 5')
         reject(error)
       }
     })   
@@ -273,8 +282,7 @@ const updateFreeMembershipDay = (body) => {
 const createFreeMembershipDay = (body) => {
   return new Promise(function(resolve, reject) {
     const { actualUsername, actualDateFree, actualTrackFree } = body
-    pool.query('INSERT INTO freemembership VALUES ($1, $2, $3)', [actualUsername, 
-      , actualTrackFree], (error, results) => {
+    pool.query('INSERT INTO freemembership VALUES ($1, $2, $3)', [actualUsername, actualDateFree, actualTrackFree], (error, results) => {
       if (error) {
         reject(error)
       }
@@ -383,6 +391,7 @@ module.exports = {
   getAccountManager,
   updateAccountManager,
   createAccountManager,
+  createEmailManagment,
   updateFreeMembershipDay,
   createFreeMembershipDay,
   getFreeMembership,
