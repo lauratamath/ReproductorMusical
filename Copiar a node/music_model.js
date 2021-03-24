@@ -66,7 +66,6 @@ const createUserAccount = (body) => {
 const createEmailManagment = (body) => {
   return new Promise(function(resolve, reject) {
     const { username, email } = body
-    console.log(body)
     pool.query('INSERT INTO emailmanagment VALUES ($1, $2)', [username, email], (error, results) => {
       if (error) {
         reject(error)
