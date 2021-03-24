@@ -100,10 +100,11 @@ const SearchBar = () => {
     }
     
     async function getFromApi() {
-        const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY', '5lKlFlReHOLShQKyRv6AL9', '1TTxcgs3zEngN0EB56yXzY', '71O60S5gIJSIAhdnrDIh3N', '6DEjYFkNZh67HP7R9PSZvv']
+        const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY', '5lKlFlReHOLShQKyRv6AL9', '1TTxcgs3zEngN0EB56yXzY', '71O60S5gIJSIAhdnrDIh3N', '6DEjYFkNZh67HP7R9PSZvv', '48i37aZTC1prDr4EcpQeEa', '7Ho8gAx4haSxv1eFLQwvTj']
         
         for(var i=0; i<albumsFromApi.length; i++){
-          const token = 'BQAMJd7cZaLsjzvpR5hu855NGFLx2YgzOPajwEqd7xodKvOkCMWp3nsuEJ-n4yRREXSjgk8b81CZSN8KEcCdygccNdFizMC7N98bgJv2IaTSn2pN0JVv1iW9T1_uJpKZTNU6cENs'
+        	console.log('entra')
+          const token = 'BQDdH-tf7GxoHSCjr1o7_M6n3GbvIqaON0jVNB1x9emFQ0MTAhMPoMM_ORxMr58C5PsKX5V1TRmGrhPnIGhq3BBVLqUihg8Oh1nG8Rt8Ez3l9NuMqpo5ad7nUMLS1pRGZVZUc5iG'
 
             const id = albumsFromApi[i]
             const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 
@@ -135,7 +136,8 @@ const SearchBar = () => {
                         },
                         body: JSON.stringify({artist, gender, album, song, duration, release, url}),
                         }).then(response => {
-                        return response.text();
+                        	getSongs();
+                        	return response.text();
                         })
                 }
             }
