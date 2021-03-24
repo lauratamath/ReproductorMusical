@@ -34,7 +34,7 @@ const GetReports = () => {
         </h1>
         <center>
         <br/><br/><br/><br/><br/>
-            <Button onClick={() => history.push('./reports/songsCount')} text='Artistas con mayor reproducción'/>
+            <Button onClick={() => history.push('./reports/songsCount')} text='Artistas con mayor producción'/>
             <Button onClick={() => history.push('./reports/popularArtists')} text='Artistas con popularidad creciente'/>
             <Button onClick={() => history.push('./reports/subscriptionCount')} text='Cantidad de nuevas suscripciones'/>
             <br/><br/><br/>
