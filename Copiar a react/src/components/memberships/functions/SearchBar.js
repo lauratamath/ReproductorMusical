@@ -56,19 +56,25 @@ const SearchBar = () => {
     const [search, setSearch] = useState('')
     const [songs, setSongs] = useState([])
     const [completeResults, setResults] = useState([])
+    const [executed, setExecuted] = useState(false)
     
     useEffect(() => {
         getSongs();
         searchSong();
-        getFromApi();
     }, []);
 
+    useEffect(() => {
+    	if(songs.length > 5 && !executed){
+    	   getFromApi()
+    	   setExecuted(true)
+    	}
+    }, [songs]);
       
     async function getSongs() {
         const json = await fetch('http://localhost:3001/songs')
           .then(r => r.json())
         
-        setSongs(json)
+        await setSongs(json)
     }
 
 
@@ -103,8 +109,7 @@ const SearchBar = () => {
         const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY', '5lKlFlReHOLShQKyRv6AL9', '1TTxcgs3zEngN0EB56yXzY', '71O60S5gIJSIAhdnrDIh3N', '6DEjYFkNZh67HP7R9PSZvv', '48i37aZTC1prDr4EcpQeEa', '7Ho8gAx4haSxv1eFLQwvTj']
         
         for(var i=0; i<albumsFromApi.length; i++){
-        	console.log('entra')
-          const token = 'BQDdH-tf7GxoHSCjr1o7_M6n3GbvIqaON0jVNB1x9emFQ0MTAhMPoMM_ORxMr58C5PsKX5V1TRmGrhPnIGhq3BBVLqUihg8Oh1nG8Rt8Ez3l9NuMqpo5ad7nUMLS1pRGZVZUc5iG'
+          const token = 'BQBT1wzxO0-alAMDyaFlYErh13_IDV8fmCTMMMDFh9slZzxedpknyeRb327dWNhP2s9UIdU2Nwn-KsedEMA5dpXrJsVxLdU2UOWd6zR6GqxK0oKM5U43UDVAfy-i_RnHkpB6VIV3'
 
             const id = albumsFromApi[i]
             const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 
@@ -115,6 +120,7 @@ const SearchBar = () => {
                 }
             }).then(response => response.json())
 
+            console.log(json)
             const album = json.name //Si no esta
             var revisar = songs.map(({ album }) => album).indexOf(album)
 
@@ -126,8 +132,6 @@ const SearchBar = () => {
                     const duration = (json.tracks.items[j].duration_ms/60000).toFixed(2)
                     const release = json.release_date
                     const url = json.tracks.items[j].id
-
-                    
 
                     fetch('http://localhost:3001/spotifySongs', {
                         method: 'POST',
