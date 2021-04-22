@@ -76,7 +76,8 @@ INSERT INTO plan
 	VALUES('Free',0.00),
 	('Premium',7.99),
 	('Creator',34.99),
-	('Admin',0.00);
+	('Admin',0.00),
+        ('Monitor',0.00);
 
 INSERT INTO useraccount 
 	VALUES('Olivverde','M@sterKey12','Free', '2021/03/10'),
@@ -135,7 +136,6 @@ INSERT INTO creatorsmembership
 	('Ale_King','2021-03-12 23:59:59','0012993488567764','Ale King','Manager','200'),
 	('Roll_Spot','2021-03-12 23:59:59','1123588861851131','Rolly','Artist','300'),
 	('VoceGosta','2021-03-12 23:59:59','1121177931853211','Vongy','Artist','50');
-	
 
 INSERT INTO songs
 	VALUES('Laurasia','CumbiaPop','La columba','humillarme es mi deber',3.13,'2020-03-12'),
@@ -202,3 +202,65 @@ ALTER TABLE songs ADD availability BOOLEAN;
 UPDATE songs
 SET availability = True;
 ALTER TABLE songs ADD url text;
+
+-- Modificaciones para el Proyecto 02
+
+CREATE TABLE Albums (
+	id SERIAL primary key,
+	album text not null, 
+	artist text not null
+); 
+
+INSERT INTO Albums VALUES (DEFAULT, 'Ale 25', 'Ale King'),
+	(DEFAULT, 'Rolling', 'Rolly'),
+	(DEFAULT, 'La columba', 'Laurasia'),
+	(DEFAULT, 'Amiges', 'Laurasia'),
+	(DEFAULT, 'No mi ciela', 'Ale King'),
+	(DEFAULT, 'Quede', 'Laurasia'),
+	(DEFAULT, 'Cringe', 'Vongy'),
+	(DEFAULT, 'Risking', 'Rolly');
+
+ALTER TABLE Albums ADD availability BOOLEAN;
+UPDATE Albums SET availability = True;
+
+ALTER TABLE freemembership ADD availability BOOLEAN;
+UPDATE freemembership SET availability = True;
+
+CREATE TABLE monthlyCreatorsIncome (
+	username varchar(10) not null primary Key,
+	totalReproductions int,
+	income decimal
+);
+
+CREATE TABLE monitorMembership (
+	idMonitor SERIAL primary Key,
+	nameMonitor text
+);
+
+CREATE TABLE monitorType (
+	username varchar(10) not null primary Key,
+	idMonitor SERIAL,
+	FOREIGN KEY (username) REFERENCES UserAccount(username),
+	FOREIGN KEY (idMonitor) REFERENCES monitorMembership(idMonitor)
+);
+
+CREATE TABLE monitorFeature (
+	idFeature SERIAL primary Key,
+	nameTask text
+);
+
+CREATE TABLE monitorManager (
+	idMonitor SERIAL,
+	idFeature int,
+	availability boolean,
+
+	CONSTRAINT PK_MonitorManager PRIMARY KEY (idMonitor, idFeature)
+);
+
+CREATE TABLE updateManagement (
+	idUpdated SERIAL primary Key,
+	username varchar(10) not null,
+	description text,
+	dateModification date
+)
+
