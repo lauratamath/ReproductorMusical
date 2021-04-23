@@ -31,35 +31,6 @@ const Monitor= () => {
         </h1>
         <SearchBar/>
         <br/><br/>
-
-        <button onClick={() => history.push('admin/reports')} className ='otro'>
-          <font color = '#FFFFFF' face='Candara'>
-            <b>
-              Get reports
-            </b>
-          </font>
-        </button>
-        <button onClick={() => history.push('admin/modify')} className ='otro'>
-          <font color = '#FFFFFF' face='Candara'>
-            <b>
-              Modify Song
-            </b>
-          </font>
-        </button>
-        <button onClick={() => history.push('admin/availability')} className ='otro'>
-          <font color = '#FFFFFF' face='Candara'>
-            <b>
-              Availability Song
-            </b>
-          </font>
-        </button>
-        <button onClick={() => history.push('admin/delete')} className ='otro'>
-          <font color = '#FFFFFF' face='Candara'>
-            <b>
-              Delete Song
-            </b>
-          </font>
-        </button>
       </center>
 
       <h5 align ='center'>

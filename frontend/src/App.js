@@ -34,6 +34,7 @@ import SongsCount from "./components/memberships/functions/reports/SongsCount";
 import PopularGenders from "./components/memberships/functions/reports/PopularGenders";
 import ActiveUsers from "./components/memberships/functions/reports/ActiveUsers";
 import Monitor from "./components/memberships/Monitor";
+import Deactivate from "./components/memberships/functions/Deactivate";
 
 
 
@@ -66,6 +67,7 @@ export default function App() {
           <Route path="/login/admin/reports" component={GetReports} />
           <Route path="/login/admin/delete" component={AvailabilitySong} />
           <Route path="/login/admin/modify" component={Modify} />
+          <Route path="/login/monitor/deactivate" component={Deactivate} />
           <Route path="/login/admin/account" component={AdminAccount} />
           <Route path="/login/creator/account" component={CreatorAccount} />
           <Route path="/login/premium/account" component={PremiumAccount} />

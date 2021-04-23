@@ -29,6 +29,17 @@ const getFreeMembership = () => {
 }) 
 }
 
+const deactivateFreeMembership = (body) => {
+  const {username, availability} = body
+  return new Promise(function(resolve, reject) {
+    pool.query("UPDATE freemembership SET availability = $1 WHERE username = $2", [availability, username], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+  })  
+}
+
 const getPlaylists = () => {
   return new Promise(function(resolve, reject) {
     pool.query("SELECT * FROM playlist JOIN songs ON playlist.song = songs.song AND playlist.artist = songs.artist WHERE availability = True", (error, results) => {
@@ -54,7 +65,7 @@ const createPlaylist = (body) => {
 
 const createUserAccount = (body) => {
   return new Promise(function(resolve, reject) {
-    const { username, password, type, dateSubscribed, email } = body
+    const { username, password, type, dateSubscribed } = body
     pool.query('INSERT INTO useraccount VALUES ($1, $2, $3, $4)', [username, password, type, dateSubscribed], (error, results) => {
       if (error) {
         reject(error)
@@ -328,7 +339,7 @@ const updateFreeMembershipDay = (body) => {
 const createFreeMembershipDay = (body) => {
   return new Promise(function(resolve, reject) {
     const { actualUsername, actualDateFree, actualTrackFree } = body
-    pool.query('INSERT INTO freemembership VALUES ($1, $2, $3)', [actualUsername, actualDateFree, actualTrackFree], (error, results) => {
+    pool.query('INSERT INTO freemembership VALUES ($1, $2, $3, True)', [actualUsername, actualDateFree, actualTrackFree], (error, results) => {
       if (error) {
         reject(error)
       }
@@ -431,6 +442,7 @@ const deleteSong = (body) => {
 }
 
 module.exports = {
+  deactivateFreeMembership,
   getUsersAccounts,
   createUserAccount,
   getSongs,

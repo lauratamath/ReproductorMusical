@@ -15,6 +15,6 @@ const DeleteSong = () => {
 
         <h1>Pantalla principal delete song</h1>
     </div>
-  );
+  )
 }
 export default DeleteSong;

@@ -20,16 +20,24 @@ const LogIn = () => {
   const [userAccount, setUserAccount] = useState([])
   const [existingAccount, setExistingAccount] = useState({username: '', password: ''})
   const [showError, setShowError] = useState('')
+  const [freeAccounts, setFreeAccounts] = useState([])
   const history = useHistory()
 
   useEffect(() => {
-    getUsersAccounts();
+    getUsersAccounts()
+    getFreeAccounts()
   }, []);
 
   function getUsersAccounts() {
       fetch('http://localhost:3001')
         .then(r => r.json())
         .then(r => setUserAccount(r))
+  }
+
+  function getFreeAccounts() {
+    fetch('http://localhost:3001/freemembership')
+      .then(r => r.json())
+      .then(r => setFreeAccounts(r))
   }
  
   const handleChange = (event) => {
@@ -65,6 +73,21 @@ const LogIn = () => {
         error  = 'Incorrect username or password'
       }
     }
+
+    if (accountType === 'Free') {
+      try {
+        for (var a=0; a<freeAccounts.length; a++) {
+            if (freeAccounts[a].username === localStorage.getItem('actualUsername')) {
+                console.log('encuentra user')
+                if (freeAccounts[a].availability === false) {
+                  error = 'Account deactivated'
+                }
+                break
+            }
+        }
+      } catch (e) {}
+    }
+
     setShowError(error)
 
     if (error === ''){

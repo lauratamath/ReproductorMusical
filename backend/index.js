@@ -195,6 +195,16 @@ app.get('/freemembership', (req, res) => {
   })
 })
 
+app.put('/deactivateFree', (req, res) => {
+  music_model.deactivateFreeMembership(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+
 app.put('/freemembership', (req, res) => {
   music_model.updateFreeMembershipDay(req.body).then(response => {
     res.status(200).send(response);
