@@ -57,6 +57,24 @@ app.get('/playlists', (req, res) => {
   })
 })
 
+app.get('/usersSubscriptions', (req, res) => {
+  music_model.getSubscriptions().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.put('/usersSubscriptions', (req, res) => {
+  music_model.updateSubscription(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.post('/playlists', (req, res) => {
   music_model.createPlaylist(req.body).then(response => {
     res.status(200).send(response);
@@ -197,6 +215,15 @@ app.get('/freemembership', (req, res) => {
 
 app.put('/deactivateFree', (req, res) => {
   music_model.deactivateFreeMembership(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.put('/deactivateCreator', (req, res) => {
+  music_model.deactivateCreator(req.body).then(response => {
     res.status(200).send(response);
   })
   .catch(error => {

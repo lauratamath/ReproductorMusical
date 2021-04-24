@@ -13,7 +13,7 @@ const DeleteSong = () => {
         <Button onClick={() => history.push('../admin')} text='Home'/>
         <Button onClick={() => history.push('../')} text='Log Out'/>
 
-        <h1>Pantalla principal delete song</h1>
+        <h1>Pantalla principal delete</h1>
     </div>
   )
 }

@@ -262,5 +262,9 @@ CREATE TABLE updateManagement (
 	username varchar(10) not null,
 	description text,
 	dateModification date
-)
+);
+
+ALTER TABLE creatorsMembership ADD availability BOOLEAN;
+UPDATE creatorsMembership SET availability = True;
+
 

@@ -78,7 +78,6 @@ const LogIn = () => {
       try {
         for (var a=0; a<freeAccounts.length; a++) {
             if (freeAccounts[a].username === localStorage.getItem('actualUsername')) {
-                console.log('encuentra user')
                 if (freeAccounts[a].availability === false) {
                   error = 'Account deactivated'
                 }
@@ -99,6 +98,8 @@ const LogIn = () => {
         history.push('/login/creator')
       } else if(accountType === 'Admin'){
         history.push('/login/admin')
+      } else if(accountType === 'Monitor'){
+        history.push('/login/monitor')
       }
     }
   }

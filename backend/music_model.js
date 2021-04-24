@@ -40,6 +40,29 @@ const deactivateFreeMembership = (body) => {
   })  
 }
 
+const getSubscriptions = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM useraccount WHERE type <> 'Free'", (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+  })  
+}
+
+const updateSubscription = (body) => {
+  const {username} = body
+
+  return new Promise(function(resolve, reject) {
+    pool.query("UPDATE useraccount SET type = 'Free' WHERE username = $1", [username], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+  })
+  })  
+}
+
 const getPlaylists = () => {
   return new Promise(function(resolve, reject) {
     pool.query("SELECT * FROM playlist JOIN songs ON playlist.song = songs.song AND playlist.artist = songs.artist WHERE availability = True", (error, results) => {
@@ -406,6 +429,26 @@ const getCreatorsMembership = () => {
 }) 
 }
 
+const deactivateCreator = (body) => {
+  const { artisticName, availability, username } = body
+
+  return new Promise(function(resolve, reject) {
+    pool.query("UPDATE songs SET availability=$1 WHERE artist=$2", [availability, artisticName], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+  return new Promise(function(resolve, reject) {
+    pool.query("UPDATE creatorsmembership SET availability = $1 WHERE username = $2", [availability, username], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+  })  
+}) 
+}
+
 const deleteCreatorsMembership = (body) => {
   const { actualUsername } = body
 
@@ -475,5 +518,8 @@ module.exports = {
   getMostPopularArtists,
   getMostPopularGenders,
   getArtistsSongsCount,
-  getMensualSubscription
+  getMensualSubscription,
+  getSubscriptions,
+  updateSubscription,
+  deactivateCreator
 }

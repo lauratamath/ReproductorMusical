@@ -69,7 +69,7 @@ const UserSearched = ({username, inactivate, activate}) => {
       </div>
 }
 
-const Deactivate = () => {
+const DeactivateFree = () => {
   const history = useHistory()
   const [search, setSearch] = useState('')
   const [freeAccounts, setFreeAccounts] = useState([])
@@ -94,9 +94,7 @@ const Deactivate = () => {
   function searchAccount() {
     try {
       for (var a=0; a<freeAccounts.length; a++) {
-        console.log(search)
           if (freeAccounts[a].username === search) {
-              console.log('entra')
               setAccountToDeactivate(freeAccounts[a].username)
               break
           }
@@ -107,8 +105,6 @@ const Deactivate = () => {
   const deactivateAccount = () => {
     const availability = false
     const username = accountToDeactivate
-
-    console.log(username)
 
     fetch('http://localhost:3001/deactivateFree', {
       method: 'PUT',
@@ -159,4 +155,4 @@ const Deactivate = () => {
     </div>
   )
 }
-export default Deactivate;
+export default DeactivateFree;
