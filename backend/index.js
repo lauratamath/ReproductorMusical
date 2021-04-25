@@ -75,6 +75,62 @@ app.put('/usersSubscriptions', (req, res) => {
   })
 })
 
+app.put('/monitorType', (req, res) => {
+  music_model.createMonitorMembership(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/possibleMonitors', (req, res) => {
+  music_model.getPossibleMonitors().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+
+app.get('/monitorsFeatures', (req, res) => {
+  music_model.getMonitorsFeatures().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/monitorMembership', (req, res) => {
+  music_model.getMonitorMembership().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/monitorsFeatures', (req, res) => {
+  music_model.createMonitorFeature(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/monitorTypes', (req, res) => {
+  music_model.createMonitor(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+
 app.post('/playlists', (req, res) => {
   music_model.createPlaylist(req.body).then(response => {
     res.status(200).send(response);

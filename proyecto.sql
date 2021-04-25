@@ -233,13 +233,13 @@ CREATE TABLE monthlyCreatorsIncome (
 );
 
 CREATE TABLE monitorMembership (
-	idMonitor SERIAL primary Key,
-	nameMonitor text
+	idMonitor SERIAL primary key,
+	nameMonitor text 
 );
 
 CREATE TABLE monitorType (
 	username varchar(10) not null primary Key,
-	idMonitor SERIAL,
+	idMonitor int,
 	FOREIGN KEY (username) REFERENCES UserAccount(username),
 	FOREIGN KEY (idMonitor) REFERENCES monitorMembership(idMonitor)
 );
@@ -250,11 +250,11 @@ CREATE TABLE monitorFeature (
 );
 
 CREATE TABLE monitorManager (
-	idMonitor SERIAL,
+	nameMonitor text,
 	idFeature int,
 	availability boolean,
 
-	CONSTRAINT PK_MonitorManager PRIMARY KEY (idMonitor, idFeature)
+	CONSTRAINT PK_MonitorManager PRIMARY KEY (nameMonitor, idFeature)
 );
 
 CREATE TABLE updateManagement (
@@ -267,4 +267,14 @@ CREATE TABLE updateManagement (
 ALTER TABLE creatorsMembership ADD availability BOOLEAN;
 UPDATE creatorsMembership SET availability = True;
 
+----Agregando datos
 
+INSERT INTO monitorFeature VALUES 
+	(DEFAULT, 'Modificar la informacion de cualquier track y album del catalogo'),
+	(DEFAULT, 'Desactivar tracks y albumes'),
+	(DEFAULT, 'Desactivar usuarios sin suscripcion para que ya nopuedan acceder a la plataforma'),
+	(DEFAULT, 'Eliminar suscripciones de usuarios'),
+	(DEFAULT, 'Desactivar usuarios registrados como artistas'),
+	(DEFAULT, 'Asociar un usuario existente a un perfiles de monitoreo'),
+	(DEFAULT, 'Generar los reportes ofrecidos por la plataforma'),
+	(DEFAULT, 'Consulta de bitacora de operaciones')

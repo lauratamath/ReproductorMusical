@@ -37,6 +37,8 @@ import Monitor from "./components/memberships/Monitor";
 import DeactivateFree from "./components/memberships/functions/DeactivateFree";
 import DeactivateCreator from "./components/memberships/functions/DeactivateCreator";
 import DeleteSubscriptions from "./components/memberships/functions/DeleteSubscription";
+import CreateMonitor from "./components/memberships/functions/CreateMonitor";
+import AsignMonitor from "./components/memberships/functions/AsignMonitor";
 
 
 
@@ -72,6 +74,8 @@ export default function App() {
           <Route path="/login/monitor/deleteSubs" component={DeleteSubscriptions} />
           <Route path="/login/monitor/deactivateCreator" component={DeactivateCreator} />
           <Route path="/login/monitor/deactivateFree" component={DeactivateFree} />
+          <Route path="/login/admin/asignMonitor" component={AsignMonitor} />
+          <Route path="/login/admin/createMonitor" component={CreateMonitor} />
           <Route path="/login/admin/account" component={AdminAccount} />
           <Route path="/login/creator/account" component={CreatorAccount} />
           <Route path="/login/premium/account" component={PremiumAccount} />

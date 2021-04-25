@@ -484,6 +484,82 @@ const deleteSong = (body) => {
 }) 
 }
 
+const getPossibleMonitors = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM useraccount WHERE type = 'Premium' OR type = 'Free'", (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      
+      resolve(results.rows)
+    })
+  })  
+}
+
+const getMonitorMembership = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM monitorMembership  ", (error, results) => {
+      if (error) {
+        reject(error)
+      }
+
+      resolve(results.rows)
+    })
+  })  
+}
+
+const getMonitorsFeatures = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM monitorFeature", (error, results) => {
+      if (error) {
+        reject(error)
+      }
+
+      resolve(results.rows)
+    })
+  })  
+}
+
+const createMonitor = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { monitorName } = body
+
+    pool.query("INSERT INTO monitorMembership VALUES (DEFAULT, $1)", [monitorName], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+}) 
+}
+
+const createMonitorFeature = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { monitorName, idFeature } = body
+    pool.query("INSERT INTO monitorManager VALUES ($1, $2, True)", [monitorName, idFeature], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+}) 
+}
+
+const createMonitorMembership = (body) => {
+  const { username, monitorName } = body
+  return new Promise(function(resolve, reject) {
+    pool.query("UPDATE useraccount SET type = 'Monitor' WHERE username = $1", [username], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+    
+    pool.query("INSERT INTO monitorType VALUES ($1, $2)", [username, monitorName], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+  }) 
+}
+
 module.exports = {
   deactivateFreeMembership,
   getUsersAccounts,
@@ -521,5 +597,11 @@ module.exports = {
   getMensualSubscription,
   getSubscriptions,
   updateSubscription,
-  deactivateCreator
+  deactivateCreator,
+  getPossibleMonitors,
+  getMonitorsFeatures,
+  createMonitor,
+  createMonitorFeature,
+  getMonitorMembership,
+  createMonitorMembership
 }
