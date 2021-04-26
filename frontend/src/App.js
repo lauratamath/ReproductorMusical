@@ -61,7 +61,6 @@ export default function App() {
           <Route path="/login/premium/listeningTo" component={ListeningTo} />
           <Route path="/login/creator/listeningTo" component={ListeningTo} />
           <Route path="/login/free/listeningTo" component={ListeningTo} />
-          <Route path="/login/admin/availability" component={AvailabilitySong} />
           <Route path="/login/admin/reports/activeUsers" component={ActiveUsers} />
           <Route path="/login/admin/reports/popularGenders" component={PopularGenders} />
           <Route path="/login/admin/reports/songsCount" component={SongsCount} />
@@ -74,6 +73,7 @@ export default function App() {
           <Route path="/login/monitor/reports/subscriptionCount" component={SubscriptionCount} />
           <Route path="/login/monitor/reports/popularArtists" component={PopularArtists} />
           <Route path="/login/monitor/reports/albumReleases" component={AlbumReleases} />
+          <Route path="/login/admin/availability" component={AvailabilitySong} />
           <Route path="/login/admin/reports" component={GetReports} />
           <Route path="/login/admin/delete" component={AvailabilitySong} />
           <Route path="/login/admin/modify" component={Modify} />

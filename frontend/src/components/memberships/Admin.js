@@ -42,25 +42,40 @@ const Admin = () => {
         <button onClick={() => history.push('admin/modify')} className ='otro'>
           <font color = '#FFFFFF' face='Candara'>
             <b>
-              Modify Song
+              Modify Song/Album
             </b>
           </font>
         </button>
         <button onClick={() => history.push('admin/availability')} className ='otro'>
           <font color = '#FFFFFF' face='Candara'>
             <b>
-              Availability Song
+              Availability Song/Album
             </b>
           </font>
         </button>
         <button onClick={() => history.push('admin/delete')} className ='otro'>
           <font color = '#FFFFFF' face='Candara'>
             <b>
-              Delete Song
+              Delete Song/Album 
+            </b>
+          </font>
+        </button>
+        <button onClick={() => history.push('admin/createMonitor')} className ='otro'>
+          <font color = '#FFFFFF' face='Candara'>
+            <b>
+              Create Monitor
+            </b>
+          </font>
+        </button>
+        <button onClick={() => history.push('admin/asignMonitor')} className ='otro'>
+          <font color = '#FFFFFF' face='Candara'>
+            <b>
+              Asign Monitor
             </b>
           </font>
         </button>
       </center>
+      
 
       <h5 align ='center'>
         <font color = '#8C8C8C' face='Candara'>
