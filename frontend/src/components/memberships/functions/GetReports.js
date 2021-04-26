@@ -19,7 +19,7 @@ const GetReports = () => {
                 Log Out
             </font>
         </button>
-        <button onClick={() => history.push('../admin')} div className ='botonesFree'>
+        <button onClick={history.goBack} div className ='botonesFree'>
             <font color = '#FFFFFF' face='Candara'>
                 Home
             </font>

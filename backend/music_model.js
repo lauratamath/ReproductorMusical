@@ -560,7 +560,22 @@ const createMonitorMembership = (body) => {
   }) 
 }
 
+const getMonitorAccess = (body) => {
+  const { actualUsername } = body
+  
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM monitortype  JOIN monitormembership ON monitortype.idmonitor = monitormembership.idmonitor JOIN monitormanager ON monitormembership.namemonitor = monitormanager.namemonitor JOIN monitorfeature ON monitorfeature.idfeature = monitormanager.idfeature WHERE username = $1", [actualUsername], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+
+      resolve(results.rows)
+    })
+  })  
+}
+
 module.exports = {
+  getMonitorAccess,
   deactivateFreeMembership,
   getUsersAccounts,
   createUserAccount,

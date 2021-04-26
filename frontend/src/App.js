@@ -68,12 +68,22 @@ export default function App() {
           <Route path="/login/admin/reports/subscriptionCount" component={SubscriptionCount} />
           <Route path="/login/admin/reports/popularArtists" component={PopularArtists} />
           <Route path="/login/admin/reports/albumReleases" component={AlbumReleases} />
+          <Route path="/login/monitor/reports/activeUsers" component={ActiveUsers} />
+          <Route path="/login/monitor/reports/popularGenders" component={PopularGenders} />
+          <Route path="/login/monitor/reports/songsCount" component={SongsCount} />
+          <Route path="/login/monitor/reports/subscriptionCount" component={SubscriptionCount} />
+          <Route path="/login/monitor/reports/popularArtists" component={PopularArtists} />
+          <Route path="/login/monitor/reports/albumReleases" component={AlbumReleases} />
           <Route path="/login/admin/reports" component={GetReports} />
           <Route path="/login/admin/delete" component={AvailabilitySong} />
           <Route path="/login/admin/modify" component={Modify} />
-          <Route path="/login/monitor/deleteSubs" component={DeleteSubscriptions} />
-          <Route path="/login/monitor/deactivateCreator" component={DeactivateCreator} />
-          <Route path="/login/monitor/deactivateFree" component={DeactivateFree} />
+          <Route path="/login/monitor/1" component={Modify} />
+          <Route path="/login/monitor/2" component={AvailabilitySong} />
+          <Route path="/login/monitor/3" component={DeactivateFree} />
+          <Route path="/login/monitor/4" component={DeleteSubscriptions} />
+          <Route path="/login/monitor/5" component={DeactivateCreator} />
+          <Route path="/login/monitor/6" component={AsignMonitor} />
+          <Route path="/login/monitor/7" component={GetReports} />
           <Route path="/login/admin/asignMonitor" component={AsignMonitor} />
           <Route path="/login/admin/createMonitor" component={CreateMonitor} />
           <Route path="/login/admin/account" component={AdminAccount} />

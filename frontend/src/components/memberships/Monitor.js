@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchBar from './functions/SearchBar'
 import { useHistory } from "react-router-dom";
 import './Free.css';
@@ -14,8 +14,27 @@ const Button = ({onClick, text}) => {
 
 const Monitor= () => {
   const history = useHistory()
+  const actualUsername = localStorage.getItem('actualUsername')
+  const [monitorFeatures, setMonitorFeatures] = useState([])
 
-    return (
+  
+  useEffect(() => {
+    getMonitorsFeatures()
+  }, [])
+
+  function getMonitorsFeatures() {
+    fetch('http://localhost:3001/monitorFeatures', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({actualUsername}),
+    })
+    .then(r => r.json())
+    .then(r => setMonitorFeatures(r))
+  }
+
+  return (
     <div>
       <img src={logo} width="175"/>
       <img class="icono" src={icono} width="50"/><br/>
@@ -33,6 +52,18 @@ const Monitor= () => {
         <br/><br/>
       </center>
 
+      <center>
+          {monitorFeatures?.map((result) => { 
+            return <button onClick={() => history.push('monitor/'+result.idfeature)} className ='otro'>
+              <font color = '#FFFFFF' face='Candara'>
+                <b>
+                  {result.nametask}
+                </b>
+              </font>
+            </button>
+          })}
+      </center>
+
       <h5 align ='center'>
         <font color = '#8C8C8C' face='Candara'>
           <br/><br/>
@@ -40,6 +71,7 @@ const Monitor= () => {
         </font>
       </h5>
     </div>
-  );
+  )
 }
-export default Monitor;
+
+export default Monitor

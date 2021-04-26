@@ -15,7 +15,7 @@ const Modify = () => {
 
     return (
     <div>
-        <Button onClick={() => history.push('../admin')} text='Home'/>
+        <Button onClick={history.goBack} text='Home'/>
         <Button onClick={() => history.push('../')} text='Log Out'/>
 
         <br/><br/><br/>

@@ -112,6 +112,16 @@ app.get('/monitorMembership', (req, res) => {
   })
 })
 
+
+app.post('/monitorFeatures', (req, res) => {
+  music_model.getMonitorAccess(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.post('/monitorsFeatures', (req, res) => {
   music_model.createMonitorFeature(req.body).then(response => {
     res.status(200).send(response);
