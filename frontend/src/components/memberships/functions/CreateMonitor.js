@@ -5,27 +5,30 @@ import './FreeAccount.css'
 
 const Error = ({error}) => {
   const style = {
-    color: 'red'
+    color: 'red',
+    fontfamily: 'Candara',
   }
   return <h5 style={style}>{error}</h5> 
 }
 
 const Button = ({onClick, text}) => {
   const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   }
   return <button onClick={onClick} style={style} className = 'botonesFree'>{text}</button>
 }
 
 const Accept = ({onClick, text}) => {
   const styleButton = {
-    width: '90px',
-    height: '40px',
+    width: '100px',
+    height: '50px',
     color: '#FFFFFF',
     padding: '5px',
+    fontfamily: 'Candara',
+    fontsize: '15px',
   }
 
-  return <button style={styleButton} onClick={onClick} className = 'set'>{text}</button>
+  return <button style={styleButton} onClick={onClick} className = 'setM'>{text}</button>
 }
 
 const Input = ({onChange}) => { 
@@ -36,7 +39,8 @@ const Input = ({onChange}) => {
     border: '0px',
     borderRadius: '10px',
     paddingLeft: '10px',
-    float: 'center' 
+    float: 'center',
+    fontfamily: 'Candara',
   }
   return <input type='text' onChange={onChange} style={style} placeholder='monitor name'/>
 }
@@ -44,8 +48,8 @@ const Input = ({onChange}) => {
 
 const OptionMonitor = ({id, option, selectedOption}) => {
   return (
-  <div>
-    <label >
+  <div align ='left'>
+    <label> 
       <input type="checkbox" onChange={selectedOption} id={id} />
       <span class="checkmark"></span>
       {option}
@@ -126,24 +130,29 @@ const CreateMonitor = () => {
     <div>
         <Button onClick={() => history.push('../admin')} text='Home'/>
         <Button onClick={() => history.push('../')} text='Log Out'/>
-
-        <h1>Pantalla principal Create Monitor</h1>
-
-        <Input onChange={handleChange}/>
-
+        <br/><br/><br/>
+        <h1>
+          <font color = '#FFFFFF' face='Candara' size='7'>
+          &nbsp;
+            Create Monitor
+          </font>
+        </h1>
+        <br/><br/><br/>
         <center>
-          {optionsForMonitor?.map((result) => { 
-            return <OptionMonitor 
-              id={result.idfeature}  
-              option={result.nametask} 
-              selectedOption={selectedOption}
-            />
-          })}
+          <Input onChange={handleChange}/>
+          <br/><br/>
+            {optionsForMonitor?.map((result) => { 
+              return <OptionMonitor 
+                id={result.idfeature}  
+                option={result.nametask} 
+                selectedOption={selectedOption}
+              />
+            })}
+
+          <br/><br/><br/>
+          <Accept onClick={createMonitor} text = "Create Monitor" />
+          <Error error={showError}/>
         </center>
-
-
-        <Accept onClick={createMonitor} text = "Create Monitor" />
-        <Error error={showError}/>
     </div>
   )
 }
