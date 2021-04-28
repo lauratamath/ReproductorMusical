@@ -12,6 +12,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.put('/actualUsername', (req, res) => {
+  music_model.setActualUsername(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.get('/', (req, res) => {
   music_model.getUsersAccounts().then(response => {
     res.status(200).send(response);

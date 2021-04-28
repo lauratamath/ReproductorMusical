@@ -56,7 +56,7 @@ const Admin = () => {
         <button onClick={() => history.push('admin/delete')} className ='otro'>
           <font color = '#FFFFFF' face='Candara'>
             <b>
-              Delete Song/Album 
+              Delete Song
             </b>
           </font>
         </button>

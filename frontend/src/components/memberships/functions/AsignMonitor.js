@@ -88,6 +88,7 @@ const AsignMonitor = () => {
   const [optionsForMonitor, setOptionsForMonitor] = useState([])
   const [monitorType, setMonitorType] = useState()
   const [showError, setShowError] = useState('')
+  const actualUsername = localStorage.getItem('actualUsername')
 
   useEffect(() => {
     getPossibleMonitors()
@@ -141,11 +142,21 @@ const AsignMonitor = () => {
             }).then(response => {
             return response.text();
         })
+
+        fetch('http://localhost:3001/actualUsername', {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({actualUsername}),
+              }).then(response => {
+              return response.text();
+          })
+
       setShowError('Correctly created new monitor!')
     } else {
       setShowError('Select monitor type!')
     }
-    
   }
 
   return (

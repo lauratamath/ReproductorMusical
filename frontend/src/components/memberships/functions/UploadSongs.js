@@ -72,7 +72,7 @@ const UploadSongs = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({artist, gender, album, song, duration, release}),
+        body: JSON.stringify({actualUsername, artist, gender, album, song, duration, release}),
         }).then(response => {
           return response.text();
         });

@@ -102,6 +102,7 @@ const SearchBarAvailability = () => {
     const [completeResults, setResults] = useState([])
     const [showError, setShowError] = useState('')
     const [isAlbum, setIsAlbum] = useState(false)
+    const actualUsername = localStorage.getItem('actualUsername')
     
     useEffect(() => {
         getSongs();
@@ -139,7 +140,7 @@ const SearchBarAvailability = () => {
             }
           } catch (e) {}
 
-          setResults(results)
+          setResults([...new Set(results)])
     }
 
     function DeleteSong (actualArtist, actualSong) {
@@ -148,7 +149,7 @@ const SearchBarAvailability = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({actualArtist, actualSong}),
+            body: JSON.stringify({actualUsername, actualArtist, actualSong}),
                 }).then(response => {
                 return response.text();
             });
@@ -164,7 +165,7 @@ const SearchBarAvailability = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({availability, actualArtist, actualAlbum}),
+                body: JSON.stringify({actualUsername, availability, actualArtist, actualAlbum}),
                     }).then(response => {
                     return response.text();
                 });
@@ -175,7 +176,7 @@ const SearchBarAvailability = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({availability, actualArtist, actualSong}),
+                body: JSON.stringify({actualUsername, availability, actualArtist, actualSong}),
                     }).then(response => {
                     return response.text();
                 });
@@ -185,14 +186,13 @@ const SearchBarAvailability = () => {
 
     function Activate (actualArtist, actualSong, actualAlbum) {
         const availability = 'True'
-
         if (isAlbum) {
             fetch('http://localhost:3001/albumsAvailability', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({availability, actualArtist, actualAlbum}),
+                body: JSON.stringify({actualUsername, availability, actualArtist, actualAlbum}),
                     }).then(response => {
                     return response.text();
                 });
@@ -203,7 +203,7 @@ const SearchBarAvailability = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({availability, actualArtist, actualSong}),
+            body: JSON.stringify({actualUsername, availability, actualArtist, actualSong}),
                 }).then(response => {
                 return response.text();
             });

@@ -72,6 +72,7 @@ const SearchBarAdmin = () => {
     const [completeResults, setResults] = useState([])
     const [editInfo, setEditInfo] = useState({artist: '', song: '', album: '', duration:'', release:'', gender:''})
     const [showError, setShowError] = useState('')
+    const actualUsername = localStorage.getItem('actualUsername')
     
     useEffect(() => {
         getSongs();
@@ -152,7 +153,7 @@ const SearchBarAdmin = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({artist, album, actualArtist, actualAlbum}),
+                    body: JSON.stringify({actualUsername, artist, album, actualArtist, actualAlbum}),
                         }).then(response => {
                         return response.text();
                     }).then(response => {
@@ -165,7 +166,7 @@ const SearchBarAdmin = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({artist, gender, album, song, duration, release, availability, actualArtist, actualSong}),
+            body: JSON.stringify({actualUsername, artist, gender, album, song, duration, release, availability, actualArtist, actualSong}),
                 }).then(response => {
                 return response.text();
             }).then(response => {

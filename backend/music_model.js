@@ -3,7 +3,7 @@ const pool = new Pool ({
   user: 'postgres',
   host: 'localhost',
   database: 'proyecto',
-  password: 'lauRamaRiia1',
+  password: 'Benjamin1',
   port: 5432,
 });
 
@@ -58,6 +58,7 @@ const updateSubscription = (body) => {
     pool.query("UPDATE useraccount SET type = 'Free' WHERE username = $1", [username], (error, results) => {
       if (error) {
         reject(error)
+        setActualUsername(username)
       }
   })
   })  
@@ -82,6 +83,7 @@ const createPlaylist = (body) => {
         reject(error)
       }
       resolve('A new playlist has been added', results)
+      setActualUsername(actualUsername)
     })
   })
 }
@@ -93,6 +95,7 @@ const createUserAccount = (body) => {
       if (error) {
         reject(error)
       }
+      setActualUsername(username)
     })
   })
 }
@@ -237,12 +240,13 @@ const getSongs = () => {
 
 const createSong = (body) => {
   return new Promise(function(resolve, reject) {
-    const { artist, gender, album, song, duration, release } = body
+    const { actualUsername, artist, gender, album, song, duration, release } = body
     pool.query("INSERT INTO songs VALUES ($1, $2, $3, $4, $5, $6, True)", [artist, gender, album, song, duration, release], (error, results) => {
       
       if (error) {
         reject(error)
       }
+      setActualUsername(actualUsername)
       resolve('Song has been created')
   })
 }) 
@@ -256,6 +260,8 @@ const createSpotifySong = (body) => {
       if (error) {
         reject(error)
       }
+
+      setActualUsername('From API')
       resolve('Song has been created')
   })
 }) 
@@ -269,6 +275,8 @@ const createSpotifyAlbum = (body) => {
       if (error) {
         reject(error)
       }
+
+      setActualUsername('From API')
       resolve('Album has been created')
   })
 }) 
@@ -277,7 +285,7 @@ const createSpotifyAlbum = (body) => {
 const updateSong = (body) => {
   return new Promise(function(resolve, reject) {
     
-    const { artist, gender, album, song, duration, release, availability, actualArtist, actualSong} = body
+    const { actualUsername, artist, gender, album, song, duration, release, availability, actualArtist, actualSong} = body
 
     pool.query("UPDATE songs SET artist=$1, gender=$2, album=$3, song=$4, duration=$5, release=$6, availability=$7 WHERE artist=$8 AND song=$9", [artist, gender, album, song, duration, release, availability, actualArtist, actualSong], (error, results) => {
       if (error) {
@@ -293,14 +301,16 @@ const updateSong = (body) => {
       if (error) {
         reject(error)
       }
-    })   
+    })
+    
+    setActualUsername(actualUsername)
   }) 
 }
 
 const updateAlbum = (body) => {
   return new Promise(function(resolve, reject) {
     
-    const { artist, album, actualArtist, actualAlbum } = body
+    const { actualUsername, artist, album, actualArtist, actualAlbum } = body
 
     pool.query("UPDATE albums SET artist=$1, album=$2 WHERE artist=$3 AND album=$4", [artist, album, actualArtist, actualAlbum], (error, results) => {
       if (error) {
@@ -311,25 +321,29 @@ const updateAlbum = (body) => {
       if (error) {
         reject(error)}
     })
+
+    setActualUsername(actualUsername)
   }) 
 }
 
 const songAvailability = (body) => {
   return new Promise(function(resolve, reject) {
-    const { availability, actualArtist, actualSong} = body
+    const { actualUsername, availability, actualArtist, actualSong} = body
     pool.query("UPDATE songs SET availability=$1 WHERE artist=$2 AND song=$3", [availability, actualArtist, actualSong], (error, results) => {
       
       if (error) {
         reject(error)
       }
       resolve('Song has been updated')
+
+      setActualUsername(actualUsername)
   })
 }) 
 }
 
 const albumAvailability = (body) => {
   return new Promise(function(resolve, reject) {
-    const { availability, actualArtist, actualAlbum } = body
+    const { actualUsername, availability, actualArtist, actualAlbum } = body
     pool.query("UPDATE songs SET availability=$1 WHERE artist=$2 AND album=$3", [availability, actualArtist, actualAlbum], (error, results) => {
       if (error) {
         reject(error)
@@ -341,6 +355,7 @@ const albumAvailability = (body) => {
         reject(error)
       }
       resolve('Album has been updated')    
+      setActualUsername(actualUsername)
     })
   })
 }
@@ -377,6 +392,7 @@ const updateUserAccount = (body) => {
     pool.query("UPDATE useraccount SET type= $1 WHERE username = $2", [actualType, actualUsername], (error, results) => {
       if (error) {
         reject(error)
+        setActualUsername(username)
       }
       resolve('User Membership has been updated')
     })
@@ -463,7 +479,7 @@ const deleteCreatorsMembership = (body) => {
 }
 
 const deleteSong = (body) => {
-  const { actualArtist, actualSong } = body
+  const { actualUsername, actualArtist, actualSong } = body
   return new Promise(function(resolve, reject) {
     pool.query("DELETE FROM accountmanager WHERE artist= $1 AND song= $2", [actualArtist, actualSong], (error, results) => {
       if (error) {
@@ -479,7 +495,10 @@ const deleteSong = (body) => {
       if (error) {
         reject(error)
       }
+
+      setActualUsername(actualUsername)
       resolve('song deleted');
+      
     })
 }) 
 }
@@ -574,7 +593,24 @@ const getMonitorAccess = (body) => {
   })  
 }
 
+const setActualUsername = (actualUsername) => {
+  try {
+    if (actualUsername.actualUsername !== undefined) {
+      actualUsername = actualUsername.actualUsername
+    }
+  } catch (error) {}
+
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT updateUsernameInManagement($1)", [actualUsername], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+    })
+  })  
+}
+
 module.exports = {
+  setActualUsername,
   getMonitorAccess,
   deactivateFreeMembership,
   getUsersAccounts,
