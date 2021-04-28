@@ -39,6 +39,7 @@ import DeactivateCreator from "./components/memberships/functions/DeactivateCrea
 import DeleteSubscriptions from "./components/memberships/functions/DeleteSubscription";
 import CreateMonitor from "./components/memberships/functions/CreateMonitor";
 import AsignMonitor from "./components/memberships/functions/AsignMonitor";
+import Bitacora from "./components/memberships/functions/reports/Bitacora";
 
 
 
@@ -84,6 +85,8 @@ export default function App() {
           <Route path="/login/monitor/5" component={DeactivateCreator} />
           <Route path="/login/monitor/6" component={AsignMonitor} />
           <Route path="/login/monitor/7" component={GetReports} />
+          <Route path="/login/monitor/8" component={Bitacora} />
+          <Route path="/login/admin/accessBitacora" component={Bitacora} />
           <Route path="/login/admin/asignMonitor" component={AsignMonitor} />
           <Route path="/login/admin/createMonitor" component={CreateMonitor} />
           <Route path="/login/admin/account" component={AdminAccount} />

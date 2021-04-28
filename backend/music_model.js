@@ -609,7 +609,20 @@ const setActualUsername = (actualUsername) => {
   })  
 }
 
+const getBitacora = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query("SELECT * FROM updatemanagement", (error, results) => {
+      if (error) {
+        reject(error)
+      }
+
+      resolve(results.rows)
+    })
+  })  
+}
+
 module.exports = {
+  getBitacora,
   setActualUsername,
   getMonitorAccess,
   deactivateFreeMembership,

@@ -74,6 +74,13 @@ const Admin = () => {
             </b>
           </font>
         </button>
+        <button onClick={() => history.push('admin/accessBitacora')} className ='otro'>
+          <font color = '#FFFFFF' face='Candara'>
+            <b>
+              Bitacora
+            </b>
+          </font>
+        </button>
       </center>
       
 

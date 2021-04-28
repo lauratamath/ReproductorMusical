@@ -161,7 +161,7 @@ const AsignMonitor = () => {
 
   return (
     <div>
-        <Button onClick={() => history.push('../monitor')} text='Home'/>
+        <Button onClick={history.goBack} text='Home'/>
         <Button onClick={() => history.push('../')} text='Log Out'/>
 
         <h1>Pantalla principal Asign Monitor</h1>

@@ -30,6 +30,16 @@ app.get('/', (req, res) => {
   })
 })
 
+
+app.get('/bitacora', (req, res) => {
+  music_model.getBitacora().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.post('/useraccount', (req, res) => {
   music_model.createUserAccount(req.body).then(response => {
     res.status(200).send(response);
