@@ -26,6 +26,7 @@ const Accept = ({onClick, text}) => {
     padding: '5px',
     fontfamily: 'Candara',
     fontsize: '15px',
+    fontweight:'bold',
   }
 
   return <button style={styleButton} onClick={onClick} className = 'setM'>{text}</button>
@@ -50,9 +51,16 @@ const OptionMonitor = ({id, option, selectedOption}) => {
   return (
   <div align ='left'>
     <label> 
-      <input type="checkbox" onChange={selectedOption} id={id} />
-      <span class="checkmark"></span>
-      {option}
+      <div className="alingText">
+        <input type="checkbox" onChange={selectedOption} id={id} />
+        <span class="checkmark"></span>
+        <div className="opcionesT">
+          <font color = '#FFFFFF' face='Candara'>
+            {option}
+          </font>
+        </div>
+      </div>
+       
     </label>
   </div>
   )
