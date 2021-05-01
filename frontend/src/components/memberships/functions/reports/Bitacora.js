@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import './reports.css';
+import icono from './images/bitacora.png';
 
 const Button = ({onClick, text}) => {
   const style = {
@@ -18,11 +19,23 @@ const BitacoraRow = ({username, description, date}) => {
   }
 
     return <div style={style}>
-      <div>Username that made the modification: {username}</div>
-      <div>Description of modification: {description}</div>
-      <div>Date of modification: {date}</div>
-      <div> <br/> </div>
+      <div className = 'centered-container bi-container'>
+        <div className= "textjust">
+          <ul>
+            <li>
+              <div>Username that made the modification: {username}</div>
+            </li>
+            <li>
+              <div>Description of modification: {description}</div>
+            </li>
+            <li>
+              <div>Date of modification: {date}</div>
+            </li>
+          </ul>
+          <div> <br/> </div>
+        </div>
       </div>
+    </div>
 }
 
 const Bitacora = () => {
@@ -49,13 +62,15 @@ const Bitacora = () => {
         </button>
         <Button onClick={() => history.push('../../')} text='Log Out'/>
         <br/><br/><br/><br/>
-        <h1>
-          <font color = '#FFFFFF' face='Candara'>
-            &nbsp; &nbsp; &nbsp;
+        
+        <img class="bit" src={icono} width="100"/>
+        <div className = "bitt">
+          <font color = '#FFFFFF'>
             Bitacora
-          </font>
-        </h1>
-        <br/><br/><br/><br/>
+          </font>   
+        </div>
+        
+        <br/><br/><br/>
         <center>
           <div>{bitacora.map((result) => {
                     return <BitacoraRow username={result.username} 

@@ -19,13 +19,15 @@ const Button = ({onClick, text}) => {
 
 const Accept = ({onClick, text}) => {
   const styleButton = {
-    width: '90px',
+    width: '110px',
     height: '40px',
     color: '#FFFFFF',
     padding: '5px',
+    fontfamily: 'Candara',
+    fontsize: '15px',
   }
 
-  return <button style={styleButton} onClick={onClick} className = 'set'>{text}</button>
+  return <button style={styleButton} onClick={onClick} className = 'setM'>{text}</button>
 }
 
 const Input = ({onChange}) => { 
@@ -36,7 +38,7 @@ const Input = ({onChange}) => {
     border: '0px',
     borderRadius: '10px',
     paddingLeft: '10px',
-    float: 'center' 
+    float: 'center',
   }
   return <input type='text' onChange={onChange} style={style} placeholder='username'/>
 }
@@ -44,19 +46,19 @@ const Input = ({onChange}) => {
 const UserSearched = ({username, giveMonitor}) => { 
   const style = {
       display: 'flex',
-      width: '400px',
+      width: '180px',
       height: '100px',
       lineHeight: '0px',
-      position: 'relative',
-      float: 'center',
       whiteSpace: 'nowrap',
-      margin: '0px auto'
+      margin: 'auto',
+      justifycontent: 'justify',
+      alignitems: 'justify', 
   }
 
 
   return <div style={style}>
           <div>
-              <h4 align ='left'>
+              <h4 align ='center'>
                   <font color = '#FFFFFF' face='Candara'>
                       <b>
                       {username}
@@ -70,11 +72,17 @@ const UserSearched = ({username, giveMonitor}) => {
 
 const OptionMonitor = ({id, option, selectedOption}) => {
   return (
-  <div>
+  <div className = "centered-container am-container">
     <label >
-      <input type="radio" onChange={selectedOption} id={id} name="MonitorType" />
-      <span class="checkmark"></span>
-      {option}
+      <div className = "textjust">
+        <input type="radio" onChange={selectedOption} id={id} name="MonitorType" />
+        <span class="checkmark"></span>
+        <div className = "opcionesT">
+          <font color = "#FFFFFF" face = "Candara">
+            {option}
+          </ font>
+        </div>  
+      </div>
     </label>
   </div>
   )
@@ -163,33 +171,36 @@ const AsignMonitor = () => {
     <div>
         <Button onClick={history.goBack} text='Home'/>
         <Button onClick={() => history.push('../')} text='Log Out'/>
-
-        <h1>Pantalla principal Asign Monitor</h1>
-
-        <Input onChange={handleChange}/>
-        <button onClick={searchAccount} className='botonSearch'>🔍</button>
-
-        <br/><br/>
-
-        {accountToGetMonitor ?
-           <UserSearched username={accountToGetMonitor} 
-           giveMonitor={giveMonitor} />
-          : null
-        }
-
+        <br/><br/><br/>
+        <h1>
+          <font color = '#FFFFFF' face='Candara' size='7'>
+            &nbsp;
+            Asign Monitor
+        </font>
+        </h1>
+        <br/><br/><br/>
         <center>
-          {optionsForMonitor?.map((result) => { 
-            return <OptionMonitor 
-              id={result.idmonitor}  
-              option={result.namemonitor} 
-              selectedOption={selectedOption}
-            />
-          })}
+          <Input onChange={handleChange}/>
+          <button onClick={searchAccount} className='botonSearch'>🔍</button>
+
+          <br/><br/>
+          
+          {accountToGetMonitor ?
+            <UserSearched username={accountToGetMonitor} 
+            giveMonitor={giveMonitor} />
+            : null
+          }
+
+            {optionsForMonitor?.map((result) => { 
+              return <OptionMonitor 
+                id={result.idmonitor}  
+                option={result.namemonitor} 
+                selectedOption={selectedOption}
+              />
+            })}
+
+          <Error error={showError}/>
         </center>
-
-
-
-        <Error error={showError}/>
     </div>
   )
 }

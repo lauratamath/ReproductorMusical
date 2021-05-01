@@ -49,9 +49,9 @@ const Input = ({onChange}) => {
 
 const OptionMonitor = ({id, option, selectedOption}) => {
   return (
-  <div align ='left'>
+  <div className ='centered-container w-container'>
     <label> 
-      <div className="alingText">
+      <div className="textjust">
         <input type="checkbox" onChange={selectedOption} id={id} />
         <span class="checkmark"></span>
         <div className="opcionesT">

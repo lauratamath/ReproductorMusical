@@ -121,6 +121,28 @@
   display: inline-block;
 }
 
-.alingText{
-  margin-left: 120px;
+.centered-container {
+  display: block;
+  margin-bottom: 0px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+}
+
+.w-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 580px;
+}
+
+.textjust{
+  text-align: justify;
+}
+
+.am-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 195px;
 }
