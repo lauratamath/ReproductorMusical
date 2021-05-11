@@ -148,7 +148,7 @@ const getAlbumsReleases = () => {
 
 const getSalesPerWeek = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT EXTRACT(YEAR FROM datetime) as anio, EXTRACT(WEEK FROM datetime) as semana, SUM(tracks) FROM accountmanager GROUP BY semana, anio ORDER BY anio, semana ASC', (error, results) => {
+    pool.query('SELECT * FROM salesperweek', (error, results) => {
       if (error) {
         reject(error)
       }
@@ -159,7 +159,7 @@ const getSalesPerWeek = () => {
 
 const getSalesPerGenre = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT ss.gender, EXTRACT(YEAR FROM ac.datetime) AS anio, EXTRACT(WEEK FROM ac.datetime) AS semana, sum(tracks) FROM accountmanager ac JOIN songs ss ON ac.song = ss.song GROUP BY ss.gender, anio, semana ORDER BY sum DESC', (error, results) => {
+    pool.query('SELECT * FROM salespergenre', (error, results) => {
       if (error) {
         reject(error)
       }
@@ -170,7 +170,7 @@ const getSalesPerGenre = () => {
 
 const getMostSelledArtists = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT artist, EXTRACT(YEAR FROM datetime) AS anio,EXTRACT(WEEK FROM datetime) AS semana, sum(tracks) FROM accountmanager GROUP BY artist, datetime ORDER BY anio, semana ASC', (error, results) => {
+    pool.query('SELECT * FROM mostselledartists', (error, results) => {
       if (error) {
         reject(error)
       }
@@ -181,7 +181,7 @@ const getMostSelledArtists = () => {
 
 const getTopSongs = () => {
   return new Promise(function(resolve, reject) {
-    pool.query('SELECT artist, song, sum(tracks) FROM accountmanager GROUP BY song, artist ORDER BY sum DESC', (error, results) => {
+    pool.query('SELECT * FROM topsongs', (error, results) => {
       if (error) {
         reject(error)
       }

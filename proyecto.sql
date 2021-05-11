@@ -283,7 +283,53 @@ INSERT INTO monitorFeature VALUES
 
 
 
+---------------------------CREATORS INCOME---------------------------
 
+CREATE VIEW artistTrackIncome AS
+SELECT artist, sum(tracks) as tracks
+FROM accountmanager
+GROUP BY artist;
+
+
+
+CREATE OR REPLACE FUNCTION calculateIncome() 
+RETURNS trigger AS $$
+BEGIN
+  UPDATE creatorsmembership SET income = artisttrackincome.tracks * 0.004 FROM artisttrackincome WHERE creatorsmembership.artist = artisttrackincome.artist;
+  RETURN NEW
+END;
+$$ LANGUAGE plpgsql;
+---Triger al modificar tabla useraccount
+CREATE TRIGGER calculateActualIncome 
+AFTER INSERT OR UPDATE OR DELETE ON accountmanager
+FOR EACH ROW
+	EXECUTE PROCEDURE calculateIncome();
+
+---------------------------VIEWS REPORTING---------------------------
+
+CREATE VIEW salesPerGenre AS
+SELECT ss.gender, EXTRACT(YEAR FROM ac.datetime) AS anio, EXTRACT(WEEK FROM ac.datetime) AS semana, sum(tracks)
+FROM accountmanager ac JOIN songs ss ON ac.song = ss.song
+GROUP BY ss.gender, anio, semana
+ORDER BY sum DESC;
+
+CREATE VIEW topSongs AS
+SELECT artist, song, sum(tracks) 
+FROM accountmanager 
+GROUP BY song, artist 
+ORDER BY sum DESC;
+
+CREATE VIEW mostSelledArtists AS
+SELECT artist, EXTRACT(YEAR FROM datetime) AS anio,EXTRACT(WEEK FROM datetime) AS semana, sum(tracks) 
+FROM accountmanager 
+GROUP BY artist, datetime 
+ORDER BY anio, semana ASC;
+
+CREATE VIEW salesPerWeek AS
+SELECT EXTRACT(YEAR FROM datetime) as anio, EXTRACT(WEEK FROM datetime) as semana, SUM(tracks) 
+FROM accountmanager 
+GROUP BY semana, anio 
+ORDER BY anio, semana ASC;
 
 ---------------------------QUERIES BITACORA---------------------------
 
