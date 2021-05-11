@@ -3,7 +3,7 @@ const pool = new Pool ({
   user: 'postgres',
   host: 'localhost',
   database: 'proyecto',
-  password: 'lauRamaRiia1',
+  password: 'Sandalias00',
   //password: 'Benjamin1',
   port: 5432,
 });
@@ -145,6 +145,51 @@ const getAlbumsReleases = () => {
   })
 }) 
 }
+
+const getSalesPerWeek = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT EXTRACT(YEAR FROM datetime) as anio, EXTRACT(WEEK FROM datetime) as semana, SUM(tracks) FROM accountmanager GROUP BY semana, anio ORDER BY anio, semana ASC', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getSalesPerGenre = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT ss.gender, EXTRACT(YEAR FROM ac.datetime) AS anio, EXTRACT(WEEK FROM ac.datetime) AS semana, sum(tracks) FROM accountmanager ac JOIN songs ss ON ac.song = ss.song GROUP BY ss.gender, anio, semana ORDER BY sum DESC', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getMostSelledArtists = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT artist, EXTRACT(YEAR FROM datetime) AS anio,EXTRACT(WEEK FROM datetime) AS semana, sum(tracks) FROM accountmanager GROUP BY artist, datetime ORDER BY anio, semana ASC', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
+const getTopSongs = () => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT artist, song, sum(tracks) FROM accountmanager GROUP BY song, artist ORDER BY sum DESC', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+  })
+}) 
+}
+
 
 const getMostPopularArtists = () => {
   return new Promise(function(resolve, reject) {
@@ -655,7 +700,11 @@ module.exports = {
   getPlaylists,
   createPlaylist,
   getMostActiveUsers,
+  getMostSelledArtists,
   getAlbumsReleases,
+  getSalesPerWeek,
+  getSalesPerGenre,
+  getTopSongs,
   getMostPopularArtists,
   getMostPopularGenders,
   getArtistsSongsCount,

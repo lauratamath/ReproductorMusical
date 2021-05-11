@@ -41,6 +41,12 @@ const GetReports = () => {
             <Button onClick={() => history.push('./reports/albumReleases')} text='Álbumes más recientes'/>
             <Button onClick={() => history.push('./reports/popularGenders')} text='Generos más populares'/>
             <Button onClick={() => history.push('./reports/activeUsers')} text='Usuarios más activos'/>
+            <br/><br/><br/>
+            <Button onClick={() => history.push('./reports/salesPerWeek')} text='Ventas por Semana'/>
+            <Button onClick={() => history.push('./reports/mostSelledArtist')} text='Artistas con Mayores Ventas'/>
+            <Button onClick={() => history.push('./reports/salesPerGenre')} text='Ventas por Género'/>
+            <br/><br/><br/>
+            <Button onClick={() => history.push('./reports/topSongs')} text='Canciones más reproducidas'/>
         </center>
     </div>
   );

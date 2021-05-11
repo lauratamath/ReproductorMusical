@@ -402,6 +402,42 @@ app.get('/albumReleases', (req, res) => {
   })
 })
 
+app.get('/salesPerWeek', (req, res) => {
+  music_model.getSalesPerWeek().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/salesPerGenre', (req, res) => {
+  music_model.getSalesPerGenre().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/mostSelledArtist', (req, res) => {
+  music_model.getMostSelledArtists().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/topSongs', (req, res) => {
+  music_model.getTopSongs().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.get('/popularArtists', (req, res) => {
   music_model.getMostPopularArtists().then(response => {
     res.status(200).send(response);

@@ -29,7 +29,7 @@ const Home = () => {
 		localStorage.setItem("firstTime", 1)
 		
     for(var i=0; i<albumsFromApi.length; i++){
-      const token = 'BQB_YzzozG-cyxIPKOCerJtJerCStFiLU-hDRbquU-QjMEIWE4mpZUR69UifJdducmozVa9y9iBVb2tAHruPxGaqAwQvbykO0CcCLm7hoLF09Ie6r1ZIH8DCyrrOX6PYC86DXZUO9sIH73VD'
+      const token = 'BQAIHFE_ThooAdxttnmjlppfCYisaSS75UmcW8m4yKL7bHve-VdzanIKTuKyMdgG0PRf8XneX6rMbQE34kAOQdLl8DNgiq9-6H-2vja0oXLhGHcT8aY120n5sKVWaX29GL_7sEdsVK1Qm2OhOin4HQ'
 
       const id = albumsFromApi[i]
       const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 

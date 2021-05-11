@@ -40,6 +40,10 @@ import DeleteSubscriptions from "./components/memberships/functions/DeleteSubscr
 import CreateMonitor from "./components/memberships/functions/CreateMonitor";
 import AsignMonitor from "./components/memberships/functions/AsignMonitor";
 import Bitacora from "./components/memberships/functions/reports/Bitacora";
+import SalesPerWeek from "./components/memberships/functions/reports/SalesPerWeek";
+import MostSelledArtist from "./components/memberships/functions/reports/MostSelledArtist";
+import TopSongs from "./components/memberships/functions/reports/TopSongs";
+import SalesPerGenre from "./components/memberships/functions/reports/SalesPerGenre";
 
 
 
@@ -68,6 +72,10 @@ export default function App() {
           <Route path="/login/admin/reports/subscriptionCount" component={SubscriptionCount} />
           <Route path="/login/admin/reports/popularArtists" component={PopularArtists} />
           <Route path="/login/admin/reports/albumReleases" component={AlbumReleases} />
+          <Route path="/login/admin/reports/salesPerWeek" component={SalesPerWeek} />
+          <Route path="/login/admin/reports/salesPerGenre" component={SalesPerGenre} />
+          <Route path="/login/admin/reports/mostSelledArtist" component={MostSelledArtist} />
+          <Route path="/login/admin/reports/topSongs" component={TopSongs} />
           <Route path="/login/monitor/reports/activeUsers" component={ActiveUsers} />
           <Route path="/login/monitor/reports/popularGenders" component={PopularGenders} />
           <Route path="/login/monitor/reports/songsCount" component={SongsCount} />
