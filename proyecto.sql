@@ -226,11 +226,6 @@ UPDATE Albums SET availability = True;
 ALTER TABLE freemembership ADD availability BOOLEAN;
 UPDATE freemembership SET availability = True;
 
-CREATE TABLE monthlyCreatorsIncome (
-	username varchar(10) not null primary Key,
-	totalReproductions int,
-	income decimal
-);
 
 CREATE TABLE monitorMembership (
 	idMonitor SERIAL primary key,
