@@ -111,3 +111,29 @@
   position: absolute;
   margin-top: 20px;
 }
+
+.filaR{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.otrossR{
+  text-decoration: none;
+  font-weight: bold;
+  height: 57px;
+  width: 190px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-right: 30px;
+  margin-left: 30px;
+  font-family: Candara;
+  font-weight: 300px;
+  font-size: 15px;
+  color: '#FFFFFF';
+  background-color: #149C5E;
+  border-radius: 25px;
+  border: 2px solid #1B1B1C;
+  display: inline-block;
+}
