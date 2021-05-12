@@ -15,6 +15,11 @@ const GetReports = () => {
 
     return (
     <div>
+        <button onClick={history.goBack} div className ='back'>
+          <font color = '#FFFFFF' face='Candara' size = '6'>
+            ←
+          </font>
+        </button>
         <button onClick={() => history.push('../')} div className ='botonesFree'>
             <font color = '#FFFFFF' face='Candara'>
                 Log Out

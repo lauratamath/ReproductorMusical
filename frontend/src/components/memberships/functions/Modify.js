@@ -15,6 +15,11 @@ const Modify = () => {
 
     return (
     <div>
+        <button onClick={history.goBack} div className ='back'>
+          <font color = '#FFFFFF' face='Candara' size = '6'>
+            ←
+          </font>
+        </button>
         <Button onClick={history.goBack} text='Home'/>
         <Button onClick={() => history.push('../')} text='Log Out'/>
 

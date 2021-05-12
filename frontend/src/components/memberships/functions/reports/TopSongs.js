@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import './reports.css';
-import icono from './images/sales.png';
+import icono from './images/topsongs.png';
 
 const Error = ({error}) => {
   const style = {
@@ -127,7 +127,7 @@ const TopSongs = () => {
         </center>
         <center>
           <div class='column'>
-            <div class='verticalCenter'><img class="active" src={icono} width="250"/></div>
+            <div class='verticalCenter'><img class="active" src={icono} width="210"/></div>
             <div>{songs.map((result) => {
                     return <TopSongs_style song={result.song} 
                             artist ={result.artist}
