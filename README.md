@@ -10,6 +10,11 @@
 * Para correr la base de datos
     * Colocar la contraseña de pgAdmin en backend/music_model.js
 
+* Para correr el programa:
+    * Abrir dos terminales
+	* La primera que esté situada en la carpeta de `backend` y colocar `node index.js`
+	* La segunda que esté situada en la carpeta de `frontend` y colocar `npm start`
+
 * Para inactivar/activar:
     * Canciones: Buscar el nombre de la cancion e inactivar/activar la deseada
     * Albumes: Buscar el nombre del album e inactivarlo/activarlo
