@@ -12,8 +12,8 @@
 
 * Para correr el programa:
     * Abrir dos terminales
-	* La primera que esté situada en la carpeta de `backend` y colocar `node index.js`
-	* La segunda que esté situada en la carpeta de `frontend` y colocar `npm start`
+         * La primera que esté situada en la carpeta de `backend` y colocar `node index.js`
+         * La segunda que esté situada en la carpeta de `frontend` y colocar `npm start`
 
 * Para inactivar/activar:
     * Canciones: Buscar el nombre de la cancion e inactivar/activar la deseada
