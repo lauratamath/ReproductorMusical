@@ -431,3 +431,6 @@ BEGIN
 	RETURN QUERY SELECT * FROM updatemanagement;
 END;
 $$ LANGUAGE plpgsql;	
+
+---Indice---
+CREATE INDEX usuarioIndex ON updatemanagement(username)
