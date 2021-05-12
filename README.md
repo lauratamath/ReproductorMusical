@@ -5,7 +5,10 @@
     * npm install react-router-dom dentro de la carpeta frontend
 
 * Para obtener las canciones del api:
-    * En la linea 29 de Home cambiar la variable token por el nuevo generado en https://developer.spotify.com/console/get-album/?id=&market=
+    * En la linea 32 de Home cambiar la variable token por el nuevo generado en https://developer.spotify.com/console/get-album/?id=&market=
+
+* Para correr la base de datos
+    * Colocar la contraseña de pgAdmin en backend/music_model.js
 
 * Para inactivar/activar:
     * Canciones: Buscar el nombre de la cancion e inactivar/activar la deseada

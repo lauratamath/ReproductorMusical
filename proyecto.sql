@@ -265,9 +265,9 @@ UPDATE creatorsMembership SET availability = True;
 ----Agregando datos
 
 INSERT INTO monitorFeature VALUES 
-	(DEFAULT, 'Modificar la informacion de cualquier track y album del catalogo'),
+	(DEFAULT, 'Modificar la info. de cualquier track y álbum del catálogo'),
 	(DEFAULT, 'Desactivar tracks y albumes'),
-	(DEFAULT, 'Desactivar usuarios sin suscripcion para que ya nopuedan acceder a la plataforma'),
+	(DEFAULT, 'Desactivar usuarios sin suscripción para que no accedan a la plataforma'),
 	(DEFAULT, 'Eliminar suscripciones de usuarios'),
 	(DEFAULT, 'Desactivar usuarios registrados como artistas'),
 	(DEFAULT, 'Asociar un usuario existente a un perfiles de monitoreo'),
@@ -291,7 +291,7 @@ CREATE OR REPLACE FUNCTION calculateIncome()
 RETURNS trigger AS $$
 BEGIN
   UPDATE creatorsmembership SET income = artisttrackincome.tracks * 0.004 FROM artisttrackincome WHERE creatorsmembership.artist = artisttrackincome.artist;
-  RETURN NEW
+  RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 ---Triger al modificar tabla useraccount

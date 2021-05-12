@@ -53,8 +53,9 @@ const Monitor= () => {
       </center>
 
       <center>
+        <div className="fila">
           {monitorFeatures?.map((result) => { 
-            return <button onClick={() => history.push('monitor/'+result.idfeature)} className ='otro'>
+            return <button onClick={() => history.push('monitor/'+result.idfeature)} className ='otroAM'>
               <font color = '#FFFFFF' face='Candara'>
                 <b>
                   {result.nametask}
@@ -62,6 +63,7 @@ const Monitor= () => {
               </font>
             </button>
           })}
+        </div>
       </center>
 
       <h5 align ='center'>

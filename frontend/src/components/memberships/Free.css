@@ -54,3 +54,27 @@ html, body {
   border: 2px solid #1B1B1C;
   display: inline-block;
 }
+
+.otroAM{
+  text-decoration: none;
+  height: 90px;
+  width: 200px;
+  padding: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  font-family: Candara;
+  font-weight: 200px;
+  font-size: 14px;
+  color: '#FFFFFF';
+  background-color: #149C5E;
+  border-radius: 50px;
+  display: inline-block;
+  border: 2px solid #1B1B1C;
+}
+
+.fila{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
