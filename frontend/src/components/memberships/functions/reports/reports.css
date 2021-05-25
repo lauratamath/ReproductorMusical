@@ -137,3 +137,49 @@
   border: 2px solid #1B1B1C;
   display: inline-block;
 }
+
+.generate {
+  background-color: #1B1B1C;
+}
+
+.generate h1{
+  padding-top: 50px;
+  padding-left: 75px;
+  padding-bottom: 10px;
+}
+
+.generate label{
+  color: #ffffff;
+  font-family: Candara;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.container{
+  padding-right: 4px;
+  padding-left: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 208px;
+  flex-direction: column;
+}
+
+.container input{
+  width: 190px;
+}
+
+.generateB{
+  text-decoration: none;
+  font-weight: bold;
+  height: 37px;
+  width: 100px;
+  padding: 2px;
+  margin-top: 20px;
+  font-family: Candara;
+  font-size: 15px;
+  color: #FFFFFF;
+  background-color: #149C5E;
+  border-radius: 25px;
+  border: 2px solid #1B1B1C;
+}

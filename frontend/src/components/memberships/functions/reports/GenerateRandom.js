@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import './reports.css'
+import random from './images/random.png'
 
 const Error = ({error}) => {
   const style = {
@@ -10,7 +12,7 @@ const Error = ({error}) => {
 
 const Button = ({onClick, text}) => {
   const style = {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   }
   return <button onClick={onClick} style={style} className = 'botonesHL'>{text}</button>
 }
@@ -76,24 +78,33 @@ const GenerateRandom = () => {
   }
 
   return (
-    <div>
+    <div className="generate">
       <button onClick={history.goBack} div className ='back'>
         <font color = '#FFFFFF' face='Candara' size = '6'>
           ←
         </font>
       </button>
       <Button onClick={() => history.push('../../')} text='Log Out'/>
-
-      <h1>Generate Random Reproduction</h1>
-      <label for="start">Cantidad de tracks a escuchar:</label>
-      <input type="number" onChange={handleChange} name="songsQuantity" />
-      <label for="start">Cantidad de veces a escuchar el track:</label>
-      <input type="number" onChange={handleChange} name="tracks" />
-      <label for="start">Fecha a simular:</label>
-      <input type="date" onChange={handleChange} name="date" />
-      <button type="button" onClick={generateRandomReproduction}>Generate</button>
-
-      { error && <Error error="Se generaron con exito" /> }
+      <h1>
+        <font color = '#FFFFFF' face='Candara'>
+          Generate Random Reproduction
+        </font>
+      </h1>
+      <div className="container">
+        <center>
+          <img class="active" alt="icono" src={random} width="100"/>
+        </center>
+        <label for="start">Cantidad de tracks a escuchar:</label>
+        <input type="number" onChange={handleChange} name="songsQuantity" />
+        <label for="start">Cantidad de veces a escuchar el track:</label>
+        <input type="number" onChange={handleChange} name="tracks" />
+        <label for="start">Fecha a simular:</label>
+        <input type="date" onChange={handleChange} name="date" />
+        <center>
+          <button type="button" className="generateB" onClick={generateRandomReproduction}>Generate</button>
+          { error && <Error error="Se generaron con exito" /> }
+        </center>
+      </div>
     </div>
   )
 }
