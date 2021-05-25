@@ -44,6 +44,8 @@ import SalesPerWeek from "./components/memberships/functions/reports/SalesPerWee
 import MostSelledArtist from "./components/memberships/functions/reports/MostSelledArtist";
 import TopSongs from "./components/memberships/functions/reports/TopSongs";
 import SalesPerGenre from "./components/memberships/functions/reports/SalesPerGenre";
+import GenerateRandom from "./components/memberships/functions/reports/GenerateRandom";
+import UsersRep from "./components/memberships/functions/reports/UsersRep";
 
 
 
@@ -66,6 +68,7 @@ export default function App() {
           <Route path="/login/premium/listeningTo" component={ListeningTo} />
           <Route path="/login/creator/listeningTo" component={ListeningTo} />
           <Route path="/login/free/listeningTo" component={ListeningTo} />
+          <Route path="/login/admin/reports/usersRep" component={UsersRep} />
           <Route path="/login/admin/reports/activeUsers" component={ActiveUsers} />
           <Route path="/login/admin/reports/popularGenders" component={PopularGenders} />
           <Route path="/login/admin/reports/songsCount" component={SongsCount} />
@@ -76,12 +79,14 @@ export default function App() {
           <Route path="/login/admin/reports/salesPerGenre" component={SalesPerGenre} />
           <Route path="/login/admin/reports/mostSelledArtist" component={MostSelledArtist} />
           <Route path="/login/admin/reports/topSongs" component={TopSongs} />
+          <Route path="/login/admin/reports/generateRandom" component={GenerateRandom} />
           <Route path="/login/monitor/reports/activeUsers" component={ActiveUsers} />
           <Route path="/login/monitor/reports/popularGenders" component={PopularGenders} />
           <Route path="/login/monitor/reports/songsCount" component={SongsCount} />
           <Route path="/login/monitor/reports/subscriptionCount" component={SubscriptionCount} />
           <Route path="/login/monitor/reports/popularArtists" component={PopularArtists} />
           <Route path="/login/monitor/reports/albumReleases" component={AlbumReleases} />
+          <Route path="/login/monitor/reports/generateRandom" component={GenerateRandom} />
           <Route path="/login/admin/availability" component={AvailabilitySong} />
           <Route path="/login/admin/reports" component={GetReports} />
           <Route path="/login/admin/delete" component={AvailabilitySong} />

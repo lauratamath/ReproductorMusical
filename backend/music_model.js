@@ -3,8 +3,8 @@ const pool = new Pool ({
   user: 'postgres',
   host: 'localhost',
   database: 'proyecto',
-  password: 'Sandalias00',
-  //password: 'Benjamin1',
+  // password: 'Sandalias00',
+  password: 'Benjamin1',
   port: 5432,
 });
 
@@ -668,6 +668,7 @@ const getBitacora = () => {
 }
 
 module.exports = {
+  url: "mongodb://localhost:27017/usernamesRep",
   getBitacora,
   setActualUsername,
   getMonitorAccess,

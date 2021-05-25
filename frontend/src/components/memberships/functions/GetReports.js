@@ -51,6 +51,8 @@ const GetReports = () => {
                 <Button onClick={() => history.push('./reports/mostSelledArtist')} text='Artistas con Mayores Ventas'/>
                 <Button onClick={() => history.push('./reports/salesPerGenre')} text='Ventas por Género'/>
                 <Button onClick={() => history.push('./reports/topSongs')} text='Canciones más reproducidas'/>
+                <Button onClick={() => history.push('./reports/generateRandom')} text='Simular reproducciones'/>
+                <Button onClick={() => history.push('./reports/usersRep')} text='Reproducciones por fecha'/>
             </div>
         </center>
     </div>

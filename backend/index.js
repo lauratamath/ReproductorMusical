@@ -4,6 +4,19 @@ const port = 3001
 
 const music_model = require('./music_model')
 
+const db = require('./mongo');
+const UsersRep = db.usersRep;
+db.mongoose.connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database!");
+  })
+  .catch(err => {
+  console.log("Cannot connect to the database!", err);
+  process.exit();
+})
 app.use(express.json())
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -11,6 +24,14 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
 });
+
+
+app.post('/repData', (req, res) => {
+  console.log(req.body)
+  const { username, listened } = req.body
+  UsersRep.create({username: username, listened: listened})
+})
+
 
 app.put('/actualUsername', (req, res) => {
   music_model.setActualUsername(req.body).then(response => {
