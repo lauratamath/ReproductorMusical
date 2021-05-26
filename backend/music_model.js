@@ -3,7 +3,8 @@ const pool = new Pool ({
   user: 'postgres',
   host: 'localhost',
   database: 'proyecto',
-  password: 'lauRamaRiia1',
+  password: 'Benjamin1',
+  // password: 'lauRamaRiia1',
   // password: 'Sandalias00',
   port: 5432,
 });
@@ -248,6 +249,30 @@ const updateAccountManager = (body) => {
       resolve('Account Manager has been updated')
   })
 }) 
+}
+
+const getAccountManagerPerDate = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { date } = body
+    pool.query('SELECT SUM(tracks) AS tracks, username, song, artist FROM accountmanager WHERE datetime < $1::date GROUP BY username, song, artist', [date], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+    })
+  })  
+}
+
+const getRecommendation = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { similarTo } = body
+    pool.query('SELECT artist, song FROM ( SELECT gender FROM songs WHERE song=$1 ) n1 JOIN songs ON n1.gender = songs.gender', [similarTo], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+    })
+  })  
 }
 
 const createAccountManager = (body) => {
@@ -677,6 +702,7 @@ module.exports = {
   createUserAccount,
   getSongs,
   getAccountManager,
+  getAccountManagerPerDate,
   updateAccountManager,
   createAccountManager,
   createEmailManagment,
@@ -718,5 +744,6 @@ module.exports = {
   createMonitor,
   createMonitorFeature,
   getMonitorMembership,
-  createMonitorMembership
+  createMonitorMembership,
+  getRecommendation
 }

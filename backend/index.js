@@ -23,15 +23,41 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
-});
-
-
-app.post('/repData', (req, res) => {
-  console.log(req.body)
-  const { username, listened } = req.body
-  UsersRep.create({username: username, listened: listened})
 })
 
+app.post('/repData', (req, res) => {
+  const { username, listened } = req.body
+
+  UsersRep.countDocuments({username: username}, (err, count) => {
+    if (count > 0) {
+      UsersRep.updateOne({username: username}, {$set: {listened: listened}}).then((response) => {
+        res.status(200).send(response);
+      })
+    } else {
+      UsersRep.create({username: username, listened: listened}).then((response) => {
+        res.status(200).send(response);
+      })
+    }
+  })
+})
+
+app.get('/repDate', (req, res) => {
+  UsersRep.find().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.post('/actualRecommendation', (req, res) => {
+  music_model.getRecommendation(req.body).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
 
 app.put('/actualUsername', (req, res) => {
   music_model.setActualUsername(req.body).then(response => {
@@ -283,6 +309,15 @@ app.delete('/songs', (req, res) => {
 
 app.get('/accountmanager', (req, res) => {
   music_model.getAccountManager().then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.put('/accountmanagermongo', (req, res) => {
+  music_model.getAccountManagerPerDate(req.body).then(response => {
     res.status(200).send(response);
   })
   .catch(error => {
