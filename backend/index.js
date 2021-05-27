@@ -50,6 +50,15 @@ app.get('/repDate', (req, res) => {
   })
 })
 
+app.get('/delPastDate', (req, res) => {
+  UsersRep.remove({}).then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
 app.post('/actualRecommendation', (req, res) => {
   music_model.getRecommendation(req.body).then(response => {
     res.status(200).send(response);

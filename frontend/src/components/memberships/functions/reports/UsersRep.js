@@ -7,6 +7,11 @@ const UsersRep = () => {
   const history = useHistory()
 
   const getAccountReproductions = async () => {
+    // Borrando datos pasados
+    await fetch('http://localhost:3001/delPastDate').then(response => {
+      return response.json();
+    })
+    
     // formato username, song, artist, datetime, tracks
     const json = await fetch('http://localhost:3001/accountmanagermongo', {
       method: 'PUT',
@@ -73,8 +78,21 @@ const UsersRep = () => {
         return response.json();
       })
 
+      // No recomendamos la misma cancion que ya ha escuchado
+      for (let i=0; i<recomendation.length; i++) {
+        if (recomendation[i] === similarTo) {
+          recomendation.splice(i, 1)
+          break
+        }
+      }
+
       const songRandom = Math.floor(Math.random()*recomendation.length) // Usuario aleatorio
-      allRecommendations.push({username: actualUsername, similarTo: recomendation[songRandom]})
+
+      if (recomendation.length === 0) {
+        allRecommendations.push({username: actualUsername, similarTo: 'Por el momento no hay nuevas canciones para ti'})
+      } else {
+        allRecommendations.push({username: actualUsername, similarTo: recomendation[songRandom]})
+      }
 
       json2.splice(userRandom, 1)
       b++
