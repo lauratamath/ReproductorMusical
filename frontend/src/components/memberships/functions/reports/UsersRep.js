@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import './reports.css'
 
 const UsersRep = () => {
   const [accountRec, setAccountRec] = useState([])
@@ -107,7 +108,7 @@ const UsersRep = () => {
   } 
 
   return (
-    <div>
+    <div className="generate">
       <div>
         <button onClick={history.goBack} div className ='back'>
           <font color = '#FFFFFF' face='Candara' size = '6'>
@@ -124,18 +125,30 @@ const UsersRep = () => {
                 Home
             </font>
         </button>
+
+        <h1>
+          <font color = '#FFFFFF' face='Candara'>
+            Generate Random Reproduction
+          </font>
+        </h1>
       </div>
-
-      <div>
-        <label for="start">Fecha limite:</label>
-        <input type="date" onChange={handleChange} name="date" />
-        <button onClick={getAccountReproductions} type="button">Generar Recomendaciones</button>
-
-        {accountRec.map(({ username, similarTo }) =>
-          <div>
-            <div> Al usuario: {username} </div>
-            <div> Se le recomienda: {similarTo.artist} - {similarTo.song} </div>
-          </div>)}
+      <div className="random">
+        <div className="container">
+          <label for="start">Fecha limite:</label>
+          <input type="date" onChange={handleChange} name="date" />
+          <center>
+            <button onClick={getAccountReproductions} className="recomendaciones" type="button">Generar recomendaciones</button>
+          </center>
+          {accountRec.map(({ username, similarTo }) =>
+            <div>
+              <div> 
+                <label>Al usuario: {username} </label>
+              </div>
+              <div> 
+                <label>Se le recomienda: {similarTo.artist} - {similarTo.song} </label>
+              </div>
+            </div>)}
+        </div>
       </div>
     </div>
   )
