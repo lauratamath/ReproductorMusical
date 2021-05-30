@@ -26,10 +26,11 @@ const Home = () => {
 
 	async function getFromApi() {
     const albumsFromApi = ['5JpH5T1sCYnUyZD6TM0QaY', '5lKlFlReHOLShQKyRv6AL9', '1TTxcgs3zEngN0EB56yXzY', '71O60S5gIJSIAhdnrDIh3N', '6DEjYFkNZh67HP7R9PSZvv', '48i37aZTC1prDr4EcpQeEa', '7Ho8gAx4haSxv1eFLQwvTj']
-		localStorage.setItem("firstTime", 1)
+		const genresAlbumsFromApi = ['Pop', 'Pop', 'Indie', 'Pop', 'Pop', 'Pop', 'Pop']
+    localStorage.setItem("firstTime", 1)
 		
     for(var i=0; i<albumsFromApi.length; i++){
-      const token = 'BQCgINfZi1pwXopKd0y1eo4g8_EFxIDM0FbkgUMGoZL8hLEAmAlSD8jIWmwrtkCTEeln9rrUy0Yw62VgdsJ_XYIV1ieI0RyiLyOaXFV65QshptO05tmy06l9kvJcSyVd0EN_zY3DrkQ5DybP'
+      const token = 'BQAvHxhsyVDreDDc2gAZKf2hU0JKjjg-HbgBVICg3vDr_XEEgzRnB7V0tMJ2SyPWn7rw4rwLpBlVo0YoVv9pXCC35_bH4lYVAxtvUVOerVyU2XzzGe-0ctZ9ebHwDucr4B8W6xOm'
       const id = albumsFromApi[i]
       const json = await fetch('https://api.spotify.com/v1/albums/'+id, { 
 				method: 'GET',
@@ -44,7 +45,7 @@ const Home = () => {
       for(var j=0; j<4; j++){
         const artist = json.artists[0].name
         const song = json.tracks.items[j].name
-        const gender = 'not available'
+        const gender = genresAlbumsFromApi[i]
         const duration = (json.tracks.items[j].duration_ms/60000).toFixed(2)
         const release = json.release_date
         const url = json.tracks.items[j].id
