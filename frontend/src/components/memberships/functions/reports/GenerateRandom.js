@@ -39,7 +39,7 @@ const GenerateRandom = () => {
   // getSongs
   async function getSongs() {
     const json = await fetch('http://localhost:3001/songs')
-      .then(r => r.json())
+      .then(r => r.json())  
       
     await setSongs(json)
   }
@@ -52,7 +52,7 @@ const GenerateRandom = () => {
 
     for (let i=0; i<simInfo.songsQuantity; i++){
       const random = Math.floor(Math.random()*songs.length) 
-      let actualTrack = Math.floor(Math.random()*tracks) // Se escucha m veces el track
+      let actualTrack = 1 + Math.floor(Math.random()*tracks) // Se escucha m veces el track
       const songName = songs[random].song
       const songArtist = songs[random].artist
 
@@ -71,7 +71,7 @@ const GenerateRandom = () => {
         setSongs(songs.splice(random,  1)) //Borramos la cancion
         return response.text()
       })
-      tracks -= actualTrack // Disminuimos la cantidad total
+      tracks -= actualTrack - 1 // Disminuimos la cantidad total
     }
 
     setError(true)
